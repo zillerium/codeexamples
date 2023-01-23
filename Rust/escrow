@@ -1,0 +1,39 @@
+use solana_sdk::{
+    account::Account,
+    instruction::InstructionError,
+    program_utils::next_keyed_account,
+};
+
+pub struct Escrow<'a> {
+    buyer: &'a Account,
+    seller: &'a Account,
+    escrow: &'a Account,
+    amount: u64,
+}
+
+impl<'a> Escrow<'a> {
+    pub fn new(buyer: &'a Account, seller: &'a Account, escrow: &'a Account, amount: u64) -> Self {
+        Self {
+            buyer,
+            seller,
+            escrow,
+            amount,
+        }
+    }
+
+    pub fn process(&self) -> Result<(), InstructionError> {
+        // Check that the buyer has enough funds
+        if self.buyer.lamports < self.amount {
+            return Err(InstructionError::InsufficientFunds);
+        }
+
+        // Transfer funds from the buyer to the escrow account
+        self.buyer.lamports -= self.amount;
+        self.escrow.lamports += self.amount;
+
+        // Release funds to the seller after some time has elapsed
+        // ...
+
+        Ok(())
+    }
+}
