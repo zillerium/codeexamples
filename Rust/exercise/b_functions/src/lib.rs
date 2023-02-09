@@ -1,0 +1,3 @@
+fn greet() {
+  prinln!("hi");
+}
