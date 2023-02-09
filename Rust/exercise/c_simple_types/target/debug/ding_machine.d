@@ -1,1 +1,0 @@
-/home/ubuntu/rust/ultimate_rust_crash_course/exercise/c_simple_types/target/debug/ding_machine: /home/ubuntu/rust/ultimate_rust_crash_course/exercise/c_simple_types/src/lib.rs /home/ubuntu/rust/ultimate_rust_crash_course/exercise/c_simple_types/src/main.rs
