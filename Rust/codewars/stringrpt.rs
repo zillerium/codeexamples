@@ -8,6 +8,14 @@ fn repeat_str(src: &str, count: usize) -> String {
     owned_string
    
 }
+fn repeat_str(src: &str, count: usize) -> String {
+  src.repeat(count)
+}
+
+fn repeat_str(src: &str, count: usize) -> String {
+  std::iter::repeat(src).take(count).collect()
+}
+
 
 #[test]
 fn example_tests() {
