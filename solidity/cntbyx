@@ -1,0 +1,37 @@
+pragma solidity ^0.8.16;
+
+contract CountByX {
+
+  function countBy(int x, int n) public pure returns (int[] memory) {
+    int[] memory z = new int[](uint(n));
+    // TODO: Your code here   
+     
+    for (uint i=0;i<uint(n);i++) {
+        z[i]=int(i+1)* x;
+    }  
+    return z;
+  }
+}
+
+const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
+const { assert, config } = require("chai");
+config.truncateThreshold = 0;
+
+describe('CountBy', function(accounts) {
+  async function deployFixture() {
+    const Contract = await ethers.getContractFactory("CountByX");
+    const contract = await Contract.deploy();
+    await contract.deployed();
+    return contract; 
+  };
+  
+  // Note: Web3's BigNumber format must be converted for JavaScript friendly presentation
+  const countAndConvert = async (c,x,n) => {
+    return (await c.countBy(x,n)).map(b => b.toNumber());
+  }     
+  it('should have a function "countBy" which returns an array of multiples of x', async () => {
+    const c = await loadFixture(deployFixture);
+    assert.deepEqual(await countAndConvert(c,1,5), [1,2,3,4,5])
+    assert.deepEqual(await countAndConvert(c,2,5), [2,4,6,8,10])  
+  });
+});
