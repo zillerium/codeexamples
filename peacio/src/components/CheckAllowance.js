@@ -9,6 +9,7 @@ function CheckAllowance(props) {
 
 	 const  {
                 approveContract, setApproveContract,
+                allowanceAmount, setAllowanceAmount,
                 payContract, setPayContract,
                 approveEscrowContract, setApproveEscrowContract,
                 contractAddress, setContractAddress,
@@ -32,12 +33,13 @@ function CheckAllowance(props) {
         if (isSuccess) {
              setApproveEscrowContract(true);
 	     setApproveContract(false);
+		if (data) {
+	     setAllowanceAmount(data[1].toString());
+		}
         }
-
 	return (
     <div >
 		        <div><Button variant="primary" >Check Allowance</Button></div>
-
     </div>
   );
 }

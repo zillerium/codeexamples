@@ -15,6 +15,7 @@ function WalletInner(props) {
         const   [deployContract, setDeployContract] = useState(true);
         const   [approveContract, setApproveContract] = useState(false);
         const   [approveAmount, setApproveAmount] = useState(0);
+        const   [allowanceAmount, setAllowanceAmount] = useState(0);
         const   [payContract, setPayContract] = useState(false);
         const   [approveEscrowContract, setApproveEscrowContract] = useState(false);
         const   [paySeller, setPaySeller] = useState(false);
@@ -84,8 +85,8 @@ return (
 	   <div className="row">
                <div className="col-12 text-center">
 
-        { payContract && <PayContract />	}
-	{ !payContract && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
+        { allowanceAmount>0 && <PayContract />	}
+	{ allowanceAmount==0 && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
 
 	           { paySeller && <PaySeller />	}
 	           { !paySeller && <Button variant="secondary" disabled>2. Settle to Seller</Button>	}
