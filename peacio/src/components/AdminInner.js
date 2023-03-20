@@ -6,12 +6,11 @@ import ApproveEscrowContract from './ApproveEscrowContract';
 import PayContract from './PayContract';
 import ApproveContract from './ApproveContract';
 import PaySeller from './PaySeller';
-import CheckAllowance from './CheckAllowance';
 import ContractShow from './ContractShow';
 
 
 
-function WalletInner(props) {
+function AdminInner(props) {
         const   [deployContract, setDeployContract] = useState(true);
         const   [approveContract, setApproveContract] = useState(false);
         const   [approveAmount, setApproveAmount] = useState(0);
@@ -62,35 +61,21 @@ return (
                 contractNumber, setContractNumber
         }}>
 
-        <div>
-    	    <div className="row">
-	       <ContractShow />
-	    </div>
-	</div>
 
         <div>
 	   <div className="row">
   	       <div className="col-12 text-center">
-	           <h2>Settle Contract</h2>
+	           <h2>Register Wallet</h2>
                </div>
    	   </div>
 
-      <div className="row">
+ <div className="row">
              <div className="col-6 ">
-                 <CheckAllowance />        
-             </div>
-      </div>
+        { approveContract && <ApproveContract />        }
+        { !approveContract && <Button variant="secondary" disabled>2. Approve StableCoin Contract</Button>      }
+        </div>
+</div>
 
-	   <div className="row">
-               <div className="col-12 text-center">
-
-        { payContract && <PayContract />	}
-	{ !payContract && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
-
-	           { paySeller && <PaySeller />	}
-	           { !paySeller && <Button variant="secondary" disabled>2. Settle to Seller</Button>	}
-	       </div>
-           </div>
 	</div>
         </ContractContext.Provider>
   </div>
@@ -99,7 +84,7 @@ return (
 
 }
 
-export default WalletInner;
+export default AdminInner;
 
 
 	
