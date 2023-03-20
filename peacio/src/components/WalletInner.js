@@ -34,12 +34,12 @@ function WalletInner(props) {
 
 useEffect(() => {
 		setERC20ContractAddress('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
-	setContractAddress('0x44f168de1F56c61b93817D5E87e569cEc1f1F8aC');
+	setContractAddress('0xD1DbB7379485d02F7342b6f0A5a695AD2E612355');
 
 	setApproveAmount(1000000000000);
 	setApproveContract(true);
 	setApproveEscrowContract(true);
-	setPayContract(true);
+	setPayContract(false);
 }, [])
 console.log("app amout ------", approveAmount);
 return (
@@ -77,7 +77,7 @@ return (
 
       <div className="row">
              <div className="col-6 ">
-                 <CheckAllowance />        
+                 <CheckAllowance address={props.address} />        
              </div>
       </div>
 

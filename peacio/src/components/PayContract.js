@@ -70,8 +70,7 @@ console.log("----items --", items);
 		setContractNumber(ranNumber);
         };
 //
-    const PayEscrow = async () => {
-	    try {
+	useEffect(()=> {
             genRanNumber();
             const salesRelease = Math.floor(Date.now() / 1000);
             const disputeRelease = salesRelease + 100; // 100 secs for testing
@@ -79,6 +78,7 @@ console.log("----items --", items);
 	    setDisputeRelease(disputeRelease);
 	    setNotary(notaries[0]);
 		//setContractAddress('0x44f168de1F56c61b93817D5E87e569cEc1f1F8aC');
+	}, []);
         let argArr = [contractNumber, thisSellerAddr.address, notary.address, salesRelease, disputeRelease, totAmount  ];
 	console.log("array ---- ", argArr, contractAddress);
         const {config, error} = usePrepareContractWrite({
@@ -100,6 +100,13 @@ console.log("----items --", items);
            setPayContract(false);
         }
 
+    const payEscrow = async () => {
+              console.log("------ pay now--");
+	    try {
+		    console.log("--write", write);
+		    console.log("--config", config);
+		    console.log("--data", data);
+		    console.log("--error", error);
                 const res = await write?.();
 		    console.log("-- res", res);
 	    } catch (err) {
@@ -111,7 +118,7 @@ console.log("----items --", items);
 
     return (
         <>
-        <div><Button  variant="primary" onClick={PayEscrow}>Pay to Escrow {stableCoinAmount}</Button></div>
+        <div><Button  variant="primary" onClick={payEscrow}>Pay to Escrow {stableCoinAmount}</Button></div>
             {error && (<div> error in formatting {error.message} </div>)}
         </>
     )

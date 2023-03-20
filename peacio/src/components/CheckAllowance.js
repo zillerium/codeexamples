@@ -5,7 +5,7 @@ import {ContractContext} from './ContractContext'
 import abi from './abi';
 import {Container, Card, Button, Form, Row, Col} from 'react-bootstrap';
 
-function CheckAllowance() {
+function CheckAllowance(props) {
 
 	 const  {
                 approveContract, setApproveContract,
@@ -17,10 +17,13 @@ function CheckAllowance() {
         const config = {
                    address: contractAddress,
           abi: abi,
-          functionName: 'checkAllowance'
+		overrides: {from: props.address},
+          functionName: 'checkAllowance',
+          //functionName: 'getContractUsdcBalance',
         }
 
-        const {data, isLoading, isSuccess, write} = useContractRead(config)
+	console.log("checl allowance 2 == ", config, props.address)
+        const {data, isLoading, isSuccess} = useContractRead(config)
 	if (isLoading) {
              return <div>Loading ...</div>
 	}
@@ -33,7 +36,7 @@ function CheckAllowance() {
 
 	return (
     <div >
-		        <div><Button variant="primary" onClick={()=>write?.()}>Check Allowance</Button></div>
+		        <div><Button variant="primary" >Check Allowance</Button></div>
 
     </div>
   );
