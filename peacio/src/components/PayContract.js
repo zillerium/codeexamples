@@ -20,7 +20,7 @@ function PayContract() {
                 paySeller, setPaySeller,
                 paymentAmount, setPaymentAmount,
                 erc20ContractAddress, setERC20ContractAddress,
-                contractAddress, setContractAddress,
+                contractAddress, 
                 contractDetails, setContractDetails,
                 notary, setNotary,
                 sellerAddress, setSellerAddress,
@@ -28,11 +28,11 @@ function PayContract() {
 		 salesRelease, setSalesRelease,
 		 disputeRelease, setDisputeRelease
                 } = useContext(ContractContext)
-	 const cart = useContext(CartContext);
+	const cart = useContext(CartContext);
         const payee = cart.seller;
         const title = cart.title;
         const items = cart.items;
-console.log("----items --", items);
+        console.log("----items --", items);
 
 	const notaries = [{address:'0x9f0BEA7dE67e8Fb333067ed83b468E5082280835'}];
         let sellers = items.reduce(
@@ -77,29 +77,27 @@ console.log("----items --", items);
 	    setSalesRelease(salesRelease);
 	    setDisputeRelease(disputeRelease);
 	    setNotary(notaries[0]);
-		//setContractAddress('0x44f168de1F56c61b93817D5E87e569cEc1f1F8aC');
 	}, []);
         let argArr = [contractNumber, thisSellerAddr.address, notary.address, salesRelease, disputeRelease, totAmount  ];
-	console.log("array ---- ", argArr, contractAddress);
-        const {config, error} = usePrepareContractWrite({
+  	    console.log("array ---- ", argArr, contractAddress);
+            const {config, error} = usePrepareContractWrite({
                    address: contractAddress,
                    abi: abi,
                    functionName: 'approveAndTransferUSDC',
                   // args:[contractNumber],
                    args: argArr
-        })
-        console.log(config);
-        const {data, isLoading, isSuccess, write} = useContractWrite(config)
-        if (isLoading) {
-           return <div>Loading ...</div>
-        }
-        console.log(data)
+            })
+            console.log(config);
+            const {data, isLoading, isSuccess, write} = useContractWrite(config)
+            if (isLoading) {
+                return <div>Loading ...</div>
+            }
+            console.log(data)
 
-        if (isSuccess) {
-           setPaySeller(true);
-           setPayContract(false);
-        }
-
+            if (isSuccess) {
+                setPaySeller(true);
+                setPayContract(false);
+            }
     const payEscrow = async () => {
               console.log("------ pay now--");
 	    try {

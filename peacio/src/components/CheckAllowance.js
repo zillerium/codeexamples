@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import {useContext,useEffect} from 'react'
 import {  
 	      useContractRead} from "wagmi";
 import {ContractContext} from './ContractContext'
@@ -12,7 +12,7 @@ function CheckAllowance(props) {
                 allowanceAmount, setAllowanceAmount,
                 payContract, setPayContract,
                 approveEscrowContract, setApproveEscrowContract,
-                contractAddress, setContractAddress,
+                contractAddress, 
                 } = useContext(ContractContext)
 
         const config = {
@@ -22,7 +22,6 @@ function CheckAllowance(props) {
           functionName: 'checkAllowance',
           //functionName: 'getContractUsdcBalance',
         }
-
 	console.log("checl allowance 2 == ", config, props.address)
         const {data, isLoading, isSuccess} = useContractRead(config)
 	if (isLoading) {
@@ -30,17 +29,17 @@ function CheckAllowance(props) {
 	}
 	console.log("checl allowance == ", data)
 
-        if (isSuccess) {
-             setApproveEscrowContract(true);
-	     setApproveContract(false);
+           if (isSuccess) {
 		if (data) {
-	     setAllowanceAmount(data[1].toString());
+			console.log("-------------------- data ------ ", data[0].toString());
+	            setAllowanceAmount(data[0].toString());
 		}
-        }
+	   }
 	return (
     <div >
 		        <div><Button variant="primary" >Check Allowance</Button></div>
-    </div>
+		{allowanceAmount}
+		</div>
   );
 }
 

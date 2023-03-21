@@ -33,7 +33,7 @@ function OrderListInner(props) {
 
 useEffect(() => {
 		setERC20ContractAddress('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
-	setContractAddress('0x44f168de1F56c61b93817D5E87e569cEc1f1F8aC');
+        setContractAddress(process.env.REACT_APP_CONTRACT_ADDR);
 
 	setApproveAmount(1000000000000);
 	setApproveContract(true);

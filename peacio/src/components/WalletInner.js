@@ -4,6 +4,7 @@ import {CartContext} from '../CartContext';
 import {ContractContext} from './ContractContext';
 import ApproveEscrowContract from './ApproveEscrowContract';
 import PayContract from './PayContract';
+import GetSellers from './GetSellers';
 import ApproveContract from './ApproveContract';
 import PaySeller from './PaySeller';
 import CheckAllowance from './CheckAllowance';
@@ -25,6 +26,7 @@ function WalletInner(props) {
         const   [contractDetails, setContractDetails] = useState([{}]);
         const   [notary, setNotary]=useState({address: ''});
         const   [sellerAddress, setSellerAddress]=useState({address: ''});
+        const   [contractAmount, setContractAmount]=useState(0);
         const   [contractNumber, setContractNumber]=useState(0);
         const   [salesRelease, setSalesRelease] = useState(0);
         const   [disputeRelease, setDisputeRelease] = useState(0);
@@ -32,11 +34,12 @@ function WalletInner(props) {
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
         const cart = useContext(CartContext);
-
+console.log("yyyyyy - ", process.env.REACT_APP_CONTRACT_ADDR);
+console.log("yyyyyy jj - ", process.env);
+	//setApproveAmount(1000000000000);
 useEffect(() => {
 		setERC20ContractAddress('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
-	setContractAddress('0xD1DbB7379485d02F7342b6f0A5a695AD2E612355');
-
+	setContractAddress(process.env.REACT_APP_CONTRACT_ADDR);
 	setApproveAmount(1000000000000);
 	setApproveContract(true);
 	setApproveEscrowContract(true);
@@ -52,6 +55,7 @@ return (
                 payContract, setPayContract,
                 approveEscrowContract, setApproveEscrowContract,
                 paySeller, setPaySeller,
+                contractAmount, setContractAmount,
                 paymentAmount, setPaymentAmount,
                 erc20ContractAddress, setERC20ContractAddress,
                 contractAddress, setContractAddress,
@@ -60,9 +64,9 @@ return (
                 sellerAddress, setSellerAddress,
                 salesRelease, setSalesRelease,
                 disputeRelease, setDisputeRelease,
-                contractNumber, setContractNumber
+                contractNumber, setContractNumber,
+                allowanceAmount, setAllowanceAmount
         }}>
-
         <div>
     	    <div className="row">
 	       <ContractShow />
@@ -78,15 +82,17 @@ return (
 
       <div className="row">
              <div className="col-6 ">
-                 <CheckAllowance address={props.address} />        
+                 <CheckAllowance address={props.address} />  
+	         <GetSellers />
              </div>
       </div>
 
 	   <div className="row">
                <div className="col-12 text-center">
-
-        { allowanceAmount>0 && <PayContract />	}
+	{allowanceAmount}
+        { allowanceAmount>0 && sellerAddress && <PayContract />	}
 	{ allowanceAmount==0 && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
+	{ allowanceAmount>0 && !sellerAddress && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
 
 	           { paySeller && <PaySeller />	}
 	           { !paySeller && <Button variant="secondary" disabled>2. Settle to Seller</Button>	}
