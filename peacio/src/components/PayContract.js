@@ -78,7 +78,7 @@ function PayContract() {
 	    setDisputeRelease(disputeRelease);
 	    setNotary(notaries[0]);
 	}, []);
-        let argArr = [contractNumber, thisSellerAddr.address, notary.address, salesRelease, disputeRelease, totAmount  ];
+        let argArr = [contractNumber, sellerAddress.address, notary.address, salesRelease, disputeRelease, totAmount  ];
   	    console.log("array ---- ", argArr, contractAddress);
             const {config, error} = usePrepareContractWrite({
                    address: contractAddress,

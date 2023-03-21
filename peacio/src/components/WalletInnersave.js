@@ -81,21 +81,18 @@ return (
    	   </div>
 
       <div className="row">
-	               <div className="col-12 text-center">
+             <div className="col-6 ">
+                 <CheckAllowance address={props.address} />  
+	         <GetSellers />
+             </div>
+      </div>
 
-	                 <CheckAllowance address={props.address} />
-	<GetSellers />
-      </div>
-      </div>
-<div>
-	seller addr {sellerAddress.address} end of addr
-	</div>
 	   <div className="row">
                <div className="col-12 text-center">
 	{allowanceAmount}
-        { allowanceAmount>0 && sellerAddress.address && <PayContract />	}
+        { allowanceAmount>0 && sellerAddress && <PayContract />	}
 	{ allowanceAmount==0 && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
-	{ allowanceAmount>0 && !sellerAddress.address && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
+	{ allowanceAmount>0 && !sellerAddress && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
 
 	           { paySeller && <PaySeller />	}
 	           { !paySeller && <Button variant="secondary" disabled>2. Settle to Seller</Button>	}

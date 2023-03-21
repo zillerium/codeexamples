@@ -1,17 +1,14 @@
-import {useContext,useEffect} from 'react'
+import {useContext} from 'react'
 import {  
 	      useContractRead} from "wagmi";
 import {ContractContext} from './ContractContext'
 import abi from './abi';
-import {Container, Card, Button, Form, Row, Col} from 'react-bootstrap';
+import { Button} from 'react-bootstrap';
 
 function CheckAllowance(props) {
 
 	 const  {
-                approveContract, setApproveContract,
                 allowanceAmount, setAllowanceAmount,
-                payContract, setPayContract,
-                approveEscrowContract, setApproveEscrowContract,
                 contractAddress, 
                 } = useContext(ContractContext)
 

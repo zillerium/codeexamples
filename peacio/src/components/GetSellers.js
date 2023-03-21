@@ -33,6 +33,7 @@ function GetSellers() {
 	})
         setSellerAddress(thisSellerAddr.address);
         setContractAmount(totAmount);
+	console.log("seler ---", sellerAddress);
 
     return (
         <>
