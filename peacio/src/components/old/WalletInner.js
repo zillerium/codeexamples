@@ -3,11 +3,13 @@ import { Container, Card, Button, Form, Row, Col } from 'react-bootstrap';
 import { CartContext } from '../CartContext';
 import { ContractContext } from './ContractContext';
 import GetSellers from './GetSellers';
+import CheckAllowance from './CheckAllowance';
 import SellerInfoContext from './SellerInfoContext';
 
 function WalletInner(props) {
   const [sellerAddress, setSellerAddress] = useState({ address: '' });
   const [contractAmount, setContractAmount] = useState(0);
+  const [allowanceAmount, setAllowanceAmount] = useState(0);
 
   const isConnectedWallet = props.isConnected;
   const payer = props.address;
@@ -38,7 +40,8 @@ function WalletInner(props) {
     setContractAmount(totAmount);
     console.log('seler ---', sellerAddress);
   };
-
+const contractAddress = process.env.REACT_APP_CONTRACT_ADDR; 
+	
   return (
     <div className="container">
       <ContractContext.Provider
@@ -47,14 +50,19 @@ function WalletInner(props) {
           setSellerAddress,
           contractAmount,
           setContractAmount,
+	  contractAddress, 
+			allowanceAmount, setAllowanceAmount
         }}
       >
         <SellerInfoContext.Provider value={calculateSellerInfo}>
           <div>
             <GetSellers />
           </div>
+	  <div>
+	      <CheckAllowance address={payer} />
+	  </div>
           <div>
-            seller addr {sellerAddress.address} end of addr
+            seller addr {sellerAddress.address} end of addr {allowanceAmount}
           </div>
         </SellerInfoContext.Provider>
       </ContractContext.Provider>

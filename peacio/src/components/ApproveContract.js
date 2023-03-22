@@ -1,33 +1,21 @@
-import {Web3Button} from '@web3modal/react';
-import {useContext, useState} from 'react'
-import {goerli,polygonMumbai, avalancheFuji, avalanche, polygon,mainnet } from "wagmi/chains";
-import {WagmiConfig,  useAccount,
-	configureChains, createClient, useNetwork, useConnect, chain, useContractWrite, usePrepareContractWrite} from "wagmi";
-import {EthereumClient, modalConnectors, walletConnectProvider} from "@web3modal/ethereum"
-import { publicProvider } from 'wagmi/providers/public';
+import {useContext} from 'react'
+import {  
+	    useContractWrite, usePrepareContractWrite} from "wagmi";
 import {ContractContext} from './ContractContext'
-import bytecode1 from './bytecode';
 
 import abierc20 from './abierc20';
-import {Container, Card, Button, Form, Row, Col} from 'react-bootstrap';
+import { Button, } from 'react-bootstrap';
 
 function ApproveContract() {
 
 	 const  {
-                deployContract, setDeployContract,
                 approveContract, setApproveContract,
-                payContract, setPayContract,
-                approveEscrowContract, setApproveEscrowContract,
-                paySeller, setPaySeller,
-                paymentAmount, setPaymentAmount,
-                erc20ContractAddress, setERC20ContractAddress,
+                paymentAmount, 
+                erc20ContractAddress,
                 contractAddress, 
-                contractDetails, setContractDetails,
-                notary, setNotary
+                approvedMsg, setApprovedMsg,
                 } = useContext(ContractContext)
 
-	console.log("contract debug details ====== ");
-	console.log(contractDetails);
 //Object.keys(contractDetails).map(item=>{
 //	console.log("item == ", item);
 //totAmount += item.totalAmount;
@@ -53,8 +41,7 @@ const {data, isLoading, isSuccess, write} = useContractWrite(config)
 	console.log(data)
 
  if (isSuccess) {
-     setApproveEscrowContract(true);
-	 setApproveContract(false);
+	 setApprovedMsg("contract approved");
  }
 
 	return (

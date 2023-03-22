@@ -23,11 +23,11 @@ return (
 
         <div>
 
-
+<CheckAllowace />
 	<GetSellers />
       </div>
 <div>
-	seller addr {sellerAddress.address} end of addr
+	seller addr {sellerAddress.address} end of addr {allowanceAmount} end amount
 	</div>
         </ContractContext.Provider>
   </div>

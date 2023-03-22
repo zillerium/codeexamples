@@ -40,15 +40,4 @@ function CheckAllowance(props) {
   );
 }
 
-
-
-
-
-
-
-
-
-
-
-
 export default CheckAllowance;
