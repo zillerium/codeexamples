@@ -34,7 +34,6 @@ function CheckAllowance(props) {
 	   }
 	return (
     <div >
-		        <div><Button variant="primary" >Check Allowance</Button></div>
 		{allowanceAmount}
 		</div>
   );

@@ -1,24 +1,20 @@
-import {Web3Button} from '@web3modal/react';
-import {useContext, useState, useEffect} from 'react'
+import {useContext,  useEffect} from 'react'
 import {  
           useContractWrite, usePrepareContractWrite} from "wagmi";
 import {CartContext} from '../CartContext'
 import {ContractContext} from './ContractContext'
 import { BigNumber} from 'bignumber.js';
 
-import {Container, Card, Button, Form, Row, Col} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 import abi from './abi';
 
 function PayContract() {
 
 	 const  {
-                deployContract, setDeployContract,
                 approveContract, setApproveContract,
                 payContract, setPayContract,
                 approveEscrowContract, setApproveEscrowContract,
-                paySeller, setPaySeller,
-                paymentAmount, setPaymentAmount,
                 erc20ContractAddress, setERC20ContractAddress,
                 contractAddress, 
                 contractDetails, setContractDetails,

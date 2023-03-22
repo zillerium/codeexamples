@@ -2,27 +2,24 @@ import {useEffect, useState, useContext } from 'react';
 import {Button, } from 'react-bootstrap';
 import {ContractContext} from './ContractContext';
 import ApproveContract from './ApproveContract';
+import CheckAllowance from './CheckAllowance';
 
 function AdminInner(props) {
+        const   [allowanceAmount, setAllowanceAmount] = useState(0);
         const   [approveContract, setApproveContract] = useState(false);
         const   [paymentAmount, setPaymentAmount] = useState();
-        const   [erc20ContractAddress, setERC20ContractAddress] = useState();
-        const   [contractAddress, setContractAddress] = useState();
+        const   [erc20ContractAddress, setERC20ContractAddress] = useState('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
+        const   [contractAddress, setContractAddress] = useState(process.env.REACT_APP_CONTRACT_ADDR);
         const   [approvedMsg, setApprovedMsg] = useState("not approved");
         
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
 
-useEffect(() => {
-		setERC20ContractAddress('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
-	setContractAddress(process.env.REACT_APP_CONTRACT_ADDR);
-
-	setApproveContract(true);
-}, [])
 return (
     <div className="container">
 
         <ContractContext.Provider value={{
+                allowanceAmount, setAllowanceAmount,
                 approveContract, setApproveContract,
                 paymentAmount, setPaymentAmount,
                 erc20ContractAddress, setERC20ContractAddress,
@@ -37,15 +34,15 @@ return (
 	           <h2>Register Wallet</h2>
                </div>
    	   </div>
-
- <div className="row">
+      <div className="row">
              <div className="col-6 ">
-        { approveContract && <ApproveContract />        }
-        { !approveContract && <Button variant="secondary" disabled> Approve StableCoin Contract</Button>      }
-	{approvedMsg}
-        </div>
-</div>
+                 <CheckAllowance address={props.address} />
+             </div>
+      </div>
 
+	   <div className="row">
+	  <ApproveContract />
+	</div>
 	</div>
         </ContractContext.Provider>
   </div>
