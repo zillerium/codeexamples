@@ -10,7 +10,8 @@ function ApproveContractNow() {
 
 	 const  {
                 erc20ContractAddress,
-                contractAddress, 
+                contractAddress,
+		allowanceAmount,
                 approvedMsg, setApprovedMsg,
                 } = useContext(ContractContext)
 
@@ -45,9 +46,7 @@ const {data, isLoading, isSuccess, write} = useContractWrite(config)
 	return (
     <div >
 		        <div>
-
-		<Button variant="primary" disabled={!write} onClick={()=>write?.()}>Approve contract to pay</Button>
-
+		<Button variant="primary" disabled={false} onClick={()=>write?.()}>Approve contract to pay</Button>
 		</div>
             {error && (<div> error in formatting {error.message} </div>)}
 

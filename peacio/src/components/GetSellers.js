@@ -7,11 +7,15 @@ function GetSellers() {
         const  {
                 sellerAddress, setSellerAddress,
                 contractAmount, setContractAmount,
+                contractNumber, setContractNumber,
+		notary, setNotary,
+                salesRelease, setSalesRelease,
+                disputeRelease, setDisputeRelease,
                 } = useContext(ContractContext)
 	const cart = useContext(CartContext);
         const items = cart.items;
         console.log("----items --", items);
-
+if (items) {
         let sellers = items.reduce(
 		(acc,item)=> {
 			if (!acc[item.seller]) {
@@ -32,8 +36,24 @@ function GetSellers() {
              totAmount = sellerDetails.totAmount;
 	})
         setSellerAddress(thisSellerAddr.address);
-        setContractAmount(totAmount);
+        totAmount = totAmount * (10 ** 6);
+        totAmount = Math.round(totAmount);
 	console.log("seler ---", sellerAddress);
+        setContractAmount(totAmount);
+
+
+        const notaries = [{address:'0x9f0BEA7dE67e8Fb333067ed83b468E5082280835'}];
+
+        const maxint256 = 10000000000;
+        const ranNumber = Math.floor(Math.random() * maxint256);
+            console.log("---- ran number ---- ", ranNumber);
+        setContractNumber(ranNumber);
+            const _salesRelease = Math.floor(Date.now() / 1000);
+            const _disputeRelease = salesRelease + 100; // 100 secs for testing
+            setSalesRelease(salesRelease);
+            setDisputeRelease(disputeRelease);
+            setNotary(notaries[0]);
+        }
 
     return (
         <>

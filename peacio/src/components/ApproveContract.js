@@ -7,11 +7,8 @@ import { Button, } from 'react-bootstrap';
 function ApproveContract() {
 
 	 const  {
-                allowanceAmount, setAllowanceAmount,
-                approveContract, setApproveContract,
-                erc20ContractAddress,
-                contractAddress, 
-                approvedMsg, setApprovedMsg,
+                allowanceAmount,
+                approvedMsg,
                 } = useContext(ContractContext)
 
 
@@ -21,9 +18,8 @@ function ApproveContract() {
 
 
 
-        { allowanceAmount==0 && <ApproveContractNow />  }
-        { allowanceAmount>0 && <div>Your wallet is already approved</div>  }
-
+        { allowanceAmount>0 && <ApproveContractNow />  }
+        {approvedMsg}
 		</div>
 
     </div>

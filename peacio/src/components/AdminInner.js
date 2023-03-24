@@ -36,12 +36,12 @@ return (
    	   </div>
       <div className="row">
              <div className="col-6 ">
-                 <CheckAllowance address={props.address} />
+                 <CheckAllowance  address={props.address} />
              </div>
       </div>
 
 	   <div className="row">
-	  <ApproveContract />
+	{allowanceAmount} <ApproveContract />
 	</div>
 	</div>
         </ContractContext.Provider>

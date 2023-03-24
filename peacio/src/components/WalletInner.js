@@ -7,6 +7,7 @@ import PayContract from './PayContract';
 import GetSellers from './GetSellers';
 import ApproveContract from './ApproveContract';
 import PaySeller from './PaySeller';
+import PayContractMgr from './PayContractMgr';
 import CheckAllowance from './CheckAllowance';
 import ContractShow from './ContractShow';
 
@@ -80,20 +81,14 @@ return (
 
       <div className="row">
              <div className="col-6 ">
-                 <CheckAllowance address={props.address} />  
-	         <GetSellers />
+                 <CheckAllowance address={props.address} /> 
              </div>
       </div>
 
 	   <div className="row">
                <div className="col-12 text-center">
-	{allowanceAmount}
-        { allowanceAmount>0 && sellerAddress && <PayContract />	}
-	{ allowanceAmount==0 && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
-	{ allowanceAmount>0 && !sellerAddress && <Button variant="secondary" disabled>4. Pay to Escrow</Button>	}
+	                <PayContractMgr />
 
-	           { paySeller && <PaySeller />	}
-	           { !paySeller && <Button variant="secondary" disabled>2. Settle to Seller</Button>	}
 	       </div>
            </div>
 	</div>

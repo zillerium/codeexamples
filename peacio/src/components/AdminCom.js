@@ -26,8 +26,8 @@ function AdminCom() {
 
 return (
   <div className="container">
-
        <WagmiConfig client={client}>
+
          <div className="row">
 
           <div>
