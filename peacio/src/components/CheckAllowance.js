@@ -19,26 +19,29 @@ function CheckAllowance(props) {
                 //functionName: 'getContractUsdcBalance',
         }
 	console.log("checl allowance 2 == ", config, props.address)
-useEffect(()=>{
+
+
 	const {data, isLoading, isSuccess} = useContractRead(config)
+
+useEffect(()=>{
     
 	    console.log("checl allowance == ", data)
+	        if (isSuccess) {
+                if (data) {
+                        console.log("-------------------- data ------ ", data[0].toString());
+                        console.log("-------------------- data ------ ", data[0].toString());
+                        console.log("-------------------- data ------ ", data[0].toString());
+                        console.log("-------------------- data ------ ", data[0].toString());
+                        console.log("-------------------- data ------ ", data[0].toString());
+                    setAllowanceAmount(data[0].toString());
+                }
+           }
 
-           if (isSuccess) {
-		if (data) {
-			console.log("-------------------- data ------ ", data[0].toString());
-			console.log("-------------------- data ------ ", data[0].toString());
-			console.log("-------------------- data ------ ", data[0].toString());
-			console.log("-------------------- data ------ ", data[0].toString());
-			console.log("-------------------- data ------ ", data[0].toString());
-	            setAllowanceAmount(data[0].toString());
-		}
-	   }
-        //if (isLoading) {
-          //   return <div>Loading ...</div>
-       // }
-}, []);
+}, [data]);
 
+        if (isLoading) {
+           return <div>Loading ...</div>
+        }
 	return (
     <div >
 		</div>

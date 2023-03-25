@@ -83,12 +83,13 @@ return (
              <div className="col-6 ">
                  <CheckAllowance address={props.address} /> 
              </div>
+             <div className="col-6 ">
+             </div>
       </div>
 
 	   <div className="row">
                <div className="col-12 text-center">
-	                <PayContractMgr />
-
+	{allowanceAmount>0 ? <PayContractMgr /> : <div>Approve Wallet First </div>}
 	       </div>
            </div>
 	</div>

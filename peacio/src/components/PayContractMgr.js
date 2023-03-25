@@ -11,14 +11,17 @@ function PayContractMgr() {
                 sellerAddress, setSellerAddress,
                 paySeller, setPaySeller,
                 } = useContext(ContractContext)
-
+console.log("---------------- seller address -----------------", sellerAddress);
+console.log("---------------- seller address -----------------", sellerAddress);
+console.log("---------------- seller address -----------------", sellerAddress);
+console.log("---------------- seller address -----------------", sellerAddress);
+	
     return (
         <>
 
         {allowanceAmount}
-        { allowanceAmount>0 && sellerAddress && <PayContract /> }
-        { allowanceAmount==0 && <Button variant="secondary" disabled>4. Pay to Escrow</Button>  }
-        { allowanceAmount>0 && !sellerAddress && <Button variant="secondary" disabled>4. Pay to Escrow</Button> }
+        {  sellerAddress.address && <PayContract /> }
+        { !sellerAddress.address && <Button variant="secondary" disabled>4. Pay to Escrow</Button> }
         { paySeller && <div>Contract Paid</div> }
         { !paySeller && <div>Contract unPaid</div> }
 

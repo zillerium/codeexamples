@@ -41,7 +41,7 @@ return (
       </div>
 
 	   <div className="row">
-	{allowanceAmount} <ApproveContract />
+	{allowanceAmount==0 ? <ApproveContract /> : <div>already approved</div>}
 	</div>
 	</div>
         </ContractContext.Provider>
