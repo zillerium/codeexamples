@@ -11,6 +11,7 @@ import PayContractMgr from './PayContractMgr';
 import CheckAllowance from './CheckAllowance';
 import ContractShow from './ContractShow';
 import ContractList from './ContractList';
+import GetContractList from './GetContractList';
 
 
 
@@ -31,6 +32,7 @@ function OrderListInner(props) {
         const   [contractNumber, setContractNumber]=useState(0);
         const   [salesRelease, setSalesRelease] = useState(0);
         const   [disputeRelease, setDisputeRelease] = useState(0);
+        const   [buyerContracts, setBuyerContracts] = useState([]);
         
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
@@ -65,7 +67,8 @@ return (
                 salesRelease, setSalesRelease,
                 disputeRelease, setDisputeRelease,
                 contractNumber, setContractNumber,
-                allowanceAmount, setAllowanceAmount
+                allowanceAmount, setAllowanceAmount,
+                buyerContracts, setBuyerContracts
         }}>
         <div>
     	    <div className="row">
@@ -82,9 +85,10 @@ return (
 
       <div className="row">
              <div className="col-6 ">
-                 <ContractList address={props.address} /> 
+                 <GetContractList address={props.address} /> 
              </div>
              <div className="col-6 ">
+	{buyerContracts.length>0 && <ContractList address={props.address} /> }
              </div>
       </div>
 

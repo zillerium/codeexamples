@@ -5,36 +5,8 @@ import ContractDetails from './ContractDetails';
 import abi from './abi';
 
 function ContractList(props) {
-  const { contractAddress } = useContext(ContractContext);
-  const [buyerContracts, setBuyerContracts] = useState([]);
-
-  const config = {
-    address: contractAddress,
-    abi: abi,
-    overrides: { from: props.address },
-    functionName: 'getBuyerContractsByAddress',
-	  args:[props.address]
-  };
-
-	console.log("config --------------", config);
-	console.log("config --------------", config);
-	console.log("config --------------", config);
-  const { data, isLoading, isSuccess } = useContractRead(config);
-console.log("read adat ---------------------------", data);
-console.log("read adat ---------------------------", data);
-console.log("read adat ---------------------------", data);
-console.log("read adat ---------------------------", data);
-  useEffect(() => {
-    if (isSuccess) {
-      if (data) {
-        setBuyerContracts(data[0].map((contract) => contract.toNumber()));
-      }
-    }
-  }, [data, isSuccess]);
-
-  if (isLoading) {
-    return <div>Loading contracts...</div>;
-  }
+  const { contractAddress, buyerContracts } = useContext(ContractContext);
+console.log("jjjjjjjjjjjjjjj", buyerContracts);
 //           <ContractDetails contractNum={contractNum} />
 
   return (
@@ -43,6 +15,7 @@ console.log("read adat ---------------------------", data);
       <ul>
         {buyerContracts.map((contractNum) => (
           <li key={contractNum}>
+		{contractNum}
           </li>
         ))}
       </ul>
