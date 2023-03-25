@@ -87,6 +87,8 @@ return (
              <div className="col-6 ">
                  <GetContractList address={props.address} /> 
              </div>
+	</div>
+      <div className="row">
              <div className="col-6 ">
 	{buyerContracts.length>0 && <ContractList address={props.address} /> }
              </div>

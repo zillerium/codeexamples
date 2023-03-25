@@ -26,7 +26,19 @@ console.log("read adat ---------------------------", data);
   useEffect(() => {
     if (isSuccess) {
       if (data) {
-        setBuyerContracts(Array.from(data[0]).map((contract) => contract.toNumber()));
+	  //    setBuyerContracts([1,2,3]);
+	      console.log("len=",data.length);
+	      console.log("len=",data.length);
+	      console.log("len=",data.length);
+	      console.log("len=",data.length);
+	      console.log("len=",data.length);
+	      console.log("len=",data.length);
+	      console.log("len=",data[0]);
+	      console.log("len=",data[1]);
+	      const myArray = Array.from(data.map((contract) => contract.toNumber()));
+	console.log("may array ----", myArray);
+	      setBuyerContracts(myArray);
+       // setBuyerContracts(Array.from(data[0]).map((contract) => contract.toNumber()));
 	  console.log('bucontarcts 1',data,  buyerContracts);
       }
 	  console.log('bucontarcts 2', buyerContracts);

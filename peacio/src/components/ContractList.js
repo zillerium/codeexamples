@@ -16,6 +16,7 @@ console.log("jjjjjjjjjjjjjjj", buyerContracts);
         {buyerContracts.map((contractNum) => (
           <li key={contractNum}>
 		{contractNum}
+           <ContractDetails contractNum={contractNum} />
           </li>
         ))}
       </ul>

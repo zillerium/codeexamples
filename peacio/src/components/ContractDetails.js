@@ -11,14 +11,14 @@ function ContractDetails(props) {
     abi: abi,
     overrides: { from: props.address },
     functionName: 'salesContracts',
-    functionArgs: [props.index],
+   args: [props.index],
   };
 
   const { data, isLoading, isSuccess } = useContractRead(config);
   const [details, setDetails] = useState({});
 
   useEffect(() => {
-    if (isSuccess) {
+    if ((isSuccess)  && (data) ) {
       const [        buyer,        seller,        notary,        erc20Contract,        paymentAmount,        disputePeriod,        salesPeriod,        salesRelease,        disputeRelease,        status,        sellerApproval,        buyerApproval,      ] = data;
 
       setDetails({
@@ -44,6 +44,7 @@ function ContractDetails(props) {
 
   return (
     <div>
+	  {details && <ShowContractDdetails /> }
       <p>Seller: {details.seller}</p>
       <p>Notary: {details.notary}</p>
       <p>Release Dates:</p>
