@@ -89,3 +89,42 @@ function getBid(uint256 bidId) external view returns (address, uint256, uint256,
     return (bid.bidder, bid.amount, bid.exchangeRate, bid.expiration, bid.fulfilled);
 }
 
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "./IERC20.sol";
+
+contract USDCBTCTradingPool {
+    address public owner;
+    uint256 public exchangeRate;
+    uint256 public nextBidId;
+    uint256 public usdcBalance;
+    uint256 public btcBalance;
+    address public usdcToken;
+    address public wbtcToken;
+
+    struct Bid {
+        uint256 id;
+        address payable bidder;
+        uint256 amount;
+        uint256 exchangeRate;
+        uint256 expiration;
+        bool fulfilled;
+    }
+
+    mapping(uint256 => Bid) public bids;
+
+    event BidPlaced(uint256 indexed bidId, address indexed seller, uint256 amount, uint256 exchangeRate, uint256 expiration);
+    event BidFulfilled(uint256 indexed bidId, address indexed seller, address indexed bidder, uint256 amount, uint256 usdcOwed);
+    event ExchangeRateUpdated(uint256 newRate);
+
+    constructor(address _usdcToken, address _wbtcToken) {
+        owner = msg.sender;
+        exchangeRate = 1e8; // default to 1 BTC = 100,000,000 USDC
+        usdcToken = _usdcToken;
+        wbtcToken = _wbtcToken;
+    }
+
+    // functions ...
+}
+
