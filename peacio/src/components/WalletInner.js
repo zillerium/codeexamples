@@ -84,6 +84,7 @@ return (
                  <CheckAllowance address={props.address} /> 
              </div>
              <div className="col-6 ">
+	         <GetSellers />
              </div>
       </div>
 

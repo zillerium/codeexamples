@@ -15,7 +15,8 @@ function GetSellers() {
     const cart = useContext(CartContext);
     const items = cart.items;
     console.log("----items --", items);
-    if (items) {
+    useEffect(() => {	
+      if (items) {
         let sellers = items.reduce(
 		(acc,item)=> {
 			if (!acc[item.seller]) {
@@ -51,7 +52,8 @@ function GetSellers() {
         setSalesRelease(salesRelease);
         setDisputeRelease(disputeRelease);
         setNotary(notaries[0]);
-    }
+      }
+    }, [items]);	    
 
     return (
         <>

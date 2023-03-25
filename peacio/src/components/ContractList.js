@@ -1,21 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useContractRead } from 'wagmi';
 import { ContractContext } from './ContractContext';
 import ContractDetails from './ContractDetails';
+import abi from './abi';
 
 function ContractList(props) {
-  const { contractAddress, abi } = useContext(ContractContext);
+  const { contractAddress } = useContext(ContractContext);
   const [buyerContracts, setBuyerContracts] = useState([]);
 
   const config = {
     address: contractAddress,
     abi: abi,
-    overrides: { from: props.buyerAddress },
+    overrides: { from: props.address },
     functionName: 'getBuyerContractsByAddress',
+	  args:[props.address]
   };
 
+	console.log("config --------------", config);
+	console.log("config --------------", config);
+	console.log("config --------------", config);
   const { data, isLoading, isSuccess } = useContractRead(config);
-
+console.log("read adat ---------------------------", data);
+console.log("read adat ---------------------------", data);
+console.log("read adat ---------------------------", data);
+console.log("read adat ---------------------------", data);
   useEffect(() => {
     if (isSuccess) {
       if (data) {
@@ -27,6 +35,7 @@ function ContractList(props) {
   if (isLoading) {
     return <div>Loading contracts...</div>;
   }
+//           <ContractDetails contractNum={contractNum} />
 
   return (
     <div>
@@ -34,7 +43,6 @@ function ContractList(props) {
       <ul>
         {buyerContracts.map((contractNum) => (
           <li key={contractNum}>
-            <ContractDetails contractNum={contractNum} />
           </li>
         ))}
       </ul>

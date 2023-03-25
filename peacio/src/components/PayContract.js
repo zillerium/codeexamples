@@ -28,9 +28,9 @@ function PayContract() {
                 } = useContext(ContractContext)
 
 
-	const stableCoinAmount = Math.round(contractAmount/ (10 ** 6));
+	const stableCoinAmount = contractAmount/ (10 ** 6);
 
-        let argArr = [contractNumber, sellerAddress.address, notary.address, salesRelease, disputeRelease, contractAmount  ];
+        let argArr = [contractNumber, sellerAddress, notary.address, salesRelease, disputeRelease, contractAmount  ];
   	    console.log("array ---- ", argArr, contractAddress);
             const {config, error} = usePrepareContractWrite({
                    address: contractAddress,

@@ -4,25 +4,30 @@ import {CartContext} from '../CartContext';
 import {ContractContext} from './ContractContext';
 import ApproveEscrowContract from './ApproveEscrowContract';
 import PayContract from './PayContract';
+import GetSellers from './GetSellers';
 import ApproveContract from './ApproveContract';
 import PaySeller from './PaySeller';
+import PayContractMgr from './PayContractMgr';
+import CheckAllowance from './CheckAllowance';
 import ContractShow from './ContractShow';
+import ContractList from './ContractList';
 
 
 
 function OrderListInner(props) {
-        const   [deployContract, setDeployContract] = useState(true);
         const   [approveContract, setApproveContract] = useState(false);
-        const   [approveAmount, setApproveAmount] = useState(0);
+        const   [approveAmount, setApproveAmount] = useState(1000000000000);
+        const   [allowanceAmount, setAllowanceAmount] = useState(0);
         const   [payContract, setPayContract] = useState(false);
         const   [approveEscrowContract, setApproveEscrowContract] = useState(false);
         const   [paySeller, setPaySeller] = useState(false);
         const   [paymentAmount, setPaymentAmount] = useState();
-        const   [erc20ContractAddress, setERC20ContractAddress] = useState();
-        const   [contractAddress, setContractAddress] = useState();
+        const   [erc20ContractAddress, setERC20ContractAddress] = useState('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
+        const   [contractAddress, setContractAddress] = useState(process.env.REACT_APP_CONTRACT_ADDR);
         const   [contractDetails, setContractDetails] = useState([{}]);
         const   [notary, setNotary]=useState({address: ''});
         const   [sellerAddress, setSellerAddress]=useState({address: ''});
+        const   [contractAmount, setContractAmount]=useState(0);
         const   [contractNumber, setContractNumber]=useState(0);
         const   [salesRelease, setSalesRelease] = useState(0);
         const   [disputeRelease, setDisputeRelease] = useState(0);
@@ -30,26 +35,27 @@ function OrderListInner(props) {
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
         const cart = useContext(CartContext);
-
-useEffect(() => {
-		setERC20ContractAddress('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
-        setContractAddress(process.env.REACT_APP_CONTRACT_ADDR);
-
-	setApproveAmount(1000000000000);
-	setApproveContract(true);
-	setApproveEscrowContract(true);
-	setPayContract(true);
-}, [])
+console.log("yyyyyy - ", process.env.REACT_APP_CONTRACT_ADDR);
+console.log("yyyyyy jj - ", process.env);
+	//setApproveAmount(1000000000000);
+//useEffect(() => {
+//		setERC20ContractAddress('0x0FA8781a83E46826621b3BC094Ea2A0212e71B23');
+//	setContractAddress(process.env.REACT_APP_CONTRACT_ADDR);
+//	setApproveAmount(1000000000000);
+//	setApproveContract(true);
+//	setApproveEscrowContract(true);
+	//setPayContract(false);
+//}, [])
 console.log("app amout ------", approveAmount);
 return (
     <div className="container">
 
         <ContractContext.Provider value={{
-                deployContract, setDeployContract,
                 approveContract, setApproveContract,
                 payContract, setPayContract,
                 approveEscrowContract, setApproveEscrowContract,
                 paySeller, setPaySeller,
+                contractAmount, setContractAmount,
                 paymentAmount, setPaymentAmount,
                 erc20ContractAddress, setERC20ContractAddress,
                 contractAddress, setContractAddress,
@@ -58,17 +64,31 @@ return (
                 sellerAddress, setSellerAddress,
                 salesRelease, setSalesRelease,
                 disputeRelease, setDisputeRelease,
-                contractNumber, setContractNumber
+                contractNumber, setContractNumber,
+                allowanceAmount, setAllowanceAmount
         }}>
+        <div>
+    	    <div className="row">
+	       <ContractShow />
+	    </div>
+	</div>
 
         <div>
 	   <div className="row">
   	       <div className="col-12 text-center">
-	           <h2>List Orders</h2>
+	           <h2>Contract</h2>
                </div>
    	   </div>
-   	</div>
 
+      <div className="row">
+             <div className="col-6 ">
+                 <ContractList address={props.address} /> 
+             </div>
+             <div className="col-6 ">
+             </div>
+      </div>
+
+	</div>
         </ContractContext.Provider>
   </div>
 );
