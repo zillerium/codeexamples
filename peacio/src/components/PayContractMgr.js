@@ -15,6 +15,8 @@ console.log("---------------- seller address -----------------", sellerAddress);
 console.log("---------------- seller address -----------------", sellerAddress);
 console.log("---------------- seller address -----------------", sellerAddress);
 console.log("---------------- seller address -----------------", sellerAddress);
+console.log("---------------- seller address pay -----------------", paySeller);
+console.log("---------------- seller address allowance -----------------", allowanceAmount);
 	
     return (
         <>

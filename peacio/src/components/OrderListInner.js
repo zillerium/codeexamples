@@ -33,6 +33,7 @@ function OrderListInner(props) {
         const   [salesRelease, setSalesRelease] = useState(0);
         const   [disputeRelease, setDisputeRelease] = useState(0);
         const   [buyerContracts, setBuyerContracts] = useState([]);
+        const   [sellerContracts, setSellerContracts] = useState([]);
         
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
@@ -68,7 +69,8 @@ return (
                 disputeRelease, setDisputeRelease,
                 contractNumber, setContractNumber,
                 allowanceAmount, setAllowanceAmount,
-                buyerContracts, setBuyerContracts
+                buyerContracts, setBuyerContracts,
+                sellerContracts, setSellerContracts
         }}>
         <div>
     	    <div className="row">
@@ -85,15 +87,37 @@ return (
 
       <div className="row">
              <div className="col-6 ">
-                 <GetContractList address={props.address} /> 
+                 <GetContractList address={props.address} contractType={'buyer'} /> 
              </div>
 	</div>
       <div className="row">
              <div className="col-6 ">
-	{buyerContracts.length>0 && <ContractList address={props.address} /> }
+                 <GetContractList address={props.address} contractType={'seller'} /> 
+             </div>
+	</div>
+      <div className="row">
+             <div className="col-6 ">
+	        <h1>Buyer Contracts</h1>
+             </div>
+	</div>
+
+      <div className="row">
+	<div className="col-6 ">
+	{buyerContracts.length>0 && <ContractList address={props.address} contractType={"buyer"} contracts={buyerContracts}/> }
              </div>
       </div>
 
+      <div className="row">
+             <div className="col-6 ">
+	        <h1>Seller Contracts</h1>
+             </div>
+	</div>
+
+      <div className="row">
+	<div className="col-6 ">
+	{sellerContracts.length>0 && <ContractList address={props.address} contractType={"seller"} contracts={sellerContracts} /> }
+             </div>
+      </div>
 	</div>
         </ContractContext.Provider>
   </div>

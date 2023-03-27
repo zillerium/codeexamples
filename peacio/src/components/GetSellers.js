@@ -48,9 +48,9 @@ function GetSellers() {
         console.log("---- ran number ---- ", ranNumber);
         setContractNumber(ranNumber);
         const _salesRelease = Math.floor(Date.now() / 1000);
-        const _disputeRelease = salesRelease + 100; // 100 secs for testing
-        setSalesRelease(salesRelease);
-        setDisputeRelease(disputeRelease);
+        const _disputeRelease = _salesRelease + 100; // 100 secs for testing
+        setSalesRelease(_salesRelease);
+        setDisputeRelease(_disputeRelease);
         setNotary(notaries[0]);
       }
     }, [items]);	    

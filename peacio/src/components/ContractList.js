@@ -3,11 +3,13 @@ import { useContractRead } from 'wagmi';
 import { ContractContext } from './ContractContext';
 import ContractDetails from './ContractDetails';
 import ShowContractDetails from './ShowContractDetails';
+import PaySeller from './PaySeller';
+import ClaimSeller from './ClaimSeller';
 import abi from './abi';
 import { Button, ListGroup, Table } from 'react-bootstrap';
 
 function ContractList(props) {
-  const { contractAddress, contractDetails, buyerContracts } = useContext(ContractContext);
+  const { contractAddress, contractDetails, sellerContracts, buyerContracts } = useContext(ContractContext);
 	const [selContract, setSelContract]=useState();
 console.log("jjjjjjjjjjjjjjj", buyerContracts);
 //           <ContractDetails contractNum={contractNum} />
@@ -31,12 +33,16 @@ console.log("ooooooooooooooooooo contract details ------------", contractDetails
           {contractDetails && <ShowContractDetails /> }
 */
 	//  {contractDetails}
-   
+  const dateFormat = {
+     dateStyle: 'long',
+	  timeStyle: 'short',
+	  hour12: true
+  }
    return (
     <div>
       <h3>List of Contracts:</h3>
       <ListGroup>
-        {buyerContracts.map((contractNum) => (
+        {props.contracts.map((contractNum) => (
           <ListGroup.Item key={contractNum}>
             <Button variant="light" onClick={() => showContractDetailsFunc(contractNum)}>
               {contractNum}
@@ -45,11 +51,11 @@ console.log("ooooooooooooooooooo contract details ------------", contractDetails
         ))}
       </ListGroup>
 
-      {selContract && <ContractDetails address={address} contractNum={selContract} />}
+      {selContract && <ContractDetails address={props.address} contractNum={selContract} />}
 
       {contractDetails && JSON.stringify(contractDetails) !== JSON.stringify([{}]) && (
         <div>
-          <h3>Contract Details:</h3>
+          <h3>Contract Details: {selContract} ({props.contractType})</h3>
           <Table bordered striped>
             <tbody>
               <tr>
@@ -66,28 +72,42 @@ console.log("ooooooooooooooooooo contract details ------------", contractDetails
               </tr>
               <tr>
                 <td><strong>Dispute:</strong></td>
-                <td>{contractDetails.data.dispute}</td>
+                <td>{contractDetails.data.dispute ? 'yes' : 'no'}</td>
               </tr>
               <tr>
                 <td><strong>Settled:</strong></td>
-                <td>{contractDetails.data.settled}</td>
+                <td>{contractDetails.data.settled ? 'yes' : 'no'}</td>
               </tr>
               <tr>
                 <td><strong>Release Time:</strong></td>
-                <td>{new Date(contractDetails.data.releaseTime).toString()}</td>
+                <td>{new Date(parseInt(contractDetails.data.releaseTime._hex,16)*1000).toLocaleString('en-GB', dateFormat)}</td>
               </tr>
               <tr>
                 <td><strong>Dispute Release:</strong></td>
-                <td>{new Date(contractDetails.data.disputeRelease).toString()}</td>
+                <td>{new Date(parseInt(contractDetails.data.disputeRelease._hex,16)*1000).toLocaleString('en-GB',dateFormat)}</td>
               </tr>
               <tr>
                 <td><strong>Balance:</strong></td>
-                <td>{contractDetails.data.balance.toString()}</td>
+                <td>{(parseInt(contractDetails.data.balance._hex, 16)/10**6).toFixed(2)} USD</td>
               </tr>
               <tr>
                 <td><strong>Price:</strong></td>
-                <td>{contractDetails.data.price.toString()}</td>
+                <td>{(parseInt(contractDetails.data.price._hex, 16)/10**6).toFixed(2)} USD</td>
               </tr>
+	      <tr>
+	      {props.contractType==="buyer" && <td colSpan="2">
+	      {parseInt(contractDetails.data.balance._hex, 16)>0 && 
+		      <PaySeller contractNum={selContract}
+		      contractAmount={(parseInt(contractDetails.data.balance._hex, 16)/10**6).toFixed(2)}/>}
+	        </td>}
+	      </tr>
+	      <tr>
+	      {props.contractType==="seller" && <td colSpan="2">
+	      {parseInt(contractDetails.data.balance._hex, 16)>0 && 
+		      <ClaimSeller contractNum={selContract}
+		      contractAmount={(parseInt(contractDetails.data.balance._hex, 16)/10**6).toFixed(2)}/>}
+	        </td>}
+	      </tr>
             </tbody>
           </Table>
         </div>

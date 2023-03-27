@@ -57,6 +57,25 @@ const abi=[
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "contractNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "claimUsdc",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "defaultDisputeSettlement",
 		"outputs": [],
@@ -244,7 +263,7 @@ const abi=[
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"stateMutability": "pure",
 		"type": "function"
 	},
 	{
@@ -420,4 +439,3 @@ const abi=[
 	}
 ]
 export default abi;
-
