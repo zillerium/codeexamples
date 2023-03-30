@@ -9,23 +9,31 @@ const AddProduct = () => {
 
 	const [password, setPassword]=useState("");
 	const [correct, setCorrect]=useState(false);
-	const [image, setImage]=useState(false);
-	const [firstName, setFirstName]=useState("");
-	const [lastName, setLastName]=useState("");
-	const [manName, setManName] = useState("");
-	const [partNumber, setPartNumber] = useState("");
-	const [manPartNumber, setManPartNumber] = useState("");
-	const [partOption, setPartOption] = useState("");
-	const [partDesc, setPartDesc] = useState("");
-	const [partShortDesc, setPartShortDesc] = useState("");
-	const [partImgUrl, setPartImgUrl] = useState("");
-	const [partTechImgUrl, setPartTechImgUrl] = useState("");
-	const [partSalePrice, setPartSalePrice] = useState("");
-	const [partManPrice, setPartManPrice] = useState("");
-	const [currency, setCurrency] = useState("");
-	const [merchantId, setMerchantId] = useState("");
-	const [merchantName, setMerchantName] = useState("");
-	const [deliveryCharge, setDeliveryCharge] = useState("");
+ const [houseId, setHouseId] = useState(null);
+const [dbKey, setDbKey] = useState(null);
+const [assetOwnerName, setAssetOwnerName] = useState(null);
+const [assetAddress, setAssetAddress] = useState(null);
+const [assetValue, setAssetValue] = useState(null);
+const [assetNumberShares, setAssetNumberShares] = useState(null);
+const [hasTenant, setHasTenant] = useState(null);
+const [hasGarden, setHasGarden] = useState(null);
+const [hasParking, setHasParking] = useState(null);
+const [assetImageUrl, setAssetImageUrl] = useState(null);
+const [assetUrl, setAssetUrl] = useState(null);
+const [assetIncome, setAssetIncome] = useState(null);
+const [assetYield, setAssetYield] = useState(null);
+const [assetNumberBathrooms, setAssetNumberBathrooms] = useState(null);
+const [assetNumberBedrooms, setAssetNumberBedrooms] = useState(null);
+const [assetHouseType, setAssetHouseType] = useState(null);
+const [hasDoubleGlazing, setHasDoubleGlazing] = useState(null);
+const [assetRiskRating, setAssetRiskRating] = useState(null);
+const [assetPreferredNotary, setAssetPreferredNotary] = useState(null);
+
+
+
+
+Regenerate response
+
 	const [search,setSearch] = useState("");
 	const {isLoading, error, data, isFetching, refetch} = useQuery('dogs',
 		() => axios ('https://random.dog/woof.json'),
