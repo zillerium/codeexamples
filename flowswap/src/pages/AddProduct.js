@@ -32,8 +32,7 @@ const [assetPreferredNotary, setAssetPreferredNotary] = useState(null);
 
 
 
-Regenerate response
-
+ 
 	const [search,setSearch] = useState("");
 	const {isLoading, error, data, isFetching, refetch} = useQuery('dogs',
 		() => axios ('https://random.dog/woof.json'),
@@ -85,97 +84,85 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 
 
 
-  return (
-    <div >
-	  <CartProvider>
-         <Container>
-          <div>
-	  </div>
-	  </Container>
-</CartProvider>
-
-      <header >
-	  <h1>Add Product to DB</h1>
-        <p>
-        </p>
-          <div>
-	  <input placeholder="password" onChange={(e) =>setPassword(e.target.value)} />
-	  <Button onClick={checkPassword} >Enable Page</Button>
-	  </div>
-	  <div>
-	  </div>
-	  <div>
-         </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Brand Name  " 
-	       value={manName} 
-	       onChange={(e)=>setManName(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Part Number  " 
-	       value={partNumber} 
-	       onChange={(e)=>setPartNumber(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Brand Part Number " 
-	       value={manPartNumber} 
-	       onChange={(e)=>setManPartNumber(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Part Option " 
-	       value={partOption} 
-	       onChange={(e)=>setPartOption(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Part Desc " 
-	       value={partDesc} 
-	       onChange={(e)=>setPartDesc(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Part Short Desc " 
-	       value={partShortDesc} 
-	       onChange={(e)=>setPartShortDesc(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Part Img Url " 
-	       value={partImgUrl} 
-	       onChange={(e)=>setPartImgUrl(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Par Tech Img Url " 
-	       value={partTechImgUrl} 
-	       onChange={(e)=>setPartTechImgUrl(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Part SalePrice " 
-	       value={partSalePrice} 
-	       onChange={(e)=>setPartSalePrice(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Part Brand Price " 
-	       value={partManPrice} 
-	       onChange={(e)=>setPartManPrice(e.target.value)} 
-	    />
-	  </div>
+   return (
+  <div>
+    <CartProvider>
+      <Container>
+        <div></div>
+      </Container>
+    </CartProvider>
+    <header>
+      <h1>Add Property to DB</h1>
+      <p></p>
+      <div>
+        <input placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+        <Button onClick={checkPassword}>Enable Page</Button>
+      </div>
+      <div></div>
+      <div></div>
+      <div>
+        <input type="text" placeholder="Asset Owner Name" value={assetOwnerName} 
+onChange={(e) => setAssetOwnerName(e.target.value)} />
+      </div>
+      <div>
+        <input type="text" placeholder="Asset Address" value={assetAddress} 
+onChange={(e) => setAssetAddress(e.target.value)} />
+      </div>
+      <div>
+        <input type="number" placeholder="Asset Value" value={assetValue} 
+onChange={(e) => setAssetValue(e.target.value)} />
+      </div>
+      <div>
+        <input type="number" placeholder="Asset Number of Shares" value={assetNumberShares} 
+onChange={(e) => setAssetNumberShares(e.target.value)} />
+      </div>
+      <div>
+        <input type="checkbox" id="hasTenant" checked={hasTenant} 
+onChange={(e) => setHasTenant(e.target.checked)} />
+        <label htmlFor="hasTenant">Has Tenant</label>
+      </div>
+      <div>
+        <input type="checkbox" id="hasGarden" checked={hasGarden} 
+onChange={(e) => setHasGarden(e.target.checked)} />
+        <label htmlFor="hasGarden">Has Garden</label>
+      </div>
+      <div>
+        <input type="checkbox" id="hasParking" checked={hasParking}
+onChange={(e) => setHasParking(e.target.checked)} />
+        <label htmlFor="hasParking">Has Parking</label>
+      </div>
+      <div>
+        <input type="text" placeholder="Asset Image URL" value={assetImageUrl}
+onChange={(e) => setAssetImageUrl(e.target.value)} />
+      </div>
+      <div>
+        <input type="text" placeholder="Asset URL" value={assetUrl} 
+onChange={(e) => setAssetUrl(e.target.value)} />
+      </div>
+      <div>
+        <input type="number" placeholder="Asset Income" value={assetIncome} 
+onChange={(e) => setAssetIncome(e.target.value)} />
+      </div>
+      <div>
+        <input type="number" placeholder="Asset Yield" value={assetYield} 
+onChange={(e) => setAssetYield(e.target.value)} />
+      </div>
+      <div>
+        <input type="number" placeholder="Asset Number of Bathrooms" value={assetNumberBathrooms} 
+onChange={(e) => setAssetNumberBathrooms(e.target.value)} />
+      </div>
+      <div>
+        <input type="number" placeholder="Asset Number of Bedrooms" value={assetNumberBedrooms} 
+onChange={(e) => setAssetNumberBedrooms(e.target.value)} />
+      </div>
+      <div>
+        <input type="text" placeholder="Asset House Type" value={assetHouseType} 
+onChange={(e) => setAssetHouseType(e.target.value)} />
+      </div>
+      
+  
+	  
+	    
 	  <div>
 	    <input type="text" 
 	       placeholder="Currency " 
@@ -183,49 +170,49 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 	       onChange={(e)=>setCurrency(e.target.value)} 
 	    />
 	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Merchant Id " 
-	       value={merchantId} 
-	       onChange={(e)=>setMerchantId(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Merchant Name " 
-	       value={merchantName} 
-	       onChange={(e)=>setMerchantName(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-	    <input type="text" 
-	       placeholder="Delivery Charge " 
-	       value={deliveryCharge} 
-	       onChange={(e)=>setDeliveryCharge(e.target.value)} 
-	    />
-	  </div>
-	  <div>
-           <Button disabled={!correct} onClick={()=>mutate({
-		   manName:manName, 
-		   partNumber: partNumber,
-		   manPartNumber: manPartNumber,
-		   partDesc: partDesc,
-		   partOption: partOption,
-		   partShortDesc: partShortDesc,
-		   partImgUrl: partImgUrl,
-		   partTechImgUrl: partTechImgUrl,
-		   partSalePrice: partSalePrice,
-		   partManPrice: partManPrice,
-		   currency: currency,
-		   merchantId: merchantId,
-		   merchantName: merchantName,
-		   deliveryCharge: deliveryCharge }
+	 
+      <div>
+        <input type="checkbox" id="hasDoubleGlazing" checked={hasDoubleGlazing} 
+onChange={(e) => setHasDoubleGlazing(e.target.checked)} />
+        <label htmlFor="hasDoubleGlazing">Has Double Glazing</label>
+      </div>
+      <div>
+        <input type="number" placeholder="Asset Risk Rating" value={assetRiskRating} 
+onChange={(e) => setAssetRiskRating(e.target.value)} />
+      </div>
+      <div>
+        <input type="text" placeholder="Asset Preferred Notary" value={assetPreferredNotary} 
+onChange={(e) => setAssetPreferredNotary(e.target.value)} />
+      </div>
+      <div>
+        <Button disabled={!correct} onClick={() => mutate({
+          houseId: houseId,
+          dbKey: dbKey,
+          assetOwnerName: assetOwnerName,
+          assetAddress: assetAddress,
+          assetValue: assetValue,
+          assetNumberShares: assetNumberShares,
+          hasTenant: hasTenant,
+          hasGarden: hasGarden,
+          hasParking: hasParking,
+          assetImageUrl: assetImageUrl,
+          assetUrl: assetUrl,
+          assetIncome: assetIncome,
+          assetYield: assetYield,
+          assetNumberBathrooms: assetNumberBathrooms,
+          assetNumberBedrooms: assetNumberBedrooms,
+          assetHouseType: assetHouseType,
+          hasDoubleGlazing: hasDoubleGlazing,
+          assetRiskRating: assetRiskRating,
+          assetPreferredNotary: assetPreferredNotary,
+        })}>
+          Add Property
+        </Button>
+      </div>
+    </header>
+  </div>
+);
 
-	   )}>Add Part</Button>
-	  </div>
-      </header>
-    </div>
-  );
-}
+ 
 
 export default AddProduct;
