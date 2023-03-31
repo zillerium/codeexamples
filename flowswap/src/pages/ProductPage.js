@@ -63,24 +63,23 @@ const ProductPage = () => {
               e.preventDefault();
               onAddToCart();
             }}>
-              <Form.Group controlId="quantity">
-                <Form.Label>Quantity:</Form.Label>
+              <Form.Group controlId="quantity" className="d-flex align-items-centered">
+                <Form.Label column sm="5">Number Shares to Buy:</Form.Label>
+	        <Col sm="2">
                 <Form.Control
                   type="number"
                   min="1"
                   value={quantity}
                   onChange={(e) => setQuantity(parseInt(e.target.value))}
                 />
-              </Form.Group>
-              <Button type="submit" className="mx-2">
+	      </Col>
+	  <Col sm="6">
+              <Button type="submit" className="mx-4">
                 Invest
               </Button>
+	  </Col>
+              </Form.Group>
             </Form>
-
-
-            <Button sm="6" onClick={onAddToCart} className="mx-2">
-              Inves oldt
-            </Button>
 
           </Col>
 	  </Row>
