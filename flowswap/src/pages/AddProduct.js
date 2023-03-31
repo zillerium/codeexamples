@@ -15,17 +15,18 @@ const [assetOwnerName, setAssetOwnerName] = useState(null);
 const [assetAddress, setAssetAddress] = useState(null);
 const [assetValue, setAssetValue] = useState(null);
 const [assetNumberShares, setAssetNumberShares] = useState(null);
-const [hasTenant, setHasTenant] = useState(null);
-const [hasGarden, setHasGarden] = useState(null);
-const [hasParking, setHasParking] = useState(null);
+const [hasTenant, setHasTenant] = useState(false);
+const [hasGarden, setHasGarden] = useState(false);
+const [hasParking, setHasParking] = useState(false);
 const [assetImageUrl, setAssetImageUrl] = useState(null);
+const [currency, setCurrency] = useState('GBP');
 const [assetUrl, setAssetUrl] = useState(null);
 const [assetIncome, setAssetIncome] = useState(null);
 const [assetYield, setAssetYield] = useState(null);
 const [assetNumberBathrooms, setAssetNumberBathrooms] = useState(null);
 const [assetNumberBedrooms, setAssetNumberBedrooms] = useState(null);
 const [assetHouseType, setAssetHouseType] = useState(null);
-const [hasDoubleGlazing, setHasDoubleGlazing] = useState(null);
+const [hasDoubleGlazing, setHasDoubleGlazing] = useState(false);
 const [assetRiskRating, setAssetRiskRating] = useState(null);
 const [assetPreferredNotary, setAssetPreferredNotary] = useState(null);
 
@@ -49,7 +50,7 @@ const PostData = async  (part) => {
 	console.log("part");
 	console.log(part);
 //	let x = {keyword: user.firstName};
-	const response = await axios.post("https://peacioapi.com:3000/addPartAPI", part);
+	const response = await axios.post("https://peacioapi.com:3000/addHouseAPI", part);
 //	console.log(x);
 //	const response = await fetch("https://peacioapi.com:3000/getDBData", {
   //         method: 'POST',
@@ -113,6 +114,10 @@ onChange={(e) => setAssetAddress(e.target.value)} />
 onChange={(e) => setAssetValue(e.target.value)} />
       </div>
       <div>
+        <input type="currency" placeholder="Asset Value" value={currency} 
+onChange={(e) => setCurrency(e.target.value)} />
+      </div>
+      <div>
         <input type="number" placeholder="Asset Number of Shares" value={assetNumberShares} 
 onChange={(e) => setAssetNumberShares(e.target.value)} />
       </div>
@@ -163,13 +168,6 @@ onChange={(e) => setAssetHouseType(e.target.value)} />
   
 	  
 	    
-	  <div>
-	    <input type="text" 
-	       placeholder="Currency " 
-	       value={currency} 
-	       onChange={(e)=>setCurrency(e.target.value)} 
-	    />
-	  </div>
 	 
       <div>
         <input type="checkbox" id="hasDoubleGlazing" checked={hasDoubleGlazing} 
@@ -184,6 +182,8 @@ onChange={(e) => setAssetRiskRating(e.target.value)} />
         <input type="text" placeholder="Asset Preferred Notary" value={assetPreferredNotary} 
 onChange={(e) => setAssetPreferredNotary(e.target.value)} />
       </div>
+	   {assetPreferredNotary}
+	   {currency}
       <div>
         <Button disabled={!correct} onClick={() => mutate({
           houseId: houseId,
@@ -205,6 +205,7 @@ onChange={(e) => setAssetPreferredNotary(e.target.value)} />
           hasDoubleGlazing: hasDoubleGlazing,
           assetRiskRating: assetRiskRating,
           assetPreferredNotary: assetPreferredNotary,
+          currency: currency,
         })}>
           Add Property
         </Button>
@@ -212,7 +213,7 @@ onChange={(e) => setAssetPreferredNotary(e.target.value)} />
     </header>
   </div>
 );
-
+}
  
 
 export default AddProduct;

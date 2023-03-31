@@ -15,7 +15,7 @@ const ProductPage = (props) => {
 const [search, setSearch] = useState("");
 	const {productId}=useParams();
       const cart=useContext(CartContext);
-      const baseUrl = "https://peacioapi.com:3000/getPart/"+productId;
+      const baseUrl = "https://peacioapi.com:3000/getHouse/"+productId;
 
 console.log(baseUrl);
       const {data, isLoading, isError, refetch}= useQuery(["cat"],() => {
@@ -30,7 +30,7 @@ if (isError) {
 console.log(data.data[0]);
 	  const searchDB = async (searchVal) => {
 
-          const baseUrl = "https://peacioapi.com:3000/getPart/"+searchVal;
+          const baseUrl = "https://peacioapi.com:3000/getHouse/"+searchVal;
           let res = await axios.get(baseUrl);
                console.log("res");
                console.log(res.data);
@@ -78,6 +78,29 @@ console.log(imgurl);
 		</>
   )
 }
+
+    houseId: 0,
+    dbKey: 'sheriff street hartlepool',
+    assetOwnerName: 'trevor',
+    assetAddress: 'sheriff street hartlepool',
+    assetValue: 40000,
+    assetNumberShares: 1000,
+    hasTenant: true,
+    hasGarden: true,
+    hasParking: false,
+    assetImageUrl: 'tba',
+    assetUrl: 'tba',
+    assetIncome: 3150,
+    assetYield: 7.8,
+    assetNumberBathrooms: 1,
+    assetNumberBedrooms: 2,
+    assetHouseType: 'terraced',
+    hasDoubleGlazing: true,
+    assetRiskRating: 1,
+    assetPreferredNotary: '0x0D1D5933dA6283D635D6ae65c356FBe01Dc1797C',
+    currency: 'GBP',
+
+
 
 export default ProductPage;
 
