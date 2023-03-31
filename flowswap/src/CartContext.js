@@ -78,6 +78,8 @@ const createClient = async () => {
 }
 
 const addItemsToCart = (item, quantity = 1) => {
+	console.log("add items =-- ", item);
+	console.log("add items =ntiyy-- ",  quantity);
   const { id } = item;
   const existingItem = cartProducts.find((product) => product.id === id);
   if (existingItem) {
@@ -95,6 +97,8 @@ const addItemsToCart = (item, quantity = 1) => {
       ...item,
       quantity,
     };
+	  let c=[...cartProducts, newItem];
+	  console.log("c------", c);
     setCartProducts([...cartProducts, newItem]);
   }
 };

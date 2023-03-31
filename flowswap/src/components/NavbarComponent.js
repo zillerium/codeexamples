@@ -46,12 +46,11 @@ return (
                                   <Table stripod="true"  bordered hover>
                                             <thead>
                                                  <tr>
-                                                      <th>Brand</th>
+                                                      <th>Asset</th>
                                                       <th>Seller</th>
-                                                      <th>Details</th>
-                                                      <th>Qty</th>
-                                                      <th>Price</th>
-                                                      <th>Subtot</th>
+                                                      <th>Number Shares</th>
+                                                      <th>Price Per Share</th>
+                                                      <th>Sub total</th>
                                                       <th>Action</th>
                                                  </tr>
                                             </thead>
@@ -60,11 +59,10 @@ return (
                                         <tbody>
 					      {cart.items.map((currentProduct, idx) => (
 						      <CartProduct key={idx}
-                                                      id = {currentProduct.id} 
-                                                      seller= {currentProduct.seller} 
-                                                      quantity = {currentProduct.quantity} 
-                                                      title = {currentProduct.title} 
-                                                      price = {currentProduct.price} 
+                                                      assetAddress= {currentProduct.assetAddress} 
+                                                      assetOwnerName= {currentProduct.assetOwnerName} 
+                                                      numberShares = {currentProduct.quantity} 
+                                                      pricePerShare = {currentProduct.pricePerShare} 
 						      />
 						        ))}
 
