@@ -120,6 +120,7 @@ console.log(imgurl);
 
 export default ProductPage;
 // https://www.pinterest.co.uk/pin/415738609365144556/
+// https://i.pinimg.com/originals/c7/69/91/c7699158f7213d6b38a7c55b81c1af07.jpg
 
 
  
