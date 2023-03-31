@@ -94,7 +94,8 @@ const addItemsToCart = (assetsToBuy, numberSharesToBuy = 1) => {
     };
     setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));
   } else {
-	  const newAssetsToBuy = {...assetsToBuy, numberSharesToBuy: numberSharesToBuy};
+	  const newAssetsToBuy = {...assetsToBuy, id: dbKey, numberSharesToBuy: numberSharesToBuy, pricePerShare:pricePerShare};
+	  console.log("new assets to buy --- ", newAssetsToBuy);
     setCartProducts([...cartProducts, newAssetsToBuy]);
   }
 	console.log("art products ------", cartProducts);
@@ -187,7 +188,7 @@ const getTotalCost=()=> {
 //		totalCost+=(productData.partPrice*cartItem.quantity);
 //	})
 	cartProducts.map((cartItem)=> {
-                      totalCost+=(cartItem.price*cartItem.quantity);
+                      totalCost+=(cartItem.pricePerShare*cartItem.numberSharesToBuy);
 	})
 	return totalCost;
 }

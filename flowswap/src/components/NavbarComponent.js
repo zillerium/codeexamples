@@ -23,7 +23,7 @@ const NavbarComponent=()=>{
 
 	}
 
-    const productsCount = cart.items.reduce((sum,product)=> sum+product.quantity, 0);
+    const productsCount = cart.items.reduce((sum,product)=> sum+product.numberSharesToBuy, 0);
 
 	console.log("carttttttttttttttttttttttttttttttttttttttttttttttttttt");
 	console.log(cart);
@@ -61,7 +61,7 @@ return (
 						      <CartProduct key={idx}
                                                       assetAddress= {currentProduct.assetAddress} 
                                                       assetOwnerName= {currentProduct.assetOwnerName} 
-                                                      numberShares = {currentProduct.quantity} 
+                                                      numberShares = {currentProduct.numberSharesToBuy} 
                                                       pricePerShare = {currentProduct.pricePerShare} 
 						      />
 						        ))}
@@ -81,7 +81,7 @@ return (
 	<td></td>
 	<td></td>
 	<td></td>
-	<td>${(cart.getTotalCost()).toFixed(2)}</td>
+	<td>{(cart.getTotalCost()).toFixed(2)}</td>
 	<td>	<Link to="/pay">
 		               <Button disabled={(cart.items.length==0) ? true : false} 
 		               onClick={()=>handleClose()}>Invest</Button>
