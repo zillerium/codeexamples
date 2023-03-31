@@ -112,5 +112,26 @@ export default ProductPage;
     cart.addItemsToCart(data.data[0], quantity);
   };
 
+const addItemsToCart = (item, quantity = 1) => {
+  const { id } = item;
+  const existingItem = cartProducts.find((product) => product.id === id);
+  if (existingItem) {
+    const updatedItem = {
+      ...existingItem,
+      quantity: existingItem.quantity + quantity,
+    };
+    setCartProducts(
+      cartProducts.map((product) =>
+        product.id === id ? updatedItem : product
+      )
+    );
+  } else {
+    const newItem = {
+      ...item,
+      quantity,
+    };
+    setCartProducts([...cartProducts, newItem]);
+  }
+};
 
 
