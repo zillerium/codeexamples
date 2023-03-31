@@ -12,7 +12,7 @@ import { CartContext } from "../CartContext";
 
 const ProductPage = () => {
 
-const { productId } = useParams();
+  const { productId } = useParams();
   const cart = useContext(CartContext);
   const baseUrl = `https://peacioapi.com:3000/getHouse/${productId}`;
 
@@ -34,7 +34,9 @@ const { productId } = useParams();
   const onAddToCart = () => {
     cart.addOneToCart(data.data[0]);
   };
-console.log("data ---- ", data);
+
+  console.log("data ---- ", data);
+
   return (
     <>
       <Container>
@@ -45,9 +47,19 @@ console.log("data ---- ", data);
         </Row>
         <Row>
           <Col>
-            <Button sm="6" onClick={onAddToCart} className="mx-2">
-              Add to Cart
-            </Button>
+            <AssetFinancials
+              assetValue={data.data[0].assetValue}
+              assetIncome={data.data[0].assetIncome}
+              assetYield={data.data[0].assetYield}
+              assetRiskRating={data.data[0].assetRiskRating}
+              assetNumberShares={data.data[0].assetNumberShares}
+            />
+            <AssetCheckboxList checkboxes={[
+              { label: "Has Tenant", checked: data.data[0].hasTenant },
+              { label: "Has Garden", checked: data.data[0].hasGarden },
+              { label: "Has Parking", checked: data.data[0].hasParking },
+              { label: "Has Double Glazing", checked: data.data[0].hasDoubleGlazing },
+            ]} />
           </Col>
         </Row>
         <hr />
@@ -56,26 +68,17 @@ console.log("data ---- ", data);
             <AssetImages imageUrl={data.data[0].assetImageUrl} alt={data.data[0].assetAddress} />
           </Col>
           <Col>
-            <AssetCheckboxList checkboxes={[
-              { label: "Has Tenant", checked: data.data[0].hasTenant },
-              { label: "Has Garden", checked: data.data[0].hasGarden },
-              { label: "Has Parking", checked: data.data[0].hasParking },
-              { label: "Has Double Glazing", checked: data.data[0].hasDoubleGlazing },
-            ]} />
-            <AssetFinancials
-              assetValue={data.data[0].assetValue}
-              assetIncome={data.data[0].assetIncome}
-              assetYield={data.data[0].assetYield}
-              assetRiskRating={data.data[0].assetRiskRating}
-              assetNumberShares={data.data[0].assetNumberShares}
-            />
-	       <AssetFeatures
-              features={{numBathrooms:data.data[0].assetNumberBathrooms,
-              numBedrooms:data.data[0].assetNumberBedrooms,
-              houseType:data.data[0].assetHouseType
-	      }}
-            />
+        <AssetFeatures
+  numBathrooms={data.data[0].assetNumberBathrooms}
+  numBedrooms={data.data[0].assetNumberBedrooms}
+  houseType={data.data[0].assetHouseType}
+/>
+
+            <hr />
             <p>Asset Owner Name: {data.data[0].assetOwnerName}</p>
+            <Button sm="6" onClick={onAddToCart} className="mx-2">
+              Add to Cart
+            </Button>
           </Col>
         </Row>
       </Container>
