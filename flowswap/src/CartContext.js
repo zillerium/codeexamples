@@ -118,37 +118,7 @@ const addItemsToCart = (assetsToBuy, numberSharesToBuy = 1) => {
 		return quantity;
 	}
 
-        const addOneToCart = (props) => {
-		const id = props.dbKey;
-		const price = props.assetValue/props.assetNumberShares;
-		const title = props.assetAddress;
-		const merchantName = props.assetOwner;
-
-		console.log("props  xx====");
-		console.log(props);
-		console.log(id);
-		console.log("xx====");
-              const quantity = getProductQuantity(id);
-		console.log("ddxx====");
-		console.log(quantity);
-		console.log("ddxx====");
-
-		if (quantity === 0) {
-                     setCartProducts([...cartProducts, {id:id, seller: merchantName, title: title, quantity:1, price: price}])
-		} else {
-                     setCartProducts(
-                           cartProducts.map(product=>
-                                  product.id === id ? {...product, quantity:product.quantity +1 } 
-				   : product
-			   )
-		     )
-		}
-		console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb====");
-		console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb====");
-		console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb====");
-		console.log(cartProducts);
-		console.log("====");
-	}
+  
 
 const deleteFromCart=(id)=> {
 	console.log("cartProducts99999999999999999999999999999999999990000000000000000000000000000000000000000000000000000000000");
@@ -164,22 +134,32 @@ const deleteFromCart=(id)=> {
 
 }
 
-const removeOneFromCart=(props)=> {
-	const id = props.dbKey;
-    const quantity = getProductQuantity(id);
+ const addOneToCart = (props) => {
+  const id = props.id;
+  const price = props.assetValue / props.assetNumberShares;
+  const title = props.assetAddress;
+  const merchantName = props.assetOwner;
 
-	if (quantity == 1) {
-		deleteFromCart(id);
-	} else {
-             
-                     setCartProducts(
-                           cartProducts.map(product=>
-                                  product.id === id ? {...product, quantity:product.quantity -1 } 
-				   : product
-			   )
-		     )
-	}
-}
+  const quantity = getProductQuantity(id);
+
+  if (quantity === 0) {
+    setCartProducts([...cartProducts, { id: id, seller: merchantName, title: title, quantity: 1, price: price }]);
+  } else {
+    setCartProducts(cartProducts.map((product) => (product.id === id ? { ...product, quantity: product.quantity + 1 } : product)));
+  }
+};
+
+const removeOneFromCart = (props) => {
+  const id = props.id;
+  const quantity = getProductQuantity(id);
+
+  if (quantity === 1) {
+    deleteFromCart(id);
+  } else {
+    setCartProducts(cartProducts.map((product) => (product.id === id ? { ...product, quantity: product.quantity - 1 } : product)));
+  }
+};
+
 
 const getTotalCost=()=> {
    let totalCost = 0;
