@@ -108,7 +108,9 @@ export default ProductPage;
           </Col>
         </Row>
       </Container>
-
+  const onAddToCart = () => {
+    cart.addItemsToCart(data.data[0], quantity);
+  };
 
 
 
