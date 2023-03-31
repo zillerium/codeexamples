@@ -2,8 +2,12 @@ import { useParams } from "react-router-dom";
 import React, { useContext } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Container, Button, Row, Col, Image, Form } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 
+import AssetCheckboxList from "../components/AssetCheckboxList";
+import AssetFeatures from "../components/AssetFeatures";
+import AssetFinancials from "../components/AssetFinancials";
+import AssetImages from "../components/AssetImages";
 import { CartContext } from "../CartContext";
 
 const ProductPage = () => {
@@ -11,7 +15,7 @@ const ProductPage = () => {
   const cart = useContext(CartContext);
   const baseUrl = `https://peacioapi.com:3000/getHouse/${productId}`;
 
-  const { data, isLoading, isError, refetch } = useQuery(
+  const { data, isLoading, isError } = useQuery(
     ["cat"],
     () => axios.get(baseUrl).then((res) => res.data),
     {
@@ -30,201 +34,52 @@ const ProductPage = () => {
     cart.addOneToCart(data.data[0]);
   };
 
-  const isYes = (value) => (value ? "YES" : "NO");
-
   return (
     <>
       <Container>
-	  
-	  
-	     <Row>
-          <Col xs={12} md={6} lg={6}>
-            <Image
-              src={`${data.data[0].assetImageUrl}`}
-              className="img-fluid shadow-4"
-              alt={data.data[0].assetAddress}
-            />
+        <Row>
+          <Col>
+            <h1>{data.data[0].assetAddress}</h1>
           </Col>
-          <Col xs={12} md={6} lg={6}>
-            <Row>
-              <Col>
-                <h1>{data.data[0].assetAddress}</h1>
-              </Col>
-            </Row>
-            <Row className="mt-4">
-              <Col>
-                <Form.Check
-                  type="checkbox"
-                  label="Has Tenant"
-                  checked={data.data[0].hasTenant}
-                  readOnly
-                />
-              </Col>
-              <Col>
-                <Form.Check
-                  type="checkbox"
-                  label="Has Garden"
-                  checked={data.data[0].hasGarden}
-                  readOnly
-                />
-              </Col>
-              <Col>
-                <Form.Check
-                  type="checkbox"
-                  label="Has Parking"
-                  checked={data.data[0].hasParking}
-                  readOnly
-                />
-              </Col>
-              <Col>
-                <Form.Check
-                  type="checkbox"
-                  label="Has Double Glazing"
-                  checked={data.data[0].hasDoubleGlazing}
-                  readOnly
-                />
-              </Col>
-            </Row>
-            <hr />
-            <Row className="mt-4">
-              <Col>
-                <h5>Asset Value: £{data.data[0].assetValue}</h5>
-              </Col>
-              <Col>
-                <h5>Asset Income: £{data.data[0].assetIncome}</h5>
-              </Col>
-              <Col>
-                <h5>Asset Yield: {data.data[0].assetYield}%</h5>
-              </Col>
-              <Col>
-                <h5>Asset Risk Rating: {data.data[0].assetRiskRating}</h5>
-              </Col>
-            </Row>
-            <hr />
-            <Row className="mt-4">
-              <Col>
-                <h5>Asset Owner Name:</h5>
-                <p>{data.data[0].assetOwnerName}</p>
-              </Col>
-              <Col>
-                <h5>Number of Shares:</h5>
-                <p>{data.data[0].assetNumberShares}</p>
-              </Col>
-	      </Row>
-      <Row>
-  <Col>Number of Shares: {data.data[0].assetNumberShares}</Col>
-</Row>
-<Row>
-  <Col>
-    <Form.Group controlId="hasTenant">
-      <Form.Check
-        type="checkbox"
-        checked={data.data[0].hasTenant}
-        readOnly
-        label="Has Tenant"
-      />
-    </Form.Group>
-  </Col>
-</Row>
-<Row>
-  <Col>
-    <Form.Group controlId="hasGarden">
-      <Form.Check
-        type="checkbox"
-        checked={data.data[0].hasGarden}
-        readOnly
-        label="Has Garden"
-      />
-    </Form.Group>
-  </Col>
-</Row>
-<Row>
-  <Col>
-    <Form.Group controlId="hasParking">
-      <Form.Check
-        type="checkbox"
-        checked={data.data[0].hasParking}
-        readOnly
-        label="Has Parking"
-      />
-    </Form.Group>
-  </Col>
-</Row>
-<Row>
-  <Col>
-    <Image
-      src={`${data.data[0].assetImageUrl}`}
-      className="img-fluid shadow-4"
-      alt={data.data[0].assetAddress}
-    />
-  </Col>
-  <Col>
-    <Row>
-      <Col>
-        <h1>{data.data[0].assetAddress}</h1>
-      </Col>
-    </Row>
-    <Row className="mt-4">
-      <Col>
-        <h5>Asset Value: £{data.data[0].assetValue}</h5>
-      </Col>
-      <Col>
-        <h5>Asset Income: £{data.data[0].assetIncome}</h5>
-      </Col>
-      <Col>
-        <h5>Asset Yield: {data.data[0].assetYield}%</h5>
-      </Col>
-      <Col>
-        <h5>Asset Risk Rating: {data.data[0].assetRiskRating}</h5>
-      </Col>
-    </Row>
-    <hr />
-    <Row className="mt-4">
-      <Col>
-        <h5>Asset Owner Name:</h5>
-        <p>{data.data[0].assetOwnerName}</p>
-      </Col>
-    </Row>
-    <Row>
-      <Col>
-        <Form.Group controlId="hasDoubleGlazing">
-          <Form.Check
-            type="checkbox"
-            checked={data.data[0].hasDoubleGlazing}
-            readOnly
-            label="Has Double Glazing"
-          />
-        </Form.Group>
-      </Col>
-    </Row>
-    <Row>
-      <Col>Asset URL: {data.data[0].assetUrl}</Col>
-    </Row>
-  </Col>
-</Row>
-<Row>
-  <Col>
-    <Row>
-      <Col>
-        <Button
-          sm="6"
-          onClick={() => cart.addOneToCart(data.data[0])}
-          className="mx-2"
-        >
-          Add to Cart
-        </Button>
-      </Col>
-    </Row>
-  </Col>
-</Row>
-
-          
-       
-     
-        </Container>
-</>
-);
-
-}
+        </Row>
+        <Row>
+          <Col>
+            <Button sm="6" onClick={onAddToCart} className="mx-2">
+              Add to Cart
+            </Button>
+          </Col>
+        </Row>
+        <hr />
+        <Row>
+          <Col>
+            <AssetImages imageUrl={data.data[0].assetImageUrl} alt={data.data[0].assetAddress} />
+          </Col>
+          <Col>
+            <AssetCheckboxList checkboxes={[
+              { label: "Has Tenant", checked: data.data[0].hasTenant },
+              { label: "Has Garden", checked: data.data[0].hasGarden },
+              { label: "Has Parking", checked: data.data[0].hasParking },
+              { label: "Has Double Glazing", checked: data.data[0].hasDoubleGlazing },
+            ]} />
+            <AssetFinancials
+              assetValue={data.data[0].assetValue}
+              assetIncome={data.data[0].assetIncome}
+              assetYield={data.data[0].assetYield}
+              assetRiskRating={data.data[0].assetRiskRating}
+              assetNumberShares={data.data[0].assetNumberShares}
+            />
+            <AssetFeatures
+              numBathrooms={data.data[0].numBathrooms}
+              numBedrooms={data.data[0].numBedrooms}
+              houseType={data.data[0].houseType}
+            />
+            <p>Asset Owner Name: {data.data[0].assetOwnerName}</p>
+            <p>Asset URL: {data.data[0].assetUrl}</p>
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};
 
 export default ProductPage;
