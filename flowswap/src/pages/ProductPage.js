@@ -6,16 +6,11 @@ import {Container, Button, Row, Col, Image} from 'react-bootstrap';
 
 import {CartContext} from '../CartContext';
 
-
-//      let res = await searchDB(props.query);
-  //      console.log(res.data);
-
-
 const ProductPage = (props) => {
 const [search, setSearch] = useState("");
-	const {productId}=useParams();
-      const cart=useContext(CartContext);
-      const baseUrl = "https://peacioapi.com:3000/getHouse/"+productId;
+const {productId}=useParams();
+const cart=useContext(CartContext);
+const baseUrl = "https://peacioapi.com:3000/getHouse/"+productId;
 
 console.log(baseUrl);
       const {data, isLoading, isError, refetch}= useQuery(["cat"],() => {
@@ -34,73 +29,99 @@ console.log(data.data[0]);
           let res = await axios.get(baseUrl);
                console.log("res");
                console.log(res.data);
-          //     setSearchedData(res.data.data[0]);
           return res;
 	  }
-//        const {menu, setMenu, userName, setUserName} = useContext(MenuContext);
-//      const prodId = useLocation().state.prodId;
-//      const [location, setLocation]=useState();
-//      console.log("state = "+JSON.stringify(location));
-//      console.log("use params = "+JSON.stringify(useParams));
         console.log("productId = "+productId);
         console.log(cart);
-//      console.log("prodId = "+prodId);
-      //const imgurl =`http://peaciotest.com:3000/images/${data.data[0].partImgUrl}`;
-      const imgurl =`/images/${data.data[0].partImgUrl}`;
+      const imgurl =`/images/${data.data[0].assetImgUrl}`;
 console.log(imgurl);
         return (
           <>
-	  <div>
-          <h1>{data.data[0].partShortDesc} </h1>
-          </div>
-		<div>
-                    <Container>
-                       <Row>
-                           <Col><img src={imgurl} className="img-fluid shadow-4" 
-			   alt={data.data[0].partDesc} /></Col>
-                           <Col>
-		               <Row><Col>{data.data[0].partDesc}</Col></Row>
-                          <Row> <Col>Part: {data.data[0].partNumber}</Col></Row>
-                          <Row> <Col>Brand Part: {data.data[0].manPartNumber}</Col></Row>
-                          <Row> <Col>Part Option: {data.data[0].partOption}</Col></Row>
-                          <Row> <Col>Merchant: {data.data[0].merchantName}</Col></Row>
-                          <Row> <Col>Price: $ {data.data[0].partSalePrice.toFixed(2)}</Col></Row>
-
-                   	<Row> <Col>	<Button sm="6" onClick={()=>cart.addOneToCart(data.data[0])  } 
-		className="mx-2">Add to Cart</Button></Col></Row>
-
-		           </Col> 
-		       </Row>
-<hr />
-		    </Container>
-
-		</div>
-		</>
-  )
+ 
+        <div>
+            <h1>{data.data[0].assetAddress} </h1>
+        </div>
+        <div>
+            <Container>
+                <Row>
+                    <Col>
+                        <img src={imgurl} className="img-fluid shadow-4" alt={data.data[0].assetAddress} />
+                    </Col>
+                    <Col>
+                        <Row>
+                            <Col>Asset Owner Name: {data.data[0].assetOwnerName}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset Address: {data.data[0].assetAddress}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset Value: {data.data[0].assetValue}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset Number of Shares: {data.data[0].assetNumberShares}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Has Tenant: {data.data[0].hasTenant ? "YES" : "NO"}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Has Garden: {data.data[0].hasGarden ? "YES" : "NO"}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Has Parking: {data.data[0].hasParking ? "YES" : "NO"}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset Image URL: {data.data[0].assetImageUrl}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset URL: {data.data[0].assetUrl}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset Income: {data.data[0].assetIncome}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset Yield: {data.data[0].assetYield}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset Number of Bathrooms: {data.data[0].assetNumberBathrooms}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset Number of Bedrooms: {data.data[0].assetNumberBedrooms}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset House Type: {data.data[0].assetHouseType}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Has Double Glazing: {data.data[0].hasDoubleGlazing ? "YES" : "NO"}</Col>
+                        </Row>
+                        
+                        <Row>
+                            <Col>Asset Risk Rating: {data.data[0].assetRiskRating}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Asset Preferred Notary: {data.data[0].assetPreferredNotary}</Col>
+                        </Row>
+                        <Row>
+                            <Col>Currency: {data.data[0].currency}</Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Button sm="6" onClick={()=>cart.addOneToCart(data.data[0])} className="mx-2">Add to Cart</Button>
+                            </Col>
+                        </Row>
+                    </Col> 
+                </Row>
+                <hr />
+            </Container>
+        </div>
+    </>
+)
+ 
 }
 
-    houseId: 0,
-    dbKey: 'sheriff street hartlepool',
-    assetOwnerName: 'trevor',
-    assetAddress: 'sheriff street hartlepool',
-    assetValue: 40000,
-    assetNumberShares: 1000,
-    hasTenant: true,
-    hasGarden: true,
-    hasParking: false,
-    assetImageUrl: 'tba',
-    assetUrl: 'tba',
-    assetIncome: 3150,
-    assetYield: 7.8,
-    assetNumberBathrooms: 1,
-    assetNumberBedrooms: 2,
-    assetHouseType: 'terraced',
-    hasDoubleGlazing: true,
-    assetRiskRating: 1,
-    assetPreferredNotary: '0x0D1D5933dA6283D635D6ae65c356FBe01Dc1797C',
-    currency: 'GBP',
+     
 
 
+ 
 
-export default ProductPage;
+
 
