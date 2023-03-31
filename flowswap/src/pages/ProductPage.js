@@ -11,11 +11,12 @@ import AssetImages from "../components/AssetImages";
 import { CartContext } from "../CartContext";
 
 const ProductPage = () => {
-  const { productId } = useParams();
+
+const { productId } = useParams();
   const cart = useContext(CartContext);
   const baseUrl = `https://peacioapi.com:3000/getHouse/${productId}`;
 
-  const { data, isLoading, isError } = useQuery(
+  const { data, isLoading, isError, refetch } = useQuery(
     ["cat"],
     () => axios.get(baseUrl).then((res) => res.data),
     {
@@ -33,7 +34,7 @@ const ProductPage = () => {
   const onAddToCart = () => {
     cart.addOneToCart(data.data[0]);
   };
-
+console.log("data ---- ", data);
   return (
     <>
       <Container>
@@ -68,13 +69,13 @@ const ProductPage = () => {
               assetRiskRating={data.data[0].assetRiskRating}
               assetNumberShares={data.data[0].assetNumberShares}
             />
-            <AssetFeatures
-              numBathrooms={data.data[0].numBathrooms}
-              numBedrooms={data.data[0].numBedrooms}
-              houseType={data.data[0].houseType}
+	       <AssetFeatures
+              features={{numBathrooms:data.data[0].assetNumberBathrooms,
+              numBedrooms:data.data[0].assetNumberBedrooms,
+              houseType:data.data[0].assetHouseType
+	      }}
             />
             <p>Asset Owner Name: {data.data[0].assetOwnerName}</p>
-            <p>Asset URL: {data.data[0].assetUrl}</p>
           </Col>
         </Row>
       </Container>

@@ -2,7 +2,8 @@ import React from "react";
 import { Table } from "react-bootstrap";
 
 const AssetFeatures = ({ features }) => {
-  return (
+console.log("features --- ", features);
+	return (
     <Table striped bordered hover>
       <thead>
         <tr>
