@@ -38,7 +38,7 @@ const ProductPage = () => {
         <Row>
           <Col xs={12} md={6} lg={6}>
             <Image
-              src={`/images/${data.data[0].assetImgUrl}`}
+              src={`${data.data[0].assetImageUrl}`}
               className="img-fluid shadow-4"
               alt={data.data[0].assetAddress}
             />
@@ -106,7 +106,6 @@ const ProductPage = () => {
               </Col>
             </Row>
             <Row>
-              <Col>
                 
 		
 		                        <Col>Number of Shares: {data.data[0].assetNumberShares}</Col>
@@ -196,7 +195,6 @@ const ProductPage = () => {
                 </Col>
             </Row>
         </Container>
-    </div>
 </>
 );
 
