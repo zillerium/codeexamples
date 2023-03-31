@@ -87,3 +87,28 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
+<Form onSubmit={(e) => {
+              e.preventDefault();
+              onAddToCart();
+            }}>
+              <Form.Group controlId="quantity">
+                <Form.Label>Quantity:</Form.Label>
+                <Form.Control
+                  type="number"
+                  min="1"
+                  value={quantity}
+                  onChange={(e) => setQuantity(parseInt(e.target.value))}
+                />
+              </Form.Group>
+              <Button type="submit" className="mx-2">
+                Add to Cart
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+
+
+
+
