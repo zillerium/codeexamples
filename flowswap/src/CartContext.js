@@ -78,31 +78,32 @@ const createClient = async () => {
 }
 
 const addItemsToCart = (item, quantity = 1) => {
-	console.log("add items =-- ", item);
-	console.log("add items =ntiyy-- ",  quantity);
-  const { id } = item;
+  console.log("add items =-- ", item);
+  console.log("add items =ntiyy-- ", quantity);
+
+  const { dbKey, assetOwner, assetAddress, assetValue, assetNumberShares } = item;
+  const id = dbKey;
   const existingItem = cartProducts.find((product) => product.id === id);
+
+  const pricePerShare = assetValue / assetNumberShares;
+
   if (existingItem) {
     const updatedItem = {
       ...existingItem,
       quantity: existingItem.quantity + quantity,
     };
-    setCartProducts(
-      cartProducts.map((product) =>
-        product.id === id ? updatedItem : product
-      )
-    );
+    setCartProducts(cartProducts.map((product) => (product.id === id ? updatedItem : product)));
   } else {
     const newItem = {
-      ...item,
+      id,
+      seller: assetOwner,
+      title: assetAddress,
       quantity,
+      price: pricePerShare,
     };
-	  let c=[...cartProducts, newItem];
-	  console.log("c------", c);
     setCartProducts([...cartProducts, newItem]);
   }
 };
-
 
 
 
