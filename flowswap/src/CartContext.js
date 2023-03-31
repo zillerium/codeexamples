@@ -134,30 +134,48 @@ const deleteFromCart=(id)=> {
 
 }
 
- const addOneToCart = (props) => {
-  const id = props.id;
-  const price = props.assetValue / props.assetNumberShares;
-  const title = props.assetAddress;
-  const merchantName = props.assetOwner;
+ const addOneToCart = (assetsToBuy) => {
+ 
+	   const { dbKey, assetOwnerName, assetAddress, assetValue, assetNumberShares } = assetsToBuy;
+  const id = dbKey;
+  const existingAssetPurchase= cartProducts.find((asset) => asset.id === id);
+
+  const pricePerShare = assetValue / assetNumberShares;
 
   const quantity = getProductQuantity(id);
 
-  if (quantity === 0) {
-    setCartProducts([...cartProducts, { id: id, seller: merchantName, title: title, quantity: 1, price: price }]);
+  if (quantity > 0) {
+    const updatedAssetPurchase = {
+      ...existingAssetPurchase,
+      numberSharesToBuy: existingAssetPurchase.numberSharesToBuy + 1,
+    };
+    setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));
   } else {
-    setCartProducts(cartProducts.map((product) => (product.id === id ? { ...product, quantity: product.quantity + 1 } : product)));
+	  const newAssetsToBuy = {...assetsToBuy, id: dbKey, numberSharesToBuy: 1, pricePerShare:pricePerShare};
+	  console.log("new assets to buy --- ", newAssetsToBuy);
+    setCartProducts([...cartProducts, newAssetsToBuy]);
   }
+	 
+ 
 };
 
 const removeOneFromCart = (props) => {
-  const id = props.id;
+  	   const { dbKey, assetOwnerName, assetAddress, assetValue, assetNumberShares } = assetsToBuy;
+  const id = dbKey;
+  const existingAssetPurchase= cartProducts.find((asset) => asset.id === id);
+
+  const pricePerShare = assetValue / assetNumberShares;
+
   const quantity = getProductQuantity(id);
 
   if (quantity === 1) {
     deleteFromCart(id);
   } else {
-    setCartProducts(cartProducts.map((product) => (product.id === id ? { ...product, quantity: product.quantity - 1 } : product)));
-  }
+    const updatedAssetPurchase = {
+      ...existingAssetPurchase,
+      numberSharesToBuy: existingAssetPurchase.numberSharesToBuy - 1,
+    };
+    setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));  }
 };
 
 
