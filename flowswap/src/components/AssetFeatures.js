@@ -7,12 +7,15 @@ const AssetFeatures = ({ numBathrooms, numBedrooms, houseType }) => {
       <tbody>
         <tr>
           <td>Number of Bathrooms:</td>
-          <td>{numBathrooms}</td>
           <td>Number of Bedrooms:</td>
-          <td>{numBedrooms}</td>
           <td>House Type:</td>
-          <td>{houseType}</td>
         </tr>
+	  <tr>
+          <td>{numBathrooms}</td>
+          <td>{numBedrooms}</td>
+          <td>{houseType}</td>
+
+	  </tr>
       </tbody>
     </Table>
   );

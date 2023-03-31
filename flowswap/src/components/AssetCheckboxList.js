@@ -6,6 +6,7 @@ const AssetCheckboxList = ({ checkboxes }) => {
     <div>
       {checkboxes.map((checkbox, index) => (
         <Form.Check
+	      reverse
           key={index}
           type="checkbox"
           label={checkbox.label}

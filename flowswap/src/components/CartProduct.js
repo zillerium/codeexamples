@@ -21,11 +21,11 @@ const CartProduct=(props)=> {
 
 		                                        <tr>
                                                   <td>{id}</td>
-                                                  <td>{seller.substring(0,4)}</td>
+                                                  <td>{seller}</td>
                                                   <td>{title}</td>
                                                   <td>{quantity}</td>
-                                                  <td>${priced}</td>
-                                                  <td>${subtot}</td>
+                                                  <td>{priced}</td>
+                                                  <td>{subtot}</td>
                       <td> <Button size="sm" onClick={() => cart.deleteFromCart(id)}>X</Button></td>
                                         </tr>
 

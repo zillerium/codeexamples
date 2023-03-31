@@ -4,6 +4,7 @@ export const CartContext = createContext({
 	items: [],
 	getProductQuantity: () => {},
 	addOneToCart: () => {},
+	addItemsToCart: () => {},
 	removeOneFromCart: () => {},
 	deleteFromCart: () => {},
 	getTotalCost: () => {},
@@ -76,6 +77,31 @@ const subscribeToEvents = async (client) => {
 const createClient = async () => {
 }
 
+const addItemsToCart = (item, quantity = 1) => {
+  const { id } = item;
+  const existingItem = cartProducts.find((product) => product.id === id);
+  if (existingItem) {
+    const updatedItem = {
+      ...existingItem,
+      quantity: existingItem.quantity + quantity,
+    };
+    setCartProducts(
+      cartProducts.map((product) =>
+        product.id === id ? updatedItem : product
+      )
+    );
+  } else {
+    const newItem = {
+      ...item,
+      quantity,
+    };
+    setCartProducts([...cartProducts, newItem]);
+  }
+};
+
+
+
+
         const getProductQuantity = (id) => {
               const quantity = cartProducts.find(product=>product.id===id)?.quantity;
 
@@ -90,9 +116,9 @@ const createClient = async () => {
 
         const addOneToCart = (props) => {
 		const id = props.dbKey;
-		const price = props.partSalePrice;
-		const title = props.partShortDesc;
-		const merchantName = props.merchantName;
+		const price = props.assetValue/props.assetNumberShares;
+		const title = props.assetAddress;
+		const merchantName = props.assetOwner;
 
 		console.log("props  xx====");
 		console.log(props);
@@ -168,6 +194,7 @@ const contextValue = {
             items: cartProducts,
 		getProductQuantity,
   	  addOneToCart,
+  	  addItemsToCart,
 	  removeOneFromCart,
 	  deleteFromCart,
 	  getTotalCost,

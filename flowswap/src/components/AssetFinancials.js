@@ -8,12 +8,12 @@ const AssetFinancials = ({
   assetNumberShares,
 }) => {
   return (
-    <div>
-      <p>Asset Value - {assetValue} GBP</p>
-      <p>Income - {assetIncome} GBP</p>
-      <p>Yield - {assetYield}%</p>
-      <p>Risk - {assetRiskRating}</p>
-      <p>Number shares - {assetNumberShares}</p>
+    <div align="left" className="text-left" style={{ backgroundColor: 'lightblue'}}>
+      <div><b>Asset Value</b> - {assetValue.toLocaleString()} GBP</div>
+      <div><b>Income</b> - {assetIncome.toLocaleString()} GBP</div>
+      <div><b>Yield</b> - {assetYield}%</div>
+      <div><b>Risk</b> - {assetRiskRating}</div>
+      <div><b>Number shares</b> - {assetNumberShares.toLocaleString()}</div>
     </div>
   );
 };
