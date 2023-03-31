@@ -77,31 +77,32 @@ const subscribeToEvents = async (client) => {
 const createClient = async () => {
 }
 
-const addItemsToCart = (assetsToBuy, numberSharesToBuy = 1) => {
-  console.log("add items =-- ", assetsToBuy);
-  console.log("add items =ntiyy-- ", numberSharesToBuy);
-
-  const { dbKey, assetOwnerName, assetAddress, assetValue, assetNumberShares } = assetsToBuy;
-  const id = dbKey;
-  const existingAssetPurchase= cartProducts.find((asset) => asset.id === id);
-
-  const pricePerShare = assetValue / assetNumberShares;
-
-  if (existingAssetPurchase) {
-    const updatedAssetPurchase = {
-      ...existingAssetPurchase,
-      numberSharesToBuy: existingAssetPurchase.numberSharesToBuy + numberSharesToBuy,
+const addItemsToCart = (item, quantity = 1) => {
+	console.log("add items =-- ", item);
+	console.log("add items =ntiyy-- ",  quantity);
+  const { id } = item;
+  const existingItem = cartProducts.find((product) => product.id === id);
+  if (existingItem) {
+    const updatedItem = {
+      ...existingItem,
+      quantity: existingItem.quantity + quantity,
     };
-    setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));
+    setCartProducts(
+      cartProducts.map((product) =>
+        product.id === id ? updatedItem : product
+      )
+    );
   } else {
-	  const newAssetsToBuy = {...assetsToBuy, numberSharesToBuy: numberSharesToBuy};
-    setCartProducts([...cartProducts, newAssetsToBuy]);
+    const newItem = {
+      ...item,
+      quantity,
+    };
+	  let c=[...cartProducts, newItem];
+	  console.log("c------", c);
+    setCartProducts([...cartProducts, newItem]);
   }
-	console.log("art products ------", cartProducts);
-	console.log("art products ------", cartProducts);
-	console.log("art products ------", cartProducts);
-	console.log("art products ------", cartProducts);
 };
+
 
 
 
