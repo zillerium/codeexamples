@@ -118,7 +118,8 @@ console.log(imgurl);
  
 }
 
-     
+export default ProductPage;
+// https://www.pinterest.co.uk/pin/415738609365144556/
 
 
  
