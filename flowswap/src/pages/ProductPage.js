@@ -190,9 +190,7 @@ const ProductPage = () => {
                                     <Button sm="6" onClick={()=>cart.addOneToCart(data.data[0])} className="mx-2">Add to Cart</Button>
                                 </Col>
                             </Row>
-                            <Row>
-                                <Col>Number of Sales: {data.data[0].assetNumSales}</Col>
-                            </Row>
+                    
                         </Col>
                     </Row>
                 </Col>
