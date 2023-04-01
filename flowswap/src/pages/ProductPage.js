@@ -2,12 +2,13 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Form, Container, Button, Row, Col } from "react-bootstrap";
+import { ListGroup, Badge, Form, Container, Button, Row, Col } from "react-bootstrap";
 
 import AssetCheckboxList from "../components/AssetCheckboxList";
 import AssetFeatures from "../components/AssetFeatures";
 import AssetFinancials from "../components/AssetFinancials";
 import AssetImages from "../components/AssetImages";
+import DataBox from "../components/DataBox";
 import { CartContext } from "../CartContext";
 
 const ProductPage = () => {
@@ -62,19 +63,19 @@ useEffect(()=> {
 
   return (
     <>
-      <Container>
-        <Row>
+      <Container className="mt-4">
+        <Row className="my-4">
           <Col>
             <h1>{data.data[0].assetAddress}</h1>
           </Col>
         </Row>
         <hr />
-        <Row>
-          <Col>
+        <Row className="my-4">
+          <Col xs={12} sm={12} md={5} lg={5} xl={5}>
             <AssetImages imageUrl={data.data[0].assetImageUrl} alt={data.data[0].assetAddress} />
           </Col>
-	  <Col>
-	  <Row>
+          <Col xs={12} sm={12} md={5} lg={5} xl={5}>
+        <Row className="my-4">
 
         <Col>
 
@@ -103,8 +104,6 @@ useEffect(()=> {
           </Col>
 	  </Row>
 
- 
-
  <Row className="mt-4">
         <Col>
           <h4>For {quantity} Shares </h4>
@@ -124,6 +123,9 @@ useEffect(()=> {
       </Row>
 
 <Row>
+
+
+        <Row className="my-4">
         <Col>
             <AssetFinancials
               assetValue={data.data[0].assetValue}
@@ -143,7 +145,7 @@ useEffect(()=> {
           </Col>
 </Row>
 
-	  <Row>
+        <Row className="my-4">
           <Col>
         <AssetFeatures
   numBathrooms={data.data[0].assetNumberBathrooms}
