@@ -31,17 +31,20 @@ const ProductPage = () => {
 
 
   const [quantity, setQuantity] = useState(1);
-	const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(data.data[0].assetIncome);
-  const [assetYieldForQuantity, setAssetYieldForQuantity] = useState(data.data[0].assetYield);
-  const [assetCostForQuantity, setAssetCostForQuantity] = useState(data.data[0].assetValue/data.data[0].assetNumberShares);
-  const [assetCostPerShare, setAssetCostPerShare] = useState(data.data[0].assetValue/data.data[0].assetNumberShares);
+const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(0);
+  const [assetYieldForQuantity, setAssetYieldForQuantity] = useState(0);
+  const [assetCostForQuantity, setAssetCostForQuantity] = useState(0);
+  const [assetCostPerShare, setAssetCostPerShare] = useState(0);
 
   const onQuantityChange = (quantity) => {
     setQuantity(quantity);
-    setAssetIncomeForQuantity((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity);
-    setAssetYieldForQuantity(((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity).toFixed(4));
-    setAssetCostForQuantity((data.data[0].assetValue/data.data[0].assetNumberShares)*quantity.toFixed(2));
-    setAssetCostPerShare((data.data[0].assetValue/data.data[0].assetNumberShares).toFixed(2));
+
+    if (data && data.data && data.data[0]) {
+      setAssetIncomeForQuantity((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity);
+      setAssetYieldForQuantity(((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity).toFixed(4));
+      setAssetCostForQuantity((data.data[0].assetValue/data.data[0].assetNumberShares)*quantity.toFixed(2));
+      setAssetCostPerShare((data.data[0].assetValue/data.data[0].assetNumberShares).toFixed(2));
+    }
   };
 
   if (isError) {
