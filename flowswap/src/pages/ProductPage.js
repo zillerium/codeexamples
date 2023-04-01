@@ -31,6 +31,18 @@ const ProductPage = () => {
 
 
   const [quantity, setQuantity] = useState(1);
+	const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(data.data[0].assetIncome);
+  const [assetYieldForQuantity, setAssetYieldForQuantity] = useState(data.data[0].assetYield);
+  const [assetCostForQuantity, setAssetCostForQuantity] = useState(data.data[0].assetValue/data.data[0].assetNumberShares);
+  const [assetCostPerShare, setAssetCostPerShare] = useState(data.data[0].assetValue/data.data[0].assetNumberShares);
+
+  const onQuantityChange = (quantity) => {
+    setQuantity(quantity);
+    setAssetIncomeForQuantity((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity);
+    setAssetYieldForQuantity(((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity).toFixed(4));
+    setAssetCostForQuantity((data.data[0].assetValue/data.data[0].assetNumberShares)*quantity.toFixed(2));
+    setAssetCostPerShare((data.data[0].assetValue/data.data[0].assetNumberShares).toFixed(2));
+  };
 
   if (isError) {
     return <h1>Error</h1>;
@@ -70,7 +82,7 @@ const ProductPage = () => {
                   type="number"
                   min="1"
                   value={quantity}
-                  onChange={(e) => setQuantity(parseInt(e.target.value))}
+                  onChange={(e) => onQuantityChange(parseInt(e.target.value))}
                 />
 	      </Col>
 	  <Col sm="6">
@@ -83,6 +95,19 @@ const ProductPage = () => {
 
           </Col>
 	  </Row>
+
+ <Row>
+          <Col>
+            <h4>Per Shares Purchased</h4>
+            <ul>
+              <li>Income: {assetIncomeForQuantity.toFixed(2)}</li>
+              <li>Yield: {assetYieldForQuantity.toFixed(4)}%</li>
+              <li>Cost: {assetCostForQuantity.toFixed(2)}</li>
+              <li>Cost Per Share: {assetCostPerShare.toFixed(2)}</li>
+            </ul>
+          </Col>
+        </Row>
+
 <Row>
         <Col>
             <AssetFinancials
