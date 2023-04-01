@@ -30,7 +30,7 @@ const ManageInvestQty = ({ quantity, onQuantityChange, onAddToCart }) => {
             style={{ width: "70px", margin: "0px 5px", textAlign: "center", height: "100%" }}
           />
           <Button variant="outline-primary" size="sm" style={{ height: "100%" }} onClick={handleIncrease}>+</Button>
-          <Button type="submit" variant="primary" style={{ marginLeft: "10px", height: "100%" }}>
+          <Button type="submit" variant="success" style={{ marginLeft: "10px", height: "100%" }}>
             Invest
           </Button>
         </Col>
