@@ -9,7 +9,6 @@ import AssetFeatures from "../components/AssetFeatures";
 import AssetFinancials from "../components/AssetFinancials";
 import AssetImages from "../components/AssetImages";
 import DataBox from "../components/DataBox";
-import ManageInvestQty from "../components/ManageInvestQty";
 import { CartContext } from "../CartContext";
 
 const ProductPage = () => {
@@ -80,12 +79,27 @@ useEffect(()=> {
 
         <Col>
 
-                  <ManageInvestQty
-              quantity={quantity}
-              onQuantityChange={onQuantityChange}
-              onAddToCart={onAddToCart}
-            />
-
+           <Form onSubmit={(e) => {
+              e.preventDefault();
+              onAddToCart();
+            }}>
+              <Form.Group controlId="quantity" className="d-flex align-items-centered">
+                <Form.Label column sm="5">Number Shares to Buy:</Form.Label>
+	        <Col sm="2">
+                <Form.Control
+                  type="number"
+                  min="1"
+                  value={quantity}
+                  onChange={(e) => onQuantityChange(parseInt(e.target.value))}
+                />
+	      </Col>
+	  <Col sm="6">
+              <Button type="submit" className="mx-4">
+                Invest
+              </Button>
+	  </Col>
+              </Form.Group>
+            </Form>
 
           </Col>
 	  </Row>
