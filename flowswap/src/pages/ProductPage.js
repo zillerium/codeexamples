@@ -103,17 +103,51 @@ useEffect(()=> {
           </Col>
 	  </Row>
 
- <Row>
+ 
+
+<Row>
           <Col>
             <h4>For {quantity} Shares </h4>
-            <ul>
-              <li>Income: {assetIncomeForQuantity.toFixed(2)} GBP</li>
-              <li>Cost: {assetCostForQuantity.toFixed(2)} GBP</li>
-              <li>Cost Per Share: {assetCostPerShare.toFixed(2)} GBP</li>
-            </ul>
+            <ListGroup>
+              <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Income:</div>
+                  <div>GBP {assetIncomeForQuantity.toFixed(2)}</div>
+                </div>
+                <Badge bg="primary" pill>
+                  {quantity}
+                </Badge>
+              </ListGroup.Item>
+              <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Yield:</div>
+                  <div>GBP {assetYieldForQuantity}</div>
+                </div>
+                <Badge bg="primary" pill>
+                  {quantity}
+                </Badge>
+              </ListGroup.Item>
+              <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Cost:</div>
+                  <div>GBP {assetCostForQuantity.toFixed(2)}</div>
+                </div>
+                <Badge bg="primary" pill>
+                  {quantity}
+                </Badge>
+              </ListGroup.Item>
+              <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">Cost Per Share:</div>
+                  <div>GBP {assetCostPerShare.toFixed(2)}</div>
+                </div>
+                <Badge bg="primary" pill>
+                  {data.data[0].assetNumberShares}
+                </Badge>
+              </ListGroup.Item>
+            </ListGroup>
           </Col>
         </Row>
-
 
 <Row>
         <Col>
