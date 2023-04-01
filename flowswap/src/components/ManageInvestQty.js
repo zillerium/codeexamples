@@ -24,10 +24,10 @@ const ManageInvestQty = ({ quantity, onQuantityChange, onAddToCart }) => {
           <Form.Control
             type="number"
             min="1"
-            max="9999"
+            max="99999"
             value={quantity}
             onChange={(e) => onQuantityChange(parseInt(e.target.value))}
-            style={{ width: "70px", margin: "0px 5px", textAlign: "center", height: "100%" }}
+            style={{ width: "80px", margin: "0px 5px", textAlign: "center", height: "100%" }}
           />
           <Button variant="outline-primary" size="sm" style={{ height: "100%" }} onClick={handleIncrease}>+</Button>
           <Button type="submit" variant="success" style={{ marginLeft: "10px", height: "100%" }}>
