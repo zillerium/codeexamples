@@ -37,6 +37,7 @@ const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(0);
   const [assetYieldForQuantity, setAssetYieldForQuantity] = useState(0);
   const [assetCostForQuantity, setAssetCostForQuantity] = useState(0);
   const [assetCostPerShare, setAssetCostPerShare] = useState(0);
+  const [maxQuantity, setMaxQuantity] = useState(1);
 
   const onQuantityChange = (quantity) => {
     setQuantity(quantity);
@@ -48,6 +49,7 @@ useEffect(()=> {
       setAssetYieldForQuantity(((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity));
       setAssetCostForQuantity((data.data[0].assetValue/data.data[0].assetNumberShares)*quantity.toFixed(2));
       setAssetCostPerShare((data.data[0].assetValue/data.data[0].assetNumberShares));
+	    setMaxQuantity((data.data[0].assetNumberShares));
     }
 
 }, [data, quantity]);
@@ -64,54 +66,52 @@ useEffect(()=> {
 
   return (
     <>
-      <Container className="mt-4">
+      <Container className="mt-4 no-gutters mx-auto" fluid>
         <Row className="my-4">
           <Col>
             <h1>{data.data[0].assetAddress}</h1>
           </Col>
         </Row>
-        <hr />
-        <Row className="my-4">
+        <Row >
           <Col xs={12} sm={12} md={5} lg={5} xl={5}>
             <AssetImages imageUrl={data.data[0].assetImageUrl} alt={data.data[0].assetAddress} />
           </Col>
-          <Col xs={12} sm={12} md={5} lg={5} xl={5}>
-        <Row className="my-4">
+          <Col >
+             <Row >
 
-        <Col>
+             <Col>
 
                   <ManageInvestQty
               quantity={quantity}
               onQuantityChange={onQuantityChange}
               onAddToCart={onAddToCart}
+              maxQuantity={maxQuantity}
             />
 
 
-          </Col>
+              </Col>
 	  </Row>
-
-      <Row className="mt-4">
-        <Col>
-          <h4>For {quantity} Shares </h4>
+	  <Row className="my-4"><Col><h4>For {quantity} Shares </h4></Col></Row>
+      <Row className="my-4" >
+        <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
             title="Income"
             data={`${assetIncomeForQuantity.toFixed(2)} GBP`}
           />
 	  </Col>
-	  <Col>
+        <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
             title="Cost"
             data={`${assetCostForQuantity.toFixed(2)} GBP`}
           />
 	  </Col>
-	  <Col>
+        <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
             title="Cost Per Share"
             data={`${assetCostPerShare.toFixed(2)} GBP`}
           />
         </Col>
       </Row>
-
 
 
         <Row className="my-4">
@@ -124,6 +124,8 @@ useEffect(()=> {
               assetNumberShares={data.data[0].assetNumberShares}
             />
            </Col>
+	  </Row>
+	  <Row>
            <Col>
              <AssetCheckboxList checkboxes={[
                { label: "Tenant", checked: data.data[0].hasTenant },
