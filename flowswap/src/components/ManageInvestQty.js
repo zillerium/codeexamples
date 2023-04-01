@@ -19,18 +19,18 @@ const ManageInvestQty = ({ quantity, onQuantityChange, onAddToCart }) => {
     }}>
       <Form.Group controlId="quantity" className="d-flex align-items-center">
         <Form.Label column sm="5">Number Shares to Buy:</Form.Label>
-        <Col sm="7" className="d-flex justify-content-start align-items-center">
-          <Button variant="outline-primary" size="sm" onClick={handleDecrease}>-</Button>
+        <Col sm="7" className="d-flex align-items-center">
+          <Button variant="outline-primary" size="sm" style={{ height: "100%" }} onClick={handleDecrease}>-</Button>
           <Form.Control
             type="number"
             min="1"
             max="9999"
             value={quantity}
             onChange={(e) => onQuantityChange(parseInt(e.target.value))}
-            style={{ width: "50px", margin: "0px 5px", textAlign: "center" }}
+            style={{ width: "70px", margin: "0px 5px", textAlign: "center", height: "100%" }}
           />
-          <Button variant="outline-primary" size="sm" onClick={handleIncrease}>+</Button>
-          <Button type="submit" variant="primary" style={{ marginLeft: "10px" }}>
+          <Button variant="outline-primary" size="sm" style={{ height: "100%" }} onClick={handleIncrease}>+</Button>
+          <Button type="submit" variant="primary" style={{ marginLeft: "10px", height: "100%" }}>
             Invest
           </Button>
         </Col>
