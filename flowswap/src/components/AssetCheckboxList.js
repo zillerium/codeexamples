@@ -4,18 +4,24 @@ import { Form } from "react-bootstrap";
 const AssetCheckboxList = ({ checkboxes }) => {
   return (
     <div>
-      {checkboxes.map((checkbox, index) => (
-        <Form.Check
-	      reverse
-          key={index}
-          type="checkbox"
-          label={checkbox.label}
-          checked={checkbox.checked}
-          readOnly
-        />
-      ))}
+      <Form inline>
+        {checkboxes.map((checkbox, index) => (
+          <Form.Check
+            key={index}
+            type="checkbox"
+            label={checkbox.label}
+            checked={checkbox.checked}
+            readOnly
+          />
+        ))}
+      </Form>
     </div>
   );
 };
 
 export default AssetCheckboxList;
+ 
+
+
+
+
