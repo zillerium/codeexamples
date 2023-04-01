@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { Form, Container, Button, Row, Col } from "react-bootstrap";
@@ -38,14 +38,18 @@ const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(0);
 
   const onQuantityChange = (quantity) => {
     setQuantity(quantity);
+  };
 
+useEffect(()=> {
     if (data && data.data && data.data[0]) {
       setAssetIncomeForQuantity((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity);
-      setAssetYieldForQuantity(((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity).toFixed(4));
+      setAssetYieldForQuantity(((data.data[0].assetIncome/data.data[0].assetNumberShares)*quantity));
       setAssetCostForQuantity((data.data[0].assetValue/data.data[0].assetNumberShares)*quantity.toFixed(2));
-      setAssetCostPerShare((data.data[0].assetValue/data.data[0].assetNumberShares).toFixed(2));
+      setAssetCostPerShare((data.data[0].assetValue/data.data[0].assetNumberShares));
     }
-  };
+
+}, [data, quantity]);
+
 
   if (isError) {
     return <h1>Error</h1>;
@@ -101,15 +105,15 @@ const [assetIncomeForQuantity, setAssetIncomeForQuantity] = useState(0);
 
  <Row>
           <Col>
-            <h4>Per Shares Purchased</h4>
+            <h4>For {quantity} Shares </h4>
             <ul>
-              <li>Income: {assetIncomeForQuantity.toFixed(2)}</li>
-              <li>Yield: {assetYieldForQuantity.toFixed(4)}%</li>
-              <li>Cost: {assetCostForQuantity.toFixed(2)}</li>
-              <li>Cost Per Share: {assetCostPerShare.toFixed(2)}</li>
+              <li>Income: {assetIncomeForQuantity.toFixed(2)} GBP</li>
+              <li>Cost: {assetCostForQuantity.toFixed(2)} GBP</li>
+              <li>Cost Per Share: {assetCostPerShare.toFixed(2)} GBP</li>
             </ul>
           </Col>
         </Row>
+
 
 <Row>
         <Col>
