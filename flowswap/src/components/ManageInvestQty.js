@@ -44,7 +44,7 @@ const ManageInvestQty = ({ quantity, onQuantityChange, onAddToCart, maxQuantity 
             style={{ width: "80px", margin: "0px 5px", textAlign: "center", height: "100%" }}
           />
           <Button variant="outline-primary" size="sm" style={{ height: "100%" }} onClick={handleIncrease} disabled={quantity >= maxQuantity}>+</Button>
-          <Button type="submit" variant="primary" style={{ marginLeft: "10px", height: "100%" }}>
+          <Button type="submit" variant="success" style={{ marginLeft: "10px", height: "100%" }}>
             Invest
           </Button>
         </Col>
