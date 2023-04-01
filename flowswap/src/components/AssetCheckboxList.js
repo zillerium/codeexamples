@@ -3,22 +3,20 @@ import { Form } from "react-bootstrap";
 
 const AssetCheckboxList = ({ checkboxes }) => {
   return (
-    <div>
-      <Form inline>
-        {checkboxes.map((checkbox, index) => (
+    <Form>
+      {checkboxes.map((checkbox, index) => (
+        <Form.Group key={index} className="mr-3">
           <Form.Check
-            key={index}
             type="checkbox"
             label={checkbox.label}
             checked={checkbox.checked}
             readOnly
-            style={{ display: "flex", alignItems: "center" }}
+            className="d-inline-block align-top ml-2"
             id={`checkbox-${index}`}
-            labelClassName="mr-3"
           />
-        ))}
-      </Form>
-    </div>
+        </Form.Group>
+      ))}
+    </Form>
   );
 };
 
