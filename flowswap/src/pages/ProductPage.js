@@ -105,49 +105,23 @@ useEffect(()=> {
 
  
 
-<Row>
-          <Col>
-            <h4>For {quantity} Shares </h4>
-            <ListGroup>
-              <ListGroup.Item className="d-flex justify-content-between align-items-start">
-                <div className="ms-2 me-auto">
-                  <div className="fw-bold">Income:</div>
-                  <div>GBP {assetIncomeForQuantity.toFixed(2)}</div>
-                </div>
-                <Badge bg="primary" pill>
-                  {quantity}
-                </Badge>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-start">
-                <div className="ms-2 me-auto">
-                  <div className="fw-bold">Yield:</div>
-                  <div>GBP {assetYieldForQuantity}</div>
-                </div>
-                <Badge bg="primary" pill>
-                  {quantity}
-                </Badge>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-start">
-                <div className="ms-2 me-auto">
-                  <div className="fw-bold">Cost:</div>
-                  <div>GBP {assetCostForQuantity.toFixed(2)}</div>
-                </div>
-                <Badge bg="primary" pill>
-                  {quantity}
-                </Badge>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-start">
-                <div className="ms-2 me-auto">
-                  <div className="fw-bold">Cost Per Share:</div>
-                  <div>GBP {assetCostPerShare.toFixed(2)}</div>
-                </div>
-                <Badge bg="primary" pill>
-                  {data.data[0].assetNumberShares}
-                </Badge>
-              </ListGroup.Item>
-            </ListGroup>
-          </Col>
-        </Row>
+ <Row className="mt-4">
+        <Col>
+          <h4>For {quantity} Shares </h4>
+          <DataBox
+            title="Income"
+            data={`${assetIncomeForQuantity.toFixed(2)} GBP`}
+          />
+          <DataBox
+            title="Cost"
+            data={`${assetCostForQuantity.toFixed(2)} GBP`}
+          />
+          <DataBox
+            title="Cost Per Share"
+            data={`${assetCostPerShare.toFixed(2)} GBP`}
+          />
+        </Col>
+      </Row>
 
 <Row>
         <Col>
