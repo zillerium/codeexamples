@@ -104,7 +104,7 @@ useEffect(()=> {
           </Col>
 	  </Row>
 
- <Row className="mt-4">
+      <Row className="mt-4">
         <Col>
           <h4>For {quantity} Shares </h4>
           <DataBox
@@ -122,11 +122,10 @@ useEffect(()=> {
         </Col>
       </Row>
 
-<Row>
 
 
         <Row className="my-4">
-        <Col>
+           <Col>
             <AssetFinancials
               assetValue={data.data[0].assetValue}
               assetIncome={data.data[0].assetIncome}
@@ -134,31 +133,32 @@ useEffect(()=> {
               assetRiskRating={data.data[0].assetRiskRating}
               assetNumberShares={data.data[0].assetNumberShares}
             />
-          </Col>
-        <Col>
-            <AssetCheckboxList checkboxes={[
-              { label: "Tenant", checked: data.data[0].hasTenant },
-              { label: "Garden", checked: data.data[0].hasGarden },
-              { label: "Parking", checked: data.data[0].hasParking },
-              { label: "Double Glazing", checked: data.data[0].hasDoubleGlazing },
-            ]} />
-          </Col>
-</Row>
+           </Col>
+           <Col>
+             <AssetCheckboxList checkboxes={[
+               { label: "Tenant", checked: data.data[0].hasTenant },
+               { label: "Garden", checked: data.data[0].hasGarden },
+               { label: "Parking", checked: data.data[0].hasParking },
+               { label: "Double Glazing", checked: data.data[0].hasDoubleGlazing },
+             ]} />
+           </Col>
+        </Row>
 
         <Row className="my-4">
-          <Col>
-        <AssetFeatures
-  numBathrooms={data.data[0].assetNumberBathrooms}
-  numBedrooms={data.data[0].assetNumberBedrooms}
-  houseType={data.data[0].assetHouseType}
-/>
+           <Col>
+             <AssetFeatures
+                     numBathrooms={data.data[0].assetNumberBathrooms}
+                     numBedrooms={data.data[0].assetNumberBedrooms}
+                      houseType={data.data[0].assetHouseType}
+              />
 
             <hr />
             <p>Asset Owner Name: {data.data[0].assetOwnerName}</p>
-          </Col>
-</Row>
+           </Col>
+        </Row>
+
 	  </Col>
-</Row>
+          </Row>
       </Container>
     </>
   );
