@@ -75,34 +75,27 @@ useEffect(()=> {
             <AssetImages imageUrl={data.data[0].assetImageUrl} alt={data.data[0].assetAddress} />
           </Col>
           <Col xs={12} sm={12} md={5} lg={5} xl={5}>
-        <Row className="my-4">
+  
 
-        <Col>
-
-           <Form onSubmit={(e) => {
-              e.preventDefault();
-              onAddToCart();
-            }}>
-              <Form.Group controlId="quantity" className="d-flex align-items-centered">
-                <Form.Label column sm="5">Number Shares to Buy:</Form.Label>
-	        <Col sm="2">
-                <Form.Control
-                  type="number"
-                  min="1"
-                  value={quantity}
-                  onChange={(e) => onQuantityChange(parseInt(e.target.value))}
+     <Row className="mt-4">
+              <Col>
+                <h4>For {quantity} Shares </h4>
+                <DataBox
+                  title="Income"
+                  data={`${assetIncomeForQuantity.toFixed(2)} GBP`}
                 />
-	      </Col>
-	  <Col sm="6">
-              <Button type="submit" className="mx-4">
-                Invest
-              </Button>
-	  </Col>
-              </Form.Group>
-            </Form>
+                <DataBox
+                  title="Cost"
+                  data={`${assetCostForQuantity.toFixed(2)} GBP`}
+                />
+                <DataBox
+                  title="Cost Per Share"
+                  data={`${assetCostPerShare.toFixed(2)} GBP`}
+                />
+              </Col>
+            </Row>
 
-          </Col>
-	  </Row>
+  
 
       <Row className="mt-4">
         <Col>
