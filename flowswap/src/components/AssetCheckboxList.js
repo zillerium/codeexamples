@@ -12,6 +12,9 @@ const AssetCheckboxList = ({ checkboxes }) => {
             label={checkbox.label}
             checked={checkbox.checked}
             readOnly
+            style={{ display: "flex", alignItems: "center" }}
+            id={`checkbox-${index}`}
+            labelClassName="mr-3"
           />
         ))}
       </Form>
@@ -20,8 +23,3 @@ const AssetCheckboxList = ({ checkboxes }) => {
 };
 
 export default AssetCheckboxList;
- 
-
-
-
-
