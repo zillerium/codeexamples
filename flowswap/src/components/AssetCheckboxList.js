@@ -3,22 +3,21 @@ import { Form } from "react-bootstrap";
 
 const AssetCheckboxList = ({ checkboxes }) => {
   return (
-    <Form>
-      <div className="d-flex flex-wrap">
-        {checkboxes.map((checkbox, index) => (
-          <Form.Group key={index} className="mr-3">
+    <div className="d-flex flex-wrap mx-3 w-100">
+      {checkboxes.map((checkbox, index) => (
+        <Form.Group key={index} className="mb-0">
+          <div className="d-flex align-items-center">
             <Form.Check
               type="checkbox"
               label={checkbox.label}
               checked={checkbox.checked}
               readOnly
-              className="d-inline-block align-middle"
-              id={`checkbox-${index}`}
+              className="ml-auto"
             />
-          </Form.Group>
-        ))}
-      </div>
-    </Form>
+          </div>
+        </Form.Group>
+      ))}
+    </div>
   );
 };
 
