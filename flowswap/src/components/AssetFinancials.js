@@ -7,6 +7,7 @@ const AssetFinancials = ({
   assetYield,
   assetRiskRating,
   assetNumberShares,
+	usdGbpRate
 }) => {
   return (
     <div className="border border-dark p-3">
@@ -14,8 +15,11 @@ const AssetFinancials = ({
         <Col md={6} className="text-left">
           <div className="font-weight-bold mb-1">Asset Value</div>
         </Col>
-        <Col md={6} className="text-left">
-          <div className="mb-1">{assetValue.toLocaleString()} GBP</div>
+        <Col md={3} className="text-left">
+          <div className="mb-1">{assetValue.toFixed()} GBP</div>
+        </Col>
+        <Col md={3} className="text-left">
+          <div className="mb-1">{(assetValue*usdGbpRate).toFixed()} USD</div>
         </Col>
       </Row>
       <div className="border-bottom"></div>
@@ -23,8 +27,11 @@ const AssetFinancials = ({
         <Col md={6} className="text-left">
           <div className="font-weight-bold mb-1">Income</div>
         </Col>
-        <Col md={6} className="text-left">
-          <div className="mb-1">{assetIncome.toLocaleString()} GBP</div>
+        <Col md={3} className="text-left">
+          <div className="mb-1">{assetIncome.toFixed(2)} GBP</div>
+        </Col>
+        <Col md={3} className="text-left">
+          <div className="mb-1">{(assetIncome*usdGbpRate).toFixed(2)} GBP</div>
         </Col>
       </Row>
       <div className="border-bottom"></div>
@@ -51,7 +58,7 @@ const AssetFinancials = ({
           <div className="font-weight-bold mb-1">Number shares</div>
         </Col>
         <Col md={6} className="text-left">
-          <div className="mb-1">{assetNumberShares.toLocaleString()}</div>
+          <div className="mb-1">{assetNumberShares.toLocaleString(2)}</div>
         </Col>
       </Row>
     </div>

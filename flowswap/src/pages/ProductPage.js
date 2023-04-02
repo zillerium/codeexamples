@@ -101,18 +101,21 @@ useEffect(()=> {
           <DataBox
             title="Income"
             data={`${assetIncomeForQuantity.toFixed(2)} GBP`}
+            datausd={`${(assetIncomeForQuantity*usdGbpRate).toFixed(2)} USD`}
           />
 	  </Col>
         <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
             title="Cost"
             data={`${assetCostForQuantity.toFixed(2)} GBP`}
+            datausd={`${(assetCostForQuantity*usdGbpRate).toFixed(2)} USD`}
           />
 	  </Col>
         <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
             title="Cost Per Share"
             data={`${assetCostPerShare.toFixed(2)} GBP`}
+            datausd={`${(assetCostPerShare*usdGbpRate).toFixed(2)} USD`}
           />
         </Col>
       </Row>
@@ -126,6 +129,7 @@ useEffect(()=> {
               assetYield={data.data[0].assetYield}
               assetRiskRating={data.data[0].assetRiskRating}
               assetNumberShares={data.data[0].assetNumberShares}
+              usdGbpRate={data.data[0].usdGbpRate}
             />
            </Col>
 	  </Row>
