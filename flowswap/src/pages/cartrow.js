@@ -40,3 +40,16 @@ const CartRow = ({ item, formatCurrency, onAddOneToCart, onRemoveOneFromCart }) 
 };
 
 export default CartRow;
+
+{cart.items.length > 0 &&
+  cart.items.map((item, key) => (
+    <CartRow
+      key={key}
+      item={item}
+      formatCurrency={formatCurrency}
+      onAddOneToCart={cart.addOneToCart}
+      onRemoveOneFromCart={cart.removeOneFromCart}
+    />
+  ))
+}
+
