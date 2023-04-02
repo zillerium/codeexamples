@@ -29,21 +29,25 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
             <Table stripod="true" bordered hover>
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>Asset</th>
+                  <th>Seller</th>
                   <th>Share Price</th>
                   <th>No. Shares</th>
-                  <th>Tot </th>
-                  <th>Cart</th>
+                  <th>Total </th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
 
 {cart.items.length > 0 &&
   cart.items.map((item, key) => (
+	  <React.Fragment key={key}> 
     <CartRow
       key={key}
       item={item}
 	  currency="GBP"
+	  cartPrice = {item.assetValue/item.assetNumberShares}
       formatCurrency={formatCurrency}
       onAddOneToCart={cart.addOneToCart}
       onRemoveOneFromCart={cart.removeOneFromCart}
@@ -51,27 +55,32 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
     <CartRow
       key={key}
       item={item}
+	  cartPrice = {item.assetValue*item.usdGbpRate/item.assetNumberShares}
 	  currency="USD"
       formatCurrency={formatCurrency}
       onAddOneToCart={cart.addOneToCart}
       onRemoveOneFromCart={cart.removeOneFromCart}
     />
+</React.Fragment>
   ))
 }
 
 
               </tbody>
               <tr>
-                <td>Total USD</td>
+                <td>Total</td>
                 <td></td>
                 <td></td>
-                <td>{cart.getTotalCost().toFixed(2)}</td>
+                <td>{cart.getTotalCost().toFixed(2)} USD</td>
                 <td>
                   <Link to="/invest">
                     <Button disabled={cart.items.length === 0}>Invest</Button>
                   </Link>
                 </td>
               </tr>
+	<tr>
+             <td colSpan="5">All investments are made in USD at a 12 month fixed exchange rate to the asset currency</td>
+	</tr>
             </Table>
           </div>
         </div>
@@ -81,32 +90,3 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
 };
 
 export default Cart;
-
-import React, { useState } from "react";
-
-const AddressField = ({ address }) => {
-  const [hovering, setHovering] = useState(false);
-
-  const handleMouseEnter = () => {
-    setHovering(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHovering(false);
-  };
-
-  const truncatedAddress = address.substring(0, 6) + "...";
-
-  return (
-    <td
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      style={{ cursor: "default" }}
-    >
-      {hovering ? address : truncatedAddress}
-    </td>
-  );
-};
-
-export default AddressField;
-
