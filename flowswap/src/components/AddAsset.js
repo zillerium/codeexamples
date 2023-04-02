@@ -20,7 +20,7 @@ function AddAsset() {
 
 
 
-        let argArr = [assetId, assetValue, assetNumberShares, assetIncome, assetYield, assetRiskRating, currency, assetNumberSharesSold];
+        let argArr = [assetId, assetValue, assetNumberShares, assetIncome, assetYield*100, assetRiskRating, currency, assetNumberSharesSold];
   	    console.log("array ---- ", argArr, contractAddress);
             const {config, error} = usePrepareContractWrite({
                    address: contractAddress,

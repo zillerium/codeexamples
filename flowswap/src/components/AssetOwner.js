@@ -5,6 +5,7 @@ function AssetOwner() {
   const {
     assetOwnerName, setAssetOwnerName,
     assetAddress, setAssetAddress,
+    sellerAddress, setSellerAddress,
     assetPreferredNotary, setAssetPreferredNotary,
   } = useContext(ContractContext);
 
@@ -22,12 +23,17 @@ function AssetOwner() {
               onChange={(e) => setAssetAddress(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "flex-start" }}>
-          <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1" }}>
-            <input type="text" placeholder="Asset Preferred Notary" value={assetPreferredNotary} 
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
+            <input type="text" placeholder="Asset Preferred Notary" value={assetPreferredNotary}
               onChange={(e) => setAssetPreferredNotary(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
           </div>
+          <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginLeft: "5px" }}>
+            <input type="text" placeholder="Seller Address" value={sellerAddress}
+              onChange={(e) => setSellerAddress(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
+          </div>
         </div>
+
       </div>
     </div>
   );

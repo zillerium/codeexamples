@@ -12,38 +12,20 @@ import AssetDetails from './AssetDetails';
 import AssetLinks from './AssetLinks';
 import AssetRates from './AssetRates';
 import AssetRisk from './AssetRisk';
+import AddAssetCall from './AddAssetCall';
 
 import {Button} from 'react-bootstrap';
 
 function AddAssetMgr() {
 
      const  {
-                 addAsset, setAddAsset, password, setPassword, correct, setCorrect, assetId, dbKey, assetOwnerName, assetAddress, assetValue,
+                 password, setPassword, correct, setCorrect, assetId, dbKey, assetOwnerName, assetAddress, assetValue,
                  assetNumberShares, hasTenant, hasGarden, hasParking, assetImageUrl, assetUrl,
                  assetIncome, assetYield, assetNumberBathrooms, assetNumberBedrooms, assetHouseType, hasDoubleGlazing,
                  assetRiskRating, assetPreferredNotary, currency, usdGbpRate, assetNumberSharesSold,
                 sellerAddress, setSellerAddress,
                 paySeller, setPaySeller,
                 } = useContext(ContractContext)
-     
-     const isInputValid = () => {
-  // check if all required states are valid
-  if (
-    assetId > 0 &&
-    assetValue > 0 &&
-    assetNumberShares > 0 &&
-    assetIncome > 0 &&
-    assetYield > 0 &&
-    assetRiskRating > 0 &&
-    currency !== '' &&
-    assetNumberSharesSold > 0
-  ) {
-    return true; // if all are valid, return true
-  } else {
-    return false; // if any are invalid, return false
-  }
-};
-
 
 
 
@@ -89,16 +71,13 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
     return (
         <>
   <header>
-      <h1>Add Property to DB</h1>
+      <h1>Add Asset</h1>
       <p></p>
       <div>
         <input placeholder="password" onChange={(e) => setPassword(e.target.value)} />
         <Button onClick={checkPassword}>Enable Page</Button>
       </div>
 
-    //    {  sellerAddress && !paySeller && <AddAsset /> }
-    //    { paySeller && <div>Contract Paid</div> }
-    //    { !paySeller && <div>Contract unPaid</div> }
       <AssetOwner />
       <AssetCheckBoxes />
        <AssetDetails />
@@ -134,7 +113,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
           Add DB Asset
         </Button>
       </div>
-	    <div>{!addAsset && <AddAsset />}</div>
+	    <div>{<AddAssetCall />}</div>
     </header>
 
         </>
