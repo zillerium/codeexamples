@@ -25,6 +25,25 @@ function AddAssetMgr() {
                 sellerAddress, setSellerAddress,
                 paySeller, setPaySeller,
                 } = useContext(ContractContext)
+     
+     const isInputValid = () => {
+  // check if all required states are valid
+  if (
+    assetId > 0 &&
+    assetValue > 0 &&
+    assetNumberShares > 0 &&
+    assetIncome > 0 &&
+    assetYield > 0 &&
+    assetRiskRating > 0 &&
+    currency !== '' &&
+    assetNumberSharesSold > 0
+  ) {
+    return true; // if all are valid, return true
+  } else {
+    return false; // if any are invalid, return false
+  }
+};
+
 
 
 
