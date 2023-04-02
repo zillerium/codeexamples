@@ -18,8 +18,6 @@ function AssetWalletInner(props) {
         const   [contractDetails, setContractDetails] = useState([{}]);
         const   [notary, setNotary]=useState({address: ''});
         const   [contractNumber, setContractNumber]=useState(0);
-        const   [assetNumberSharesSold, setAssetNumberSharesSold] = useState(0);
-        const   [usdGbpRate, setUsdGbpRate] = useState(0);
 
 
 
@@ -51,12 +49,6 @@ const [assetPreferredNotary, setAssetPreferredNotary] = useState(null);
   const [assetNumberSharesSold, setAssetNumberSharesSold] = useState(null);
   const [sellerAddress, setSellerAddress] = useState(null);
 
-
-
-
-
-
-
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
         const cart = useContext(CartContext);
@@ -71,17 +63,10 @@ console.log("yyyyyy jj - ", process.env);
 //	setApproveEscrowContract(true);
 	//setPayContract(false);
 //}, [])
-console.log("app amout ------", approveAmount);
 return (
     <div className="container">
 
-  <ContractContext.Provider value={{
-    approveContract, setApproveContract,
-    payContract, setPayContract,
-    approveEscrowContract, setApproveEscrowContract,
-    paySeller, setPaySeller,
-    contractAmount, setContractAmount,
-    paymentAmount, setPaymentAmount,
+ <ContractContext.Provider value={{
     erc20ContractAddress, setERC20ContractAddress,
     contractAddress, setContractAddress,
     contractDetails, setContractDetails,
@@ -112,6 +97,7 @@ return (
     assetRiskRating, setAssetRiskRating,
     assetPreferredNotary, setAssetPreferredNotary,
 }}>
+
 
 
         <div>
