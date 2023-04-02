@@ -17,8 +17,9 @@ const CartProduct=(props)=> {
                                                   <td>{props.assetAddress}</td>
                                                   <td>{props.assetOwnerName}</td>
                                                   <td>{props.numberShares}</td>
-                                                  <td>{props.pricePerShare}</td>
-                                                  <td>{props.pricePerShare*props.numberShares}</td>
+                                                  <td>{props.pricePerShare} ({props.pricePerShare*props.usdGbpRate})</td>
+              <td> {props.pricePerShare*props.numberShares } ({props.pricePerShare*props.numberShares*props.usdGbpRate})
+		                                   </td>
                       <td> <Button size="sm" onClick={() => cart.deleteFromCart(props.assetAddress)}>X</Button></td>
                                         </tr>
 

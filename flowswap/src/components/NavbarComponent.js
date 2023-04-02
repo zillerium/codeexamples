@@ -15,7 +15,7 @@ const NavbarComponent=()=>{
 
 	const checkout = async () => {
 
-   const response = await axios.post("https://peacioapi.com:3000/checkout", cart.items);
+   const response = await axios.post("https://peacioapi.com:3000/checkouthouse", cart.items);
 		console.log(response);
 		const url=response.data.data.url;
 		console.log(response.data.data.url);
@@ -48,9 +48,9 @@ return (
                                                  <tr>
                                                       <th>Asset</th>
                                                       <th>Seller</th>
-                                                      <th>Number Shares</th>
-                                                      <th>Price Per Share</th>
-                                                      <th>Sub total</th>
+                                                      <th>No. Shares</th>
+                                                      <th>Share Price GBP (USD)</th>
+                                                      <th>Total GBP (USD)</th>
                                                       <th>Action</th>
                                                  </tr>
                                             </thead>
@@ -63,6 +63,7 @@ return (
                                                       assetOwnerName= {currentProduct.assetOwnerName} 
                                                       numberShares = {currentProduct.numberSharesToBuy} 
                                                       pricePerShare = {currentProduct.pricePerShare} 
+                                                      usdGbpRate = {currentProduct.usdGbpRate} 
 						      />
 						        ))}
 

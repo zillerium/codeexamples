@@ -29,9 +29,6 @@ const CartRow = ({
   return (
     <>
       <tr
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={{ cursor: "default" }}
       >
         <td>
           <Link to={`/asset/${assetId}`}>{assetId}</Link>
@@ -39,7 +36,12 @@ const CartRow = ({
         <td>
           <Link to={`/asset/${assetId}`}>{assetAddress}</Link>
         </td>
-        <td>{hovering ? sellerAddress : truncatedAddress}</td>
+        <td
+
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{ cursor: "default" }}
+	  >{hovering ? truncatedAddress : truncatedAddress}</td>
         <td>
           {formatCurrency(cartPrice)} {currency}
         </td>
@@ -65,22 +67,11 @@ const CartRow = ({
         </td>
       </tr>
       {showFullRow && (
-        <tr>
-          <td colSpan="7">
-            <table>
-              <tbody>
-                <tr>
-                  <td>{assetId}</td>
-                  <td>{assetAddress}</td>
+        <tr><td colspan="7">
+	      <table><tbody><tr>
                   <td>{sellerAddress}</td>
-                    {formatCurrency(pricePerShare)} {currency}
-                  <td>{numberSharesToBuy}</td>
-                    <td>{formatCurrency(numberSharesToBuy * cartPrice)} {currency}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
+	      </tr></tbody></table>
+	      </td>
         </tr>
       )}
     </>

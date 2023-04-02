@@ -71,6 +71,8 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
                 <td>Total</td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td>{cart.getTotalCost().toFixed(2)} USD</td>
                 <td>
                   <Link to="/invest">
@@ -79,7 +81,7 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
                 </td>
               </tr>
 	<tr>
-             <td colSpan="5">All investments are made in USD at a 12 month fixed exchange rate to the asset currency</td>
+             <td colSpan="7">All investments are made in USD at a 12 month fixed exchange rate to the asset currency</td>
 	</tr>
             </Table>
           </div>
