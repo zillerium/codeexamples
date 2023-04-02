@@ -19,19 +19,19 @@ const CartProduct=(props)=> {
 			<td>
 				{props.pricePerShare.toLocaleString('en-US', {
 					style: 'currency',
-					currency: 'USD'
+					currency: 'GBP'
 				})} ({(props.pricePerShare*props.usdGbpRate).toLocaleString('en-US', {
 					style: 'currency',
-					currency: 'GBP'
+					currency: 'USD'
 				})})
 			</td>
 			<td>
 				{(props.pricePerShare*props.numberShares).toLocaleString('en-US', {
 					style: 'currency',
-					currency: 'USD'
+					currency: 'GBP'
 				})} ({(props.pricePerShare*props.numberShares*props.usdGbpRate).toLocaleString('en-US', {
 					style: 'currency',
-					currency: 'GBP'
+					currency: 'USD'
 				})})
 			</td>
 			<td>
