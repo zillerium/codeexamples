@@ -7,9 +7,11 @@ import CartProvider from '../CartContext.js'
 
 const AddProduct = () => {
 
+      const maxint256 = 10000000000000;
+        const ranNumber = Math.floor(Math.random() * maxint256);
 	const [password, setPassword]=useState("");
 	const [correct, setCorrect]=useState(false);
- const [houseId, setHouseId] = useState(null);
+ const [assetId, setAssetId] = useState(ranNumber);
 const [dbKey, setDbKey] = useState(null);
 const [assetOwnerName, setAssetOwnerName] = useState(null);
 const [assetAddress, setAssetAddress] = useState(null);
@@ -216,7 +218,7 @@ onChange={(e) => setAssetPreferredNotary(e.target.value)} />
 
       <div>
         <Button disabled={!correct} onClick={() => mutate({
-          houseId: houseId,
+          assetId: assetId,
           dbKey: dbKey,
           assetOwnerName: assetOwnerName,
           assetAddress: assetAddress,

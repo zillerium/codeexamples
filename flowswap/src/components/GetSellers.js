@@ -11,6 +11,10 @@ function GetSellers() {
 		notary, setNotary,
                 salesRelease, setSalesRelease,
                 disputeRelease, setDisputeRelease,
+	           assetId, setAssetId,
+                 assetNumberSharesSold, setAssetNumberSharesSold,
+                 usdGbpRate, setUsdGbpRate
+
                 } = useContext(ContractContext)
     const cart = useContext(CartContext);
     const items = cart.items;
