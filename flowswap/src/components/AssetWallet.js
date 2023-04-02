@@ -63,7 +63,7 @@ return (
 
 }
 
-export default Wallet;
+export default AssetWallet;
 
 	
 
