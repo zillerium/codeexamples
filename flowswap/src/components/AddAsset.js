@@ -12,34 +12,20 @@ import abi from './abi';
 function AddAsset() {
 
 	 const  {
-                approveContract, setApproveContract,
-                payContract, setPayContract,
-                approveEscrowContract, setApproveEscrowContract,
-                erc20ContractAddress, setERC20ContractAddress,
-                contractAddress, 
-                contractDetails, setContractDetails,
-                paySeller, setPaySeller,
-                notary, setNotary,
-                sellerAddress, setSellerAddress,
-                contractAmount, setContractAmount,
-                contractNumber, setContractNumber,
-		 salesRelease, setSalesRelease,
-		 disputeRelease, setDisputeRelease,
-		 assetId, setAssetId,
-		 assetNumberSharesSold, setAssetNumberSharesSold,
-		 usdGbpRate, setUsdGbpRate
+                addAsset, setAddAsset, contractAddress, 
+		assetId, assetValue, assetNumberShares, 
+		 assetIncome, assetYield, assetRiskRating, 
+		 currency, assetNumberSharesSold,
                 } = useContext(ContractContext)
 
 
-	const stableCoinAmount = contractAmount/ (10 ** 6);
 
-        let argArr = [contractNumber, sellerAddress, notary.address, salesRelease, 
-		disputeRelease, contractAmount, assetId, assetNumberSharesSold, usdGbpRate  ];
+        let argArr = [assetId, assetValue, assetNumberShares, assetIncome, assetYield, assetRiskRating, currency, assetNumberSharesSold];
   	    console.log("array ---- ", argArr, contractAddress);
             const {config, error} = usePrepareContractWrite({
                    address: contractAddress,
                    abi: abi,
-                   functionName: 'addasset',
+                   functionName: 'addAsset',
                   // args:[contractNumber],
                    args: argArr
             })
@@ -51,10 +37,9 @@ function AddAsset() {
             console.log(data)
 
             if (isSuccess) {
-                setPaySeller(true);
-                setPayContract(false);
+                setAddAsset(true);
             }
-    const payEscrow = async () => {
+    const addAssetFunc = async () => {
               console.log("------ pay now--");
 	    try {
 		    console.log("--write", write);
@@ -72,7 +57,7 @@ function AddAsset() {
 
     return (
         <>
-        <div><Button  variant="primary" onClick={payEscrow}>Pay to Escrow {stableCoinAmount}</Button></div>
+        <div><Button  variant="primary" onClick={addAssetFunc}>Add Asset {assetId} </Button></div>
             {error && (<div> error in formatting {error.message} </div>)}
         </>
     )

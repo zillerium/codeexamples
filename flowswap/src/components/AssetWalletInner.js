@@ -48,6 +48,7 @@ const [assetPreferredNotary, setAssetPreferredNotary] = useState(null);
 	const [usdGbpRate, setUsdGbpRate] = useState(null);
   const [assetNumberSharesSold, setAssetNumberSharesSold] = useState(null);
   const [sellerAddress, setSellerAddress] = useState(null);
+  const [addAsset, setAddAsset] = useState(null);
 
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
@@ -67,6 +68,7 @@ return (
     <div className="container">
 
  <ContractContext.Provider value={{
+	 addAsset, setAddAsset,
     erc20ContractAddress, setERC20ContractAddress,
     contractAddress, setContractAddress,
     contractDetails, setContractDetails,

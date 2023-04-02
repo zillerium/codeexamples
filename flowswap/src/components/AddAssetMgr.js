@@ -1,7 +1,6 @@
-import {useContext} from 'react'
 import {ContractContext} from './ContractContext'
 
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {useQuery, useMutation} from 'react-query';
 import axios from 'axios';
 
@@ -17,6 +16,19 @@ import AssetRisk from './AssetRisk';
 import {Button} from 'react-bootstrap';
 
 function AddAssetMgr() {
+
+     const  {
+                 addAsset, setAddAsset, password, setPassword, correct, setCorrect, assetId, dbKey, assetOwnerName, assetAddress, assetValue,
+                 assetNumberShares, hasTenant, hasGarden, hasParking, assetImageUrl, assetUrl,
+                 assetIncome, assetYield, assetNumberBathrooms, assetNumberBedrooms, assetHouseType, hasDoubleGlazing,
+                 assetRiskRating, assetPreferredNotary, currency, usdGbpRate, assetNumberSharesSold,
+                sellerAddress, setSellerAddress,
+                paySeller, setPaySeller,
+                } = useContext(ContractContext)
+
+
+
+
 const [search,setSearch] = useState("");
 	const {isLoading, error, data, isFetching, refetch} = useQuery('dogs',
 		() => axios ('https://random.dog/woof.json'),
@@ -55,14 +67,6 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 	if (isLoading) return <h1>Loading</h1>
 		//console.log(data);
 
-	 const  {
-		 password, setPassword, correct, setCorrect, assetId, dbKey, assetOwnerName, assetAddress, assetValue,
-		 assetNumberShares, hasTenant, hasGarden, hasParking, assetImageUrl, assetUrl,
-		 assetIncome, assetYield, assetNumberBathrooms, assetNumberBedrooms, assetHouseType, hasDoubleGlazing,
-		 assetRiskRating, assetPreferredNotary, currency, usdGbpRate, assetNumberSharesSold, 
-                sellerAddress, setSellerAddress,
-                paySeller, setPaySeller,
-                } = useContext(ContractContext)
     return (
         <>
   <header>
@@ -108,9 +112,10 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
               assetNumberSharesSold: assetNumberSharesSold,
               sellerAddress: sellerAddress,
         })}>
-          Add Property
+          Add DB Asset
         </Button>
       </div>
+	    <div>{!addAsset && <AddAsset />}</div>
     </header>
 
         </>
