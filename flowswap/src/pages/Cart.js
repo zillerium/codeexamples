@@ -43,6 +43,15 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
     <CartRow
       key={key}
       item={item}
+	  currency="GBP"
+      formatCurrency={formatCurrency}
+      onAddOneToCart={cart.addOneToCart}
+      onRemoveOneFromCart={cart.removeOneFromCart}
+    />
+    <CartRow
+      key={key}
+      item={item}
+	  currency="USD"
       formatCurrency={formatCurrency}
       onAddOneToCart={cart.addOneToCart}
       onRemoveOneFromCart={cart.removeOneFromCart}

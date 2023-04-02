@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 
-const CartRow = ({ item, formatCurrency, onAddOneToCart, onRemoveOneFromCart }) => {
+const CartRow = ({ currency, item, formatCurrency, onAddOneToCart, onRemoveOneFromCart }) => {
   const { id, assetAddress, pricePerShare, usdGbpRate, numberSharesToBuy } = item;
 
   return (
@@ -11,11 +11,11 @@ const CartRow = ({ item, formatCurrency, onAddOneToCart, onRemoveOneFromCart }) 
         <Link to={`/asset/${id}`}>{assetAddress}</Link>
       </td>
       <td>
-        {formatCurrency(pricePerShare)} 
+        {formatCurrency(pricePerShare)} {currency}
       </td>
       <td>{numberSharesToBuy}</td>
       <td>
-        {formatCurrency(numberSharesToBuy*pricePerShare)} 
+        {formatCurrency(numberSharesToBuy*pricePerShare)} {currency}
       </td>
       <td>
         <Button
