@@ -154,6 +154,9 @@ useEffect(()=> {
 
             <hr />
             <p>Asset Owner Name: {data.data[0].assetOwnerName}</p>
+            <p>Seller: {sellerAddress}</p>
+            <p>USD GBP Rate: {usdGbpRate}</p>
+            <p>** All payments are made in USD and at a fixed exchange rate for 12 months ** </p>
            </Col>
         </Row>
 

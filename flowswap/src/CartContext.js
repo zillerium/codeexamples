@@ -81,11 +81,13 @@ const addItemsToCart = (assetsToBuy, numberSharesToBuy = 1) => {
   console.log("add items =-- ", assetsToBuy);
   console.log("add items =ntiyy-- ", numberSharesToBuy);
 
-  const { dbKey, assetOwnerName, assetAddress, assetValue, assetNumberShares } = assetsToBuy;
-  const id = dbKey;
+  const {assetId, usdGbpRate, assetNumberSharesSold, 
+	  sellerAddress,  dbKey, assetOwnerName, assetBlockchainAddress, assetAddress, assetValue, assetNumberShares } = assetsToBuy;
+  const id = assetId;
   const existingAssetPurchase= cartProducts.find((asset) => asset.id === id);
 
   const pricePerShare = assetValue / assetNumberShares;
+  const priceUsdPerShare = (assetValue*usdGbpRate) / assetNumberShares;
 
   if (existingAssetPurchase) {
     const updatedAssetPurchase = {
@@ -94,7 +96,18 @@ const addItemsToCart = (assetsToBuy, numberSharesToBuy = 1) => {
     };
     setCartProducts(cartProducts.map((asset) => (asset.id === id ? updatedAssetPurchase : asset)));
   } else {
-	  const newAssetsToBuy = {...assetsToBuy, id: dbKey, numberSharesToBuy: numberSharesToBuy, pricePerShare:pricePerShare};
+	  const newAssetsToBuy = {...assetsToBuy, 
+		  id: assetId, 
+		  numberSharesToBuy: numberSharesToBuy, 
+		  pricePerShare:pricePerShare,
+		  priceUsdPerShare:priceUsdPerShare,
+		  usdGbpRate: usdGbpRate,
+		  assetNumberSharesSold: assetNumberSharesSold,
+		  sellerAddress: sellerAddress,
+		  assetBlockchainAddress: assetBlockchainAddress
+
+
+	  };
 	  console.log("new assets to buy --- ", newAssetsToBuy);
     setCartProducts([...cartProducts, newAssetsToBuy]);
   }
