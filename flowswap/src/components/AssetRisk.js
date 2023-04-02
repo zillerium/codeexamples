@@ -18,35 +18,32 @@ function AssetRisk() {
   } = useContext(ContractContext);
 
   return (
-    <div style={{ border: "3px solid green", borderRadius: "10px", padding: "10px", display: "flex", flexDirection: "column", gap: "20px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", gap: "20px" }}>
-        <div style={{ flex: "1" }}>
+    <div style={{ border: "2px solid lightgrey", borderRadius: "10px", padding: "10px" }}>
+      <h3 style={{ textAlign: "center" }}>Asset Financials</h3>
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ borderRadius: "10px", border: "1px solid lightgrey" }}>
           <input type="number" placeholder="Asset Income" value={assetIncome} 
-            onChange={(e) => setAssetIncome(e.target.value)} style={{ border: "3px solid green", width: "100%" }} />
+            onChange={(e) => setAssetIncome(e.target.value)} style={{ border: "none", width: "33%", padding: "5px" }} />
         </div>
-        <div style={{ flex: "1" }}>
+        <div style={{ borderRadius: "10px", border: "1px solid lightgrey" }}>
           <input type="number" placeholder="Asset Yield" value={assetYield} 
-            onChange={(e) => setAssetYield(e.target.value)} style={{ border: "3px solid green", width: "100%" }} />
+            onChange={(e) => setAssetYield(e.target.value)} style={{ border: "none", width: "33%", padding: "5px" }} />
         </div>
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between", gap: "20px" }}>
-        <div style={{ flex: "1" }}>
+        <div style={{ borderRadius: "10px", border: "1px solid lightgrey" }}>
           <input type="number" placeholder="Asset Risk Rating" value={assetRiskRating} 
-            onChange={(e) => setAssetRiskRating(e.target.value)} style={{ border: "3px solid green", width: "100%" }} />
+            onChange={(e) => setAssetRiskRating(e.target.value)} style={{ border: "none", width: "33%", padding: "5px" }} />
         </div>
-        <div style={{ flex: "1" }}>
+        <div style={{ borderRadius: "10px", border: "1px solid lightgrey" }}>
           <input type="number" placeholder="Asset Value" value={assetValue} 
-            onChange={(e) => setAssetValue(e.target.value)} style={{ border: "3px solid green", width: "100%" }} />
+            onChange={(e) => setAssetValue(e.target.value)} style={{ border: "none", width: "33%", padding: "5px" }} />
         </div>
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between", gap: "20px" }}>
-        <div style={{ flex: "1" }}>
+        <div style={{ borderRadius: "10px", border: "1px solid lightgrey" }}>
           <input type="currency" placeholder="Currency" value={currency} 
-            onChange={(e) => setCurrency(e.target.value)} style={{ border: "3px solid green", width: "100%" }} />
+            onChange={(e) => setCurrency(e.target.value)} style={{ border: "none", width: "33%", padding: "5px" }} />
         </div>
-        <div style={{ flex: "1" }}>
+        <div style={{ borderRadius: "10px", border: "1px solid lightgrey" }}>
           <input type="number" placeholder="Asset Number of Shares" value={assetNumberShares} 
-            onChange={(e) => setAssetNumberShares(e.target.value)} style={{ border: "3px solid green", width: "100%" }} />
+            onChange={(e) => setAssetNumberShares(e.target.value)} style={{ border: "none", width: "33%", padding: "5px" }} />
         </div>
       </div>
     </div>
