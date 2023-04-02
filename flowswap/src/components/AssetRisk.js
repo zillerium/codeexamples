@@ -18,32 +18,38 @@ function AssetRisk() {
   } = useContext(ContractContext);
 
   return (
-    <>
-      <div>
-        <input type="number" placeholder="Asset Income" value={assetIncome} 
-          onChange={(e) => setAssetIncome(e.target.value)} />
+    <div style={{ border: "3px solid green", borderRadius: "10px", padding: "10px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <input type="number" placeholder="Asset Income" value={assetIncome} 
+            onChange={(e) => setAssetIncome(e.target.value)} style={{ border: "3px solid green" }} />
+        </div>
+        <div>
+          <input type="number" placeholder="Asset Yield" value={assetYield} 
+            onChange={(e) => setAssetYield(e.target.value)} style={{ border: "3px solid green" }} />
+        </div>
       </div>
-      <div>
-        <input type="number" placeholder="Asset Yield" value={assetYield} 
-          onChange={(e) => setAssetYield(e.target.value)} />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <input type="number" placeholder="Asset Risk Rating" value={assetRiskRating} 
+            onChange={(e) => setAssetRiskRating(e.target.value)} style={{ border: "3px solid green" }} />
+        </div>
+        <div>
+          <input type="number" placeholder="Asset Value" value={assetValue} 
+            onChange={(e) => setAssetValue(e.target.value)} style={{ border: "3px solid green" }} />
+        </div>
       </div>
-      <div>
-        <input type="number" placeholder="Asset Risk Rating" value={assetRiskRating} 
-          onChange={(e) => setAssetRiskRating(e.target.value)} />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <input type="currency" placeholder="Currency" value={currency} 
+            onChange={(e) => setCurrency(e.target.value)} style={{ border: "3px solid green" }} />
+        </div>
+        <div>
+          <input type="number" placeholder="Asset Number of Shares" value={assetNumberShares} 
+            onChange={(e) => setAssetNumberShares(e.target.value)} style={{ border: "3px solid green" }} />
+        </div>
       </div>
-      <div>
-        <input type="number" placeholder="Asset Value" value={assetValue} 
-          onChange={(e) => setAssetValue(e.target.value)} />
-      </div>
-      <div>
-        <input type="currency" placeholder="Asset Value" value={currency} 
-          onChange={(e) => setCurrency(e.target.value)} />
-      </div>
-      <div>
-        <input type="number" placeholder="Asset Number of Shares" value={assetNumberShares} 
-          onChange={(e) => setAssetNumberShares(e.target.value)} />
-      </div>
-    </>
+    </div>
   );
 }
 
