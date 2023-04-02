@@ -75,27 +75,44 @@ console.log("app amout ------", approveAmount);
 return (
     <div className="container">
 
-        <ContractContext.Provider value={{
-                approveContract, setApproveContract,
-                payContract, setPayContract,
-                approveEscrowContract, setApproveEscrowContract,
-                paySeller, setPaySeller,
-                contractAmount, setContractAmount,
-                paymentAmount, setPaymentAmount,
-                erc20ContractAddress, setERC20ContractAddress,
-                contractAddress, setContractAddress,
-                contractDetails, setContractDetails,
-                notary, setNotary,
-                sellerAddress, setSellerAddress,
-                salesRelease, setSalesRelease,
-                disputeRelease, setDisputeRelease,
-                contractNumber, setContractNumber,
-                allowanceAmount, setAllowanceAmount,
-              assetId, setAssetId,
-                 assetNumberSharesSold, setAssetNumberSharesSold,
-                 usdGbpRate, setUsdGbpRate
+  <ContractContext.Provider value={{
+    approveContract, setApproveContract,
+    payContract, setPayContract,
+    approveEscrowContract, setApproveEscrowContract,
+    paySeller, setPaySeller,
+    contractAmount, setContractAmount,
+    paymentAmount, setPaymentAmount,
+    erc20ContractAddress, setERC20ContractAddress,
+    contractAddress, setContractAddress,
+    contractDetails, setContractDetails,
+    notary, setNotary,
+    contractNumber, setContractNumber,
+    assetNumberSharesSold, setAssetNumberSharesSold,
+    usdGbpRate, setUsdGbpRate,
+    password, setPassword,
+    correct, setCorrect,
+    assetId, setAssetId,
+    dbKey, setDbKey,
+    assetOwnerName, setAssetOwnerName,
+    assetAddress, setAssetAddress,
+    assetValue, setAssetValue,
+    assetNumberShares, setAssetNumberShares,
+    hasTenant, setHasTenant,
+    hasGarden, setHasGarden,
+    hasParking, setHasParking,
+    assetImageUrl, setAssetImageUrl,
+    currency, setCurrency,
+    assetUrl, setAssetUrl,
+    assetIncome, setAssetIncome,
+    assetYield, setAssetYield,
+    assetNumberBathrooms, setAssetNumberBathrooms,
+    assetNumberBedrooms, setAssetNumberBedrooms,
+    assetHouseType, setAssetHouseType,
+    hasDoubleGlazing, setHasDoubleGlazing,
+    assetRiskRating, setAssetRiskRating,
+    assetPreferredNotary, setAssetPreferredNotary,
+}}>
 
-        }}>
 
         <div>
 	   <div className="row">
