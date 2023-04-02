@@ -1,8 +1,8 @@
 import {useContext} from 'react'
 import {ContractContext} from './ContractContext'
 import AddAsset from './AddAsset'
-import AssetForm from './AssetForm';
-import AssetCheckboxes from './AssetCheckboxes';
+import AssetOwner from './AssetOwner';
+import AssetCheckBoxes from './AssetCheckBoxes';
 import AssetDetails from './AssetDetails';
 import AssetLinks from './AssetLinks';
 import AssetRates from './AssetRates';
@@ -24,8 +24,8 @@ function AddAssetMgr() {
     //    {  sellerAddress && !paySeller && <AddAsset /> }
     //    { paySeller && <div>Contract Paid</div> }
     //    { !paySeller && <div>Contract unPaid</div> }
-      <AssetForm />
-      <AssetCheckboxes />
+      <AssetOwner />
+      <AssetCheckBoxes />
        <AssetDetails />
       <AssetLinks />
 <AssetRates />

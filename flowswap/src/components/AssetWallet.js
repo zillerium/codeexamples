@@ -49,7 +49,7 @@ return (
                {chain && <div>Network - {chain.name}</div>}
            </div>
 	</div>
-
+<h1> Add Asset</h1>
         <div>
 	  <div className="row">
 	           <AssetWalletInner isConnected={isConnected} address={address}/>
