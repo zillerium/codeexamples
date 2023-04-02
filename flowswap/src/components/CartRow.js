@@ -70,31 +70,12 @@ const CartRow = ({
             <table>
               <tbody>
                 <tr>
-                  <td>Asset ID:</td>
                   <td>{assetId}</td>
-                </tr>
-                <tr>
-                  <td>Asset Address:</td>
                   <td>{assetAddress}</td>
-                </tr>
-                <tr>
-                  <td>Seller Address:</td>
                   <td>{sellerAddress}</td>
-                </tr>
-                <tr>
-                  <td>Share Price:</td>
-                  <td>
                     {formatCurrency(pricePerShare)} {currency}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Number of Shares:</td>
                   <td>{numberSharesToBuy}</td>
-                </tr>
-                <tr>
-                  <td>Total:</td>
-                  <td>
-                    {formatCurrency(numberSharesToBuy * cartPrice)} {currency}
+                    <td>{formatCurrency(numberSharesToBuy * cartPrice)} {currency}
                   </td>
                 </tr>
               </tbody>
