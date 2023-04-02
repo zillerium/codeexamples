@@ -9,6 +9,14 @@ const Cart = (props) => {
   const { productId } = useParams();
   const cart = useContext(CartContext);
 
+const formatCurrency = (value) => {
+  return value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+};
+
+
+
+
+console.log("cart items mmmmmmmmmmmm= ", cart.items);
   return (
     <>
       <div>
@@ -21,9 +29,9 @@ const Cart = (props) => {
               <thead>
                 <tr>
                   <th>Asset</th>
-                  <th>Price</th>
-                  <th>Number of Shares</th>
-                  <th>SubTot</th>
+                  <th>Share Price GBP (USD)</th>
+                  <th>No. Shares</th>
+                  <th>Tot GBP (USD)</th>
                   <th>Cart</th>
                 </tr>
               </thead>
@@ -36,26 +44,26 @@ const Cart = (props) => {
                           <Link
                             to={{
                               pathname: `/asset/${value.id}`,
-                              state: { productId: value.id, productPrice: value.price },
                             }}
                           >
                             {value.assetAddress}
                           </Link>
                         </td>
-                        <td>{value.pricePerShare?.toFixed(2)}</td>
-                        <td>{value.numberSharesToBuy}</td>
                         <td>
-                          {(value.pricePerShare * value.numberSharesToBuy).toFixed(2)}
+			                              {formatCurrency(value.pricePerShare )} ( 
+			                              {formatCurrency(value.pricePerShare * value.usdGbpRate )})
+                        </td>
+			    <td>{value.numberSharesToBuy}</td>
+                        <td>
+			                              {formatCurrency(value.pricePerShare * value.numberSharesToBuy)} ( 
+			                              {formatCurrency(value.pricePerShare * value.usdGbpRate * value.numberSharesToBuy)})
                         </td>
                         <td>
                           <Button
                             sm="6"
                             onClick={() =>
                               cart.addOneToCart({
-                                dbKey: value.id,
-                                merchantName: value.assetOwnerName,
-                                partSalePrice: value.pricePerShare,
-                                partShortDesc: value.assetAddress,
+                                assetId: value.id,
                               })
                             }
                             className="mx-2"
@@ -66,9 +74,7 @@ const Cart = (props) => {
                             sm="6"
                             onClick={() =>
                               cart.removeOneFromCart({
-                                dbKey: value.id,
-                                partSalePrice: value.pricePerShare,
-                                partShortDesc: value.assetAddress,
+                                assetId: value.id,
                               })
                             }
                             className="mx-2"
@@ -81,7 +87,7 @@ const Cart = (props) => {
                   })}
               </tbody>
               <tr>
-                <td>Total</td>
+                <td>Total USD</td>
                 <td></td>
                 <td></td>
                 <td>{cart.getTotalCost().toFixed(2)}</td>
