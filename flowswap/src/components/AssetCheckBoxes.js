@@ -1,37 +1,43 @@
 import React, { useContext } from 'react';
 import { ContractContext } from './ContractContext';
 
-function AssetOwner() {
+function AssetCheckboxes() {
   const {
-    assetOwnerName, setAssetOwnerName,
-    assetAddress, setAssetAddress,
-    assetPreferredNotary, setAssetPreferredNotary,
+    hasDoubleGlazing, setHasDoubleGlazing,
+    hasTenant, setHasTenant,
+    hasGarden, setHasGarden,
+    hasParking, setHasParking,
   } = useContext(ContractContext);
 
   return (
     <div style={{ border: "2px solid lightgrey", borderRadius: "10px", padding: "10px" }}>
-      <h3 style={{ textAlign: "center" }}>Asset Owner Details</h3>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div>
-          <label htmlFor="assetOwnerName" style={{ display: "block" }}>Asset Owner Name:</label>
-          <input type="text" placeholder="Asset Owner Name" id="assetOwnerName" value={assetOwnerName} onChange={(e) => setAssetOwnerName(e.target.value)} style={{ border: "1px solid lightgrey", borderRadius: "5px", padding: "5px" }} />
+      <h3 style={{ textAlign: "center" }}>Asset Options</h3>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ flex: "1", marginRight: "5px" }}>
+          <input type="checkbox" id="hasDoubleGlazing" checked={hasDoubleGlazing} 
+            onChange={(e) => setHasDoubleGlazing(e.target.checked)} style={{ marginRight: "5px" }} />
+          <label htmlFor="hasDoubleGlazing">Has Double Glazing</label>
         </div>
-        <div style={{ marginLeft: "20px" }}>
-          <label htmlFor="assetAddress" style={{ display: "block" }}>Asset Address:</label>
-          <input type="text" placeholder="Asset Address" id="assetAddress" value={assetAddress} onChange={(e) => setAssetAddress(e.target.value)} style={{ border: "1px solid lightgrey", borderRadius: "5px", padding: "5px" }} />
+        <div style={{ flex: "1", marginLeft: "5px" }}>
+          <input type="checkbox" id="hasTenant" checked={hasTenant} 
+            onChange={(e) => setHasTenant(e.target.checked)} style={{ marginRight: "5px" }} />
+          <label htmlFor="hasTenant">Has Tenant</label>
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px" }}>
-        <div>
-          <label htmlFor="assetPreferredNotary" style={{ display: "block" }}>Asset Preferred Notary:</label>
-          <input type="text" placeholder="Asset Preferred Notary" id="assetPreferredNotary" value={assetPreferredNotary} onChange={(e) => setAssetPreferredNotary(e.target.value)} style={{ border: "1px solid lightgrey", borderRadius: "5px", padding: "5px" }} />
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
+        <div style={{ flex: "1", marginRight: "5px" }}>
+          <input type="checkbox" id="hasGarden" checked={hasGarden} 
+            onChange={(e) => setHasGarden(e.target.checked)} style={{ marginRight: "5px" }} />
+          <label htmlFor="hasGarden">Has Garden</label>
         </div>
-        <div style={{ marginLeft: "20px", width: "100%" }}>
-          {/* Empty div for spacing purposes */}
+        <div style={{ flex: "1", marginLeft: "5px" }}>
+          <input type="checkbox" id="hasParking" checked={hasParking} 
+            onChange={(e) => setHasParking(e.target.checked)} style={{ marginRight: "5px" }} />
+          <label htmlFor="hasParking">Has Parking</label>
         </div>
       </div>
     </div>
   );
 }
 
-export default AssetOwner;
+export default AssetCheckboxes;
