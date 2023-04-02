@@ -81,3 +81,32 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
 };
 
 export default Cart;
+
+import React, { useState } from "react";
+
+const AddressField = ({ address }) => {
+  const [hovering, setHovering] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovering(false);
+  };
+
+  const truncatedAddress = address.substring(0, 6) + "...";
+
+  return (
+    <td
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ cursor: "default" }}
+    >
+      {hovering ? address : truncatedAddress}
+    </td>
+  );
+};
+
+export default AddressField;
+
