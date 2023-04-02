@@ -1,10 +1,9 @@
 import React from "react";
-import { Button, Link } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
 
 const CartRow = ({ item, formatCurrency, onAddOneToCart, onRemoveOneFromCart }) => {
   const { id, assetAddress, pricePerShare, usdGbpRate, numberSharesToBuy } = item;
-  const subTotalGBP = pricePerShare * numberSharesToBuy;
-  const subTotalUSD = subTotalGBP * usdGbpRate;
 
   return (
     <tr>
@@ -12,12 +11,11 @@ const CartRow = ({ item, formatCurrency, onAddOneToCart, onRemoveOneFromCart }) 
         <Link to={`/asset/${id}`}>{assetAddress}</Link>
       </td>
       <td>
-        {formatCurrency(pricePerShare)} (
-        {formatCurrency(pricePerShare * usdGbpRate)})
+        {formatCurrency(pricePerShare)} 
       </td>
       <td>{numberSharesToBuy}</td>
       <td>
-        {formatCurrency(subTotalGBP)} ({formatCurrency(subTotalUSD)})
+        {formatCurrency(numberSharesToBuy*pricePerShare)} 
       </td>
       <td>
         <Button
@@ -40,16 +38,4 @@ const CartRow = ({ item, formatCurrency, onAddOneToCart, onRemoveOneFromCart }) 
 };
 
 export default CartRow;
-
-{cart.items.length > 0 &&
-  cart.items.map((item, key) => (
-    <CartRow
-      key={key}
-      item={item}
-      formatCurrency={formatCurrency}
-      onAddOneToCart={cart.addOneToCart}
-      onRemoveOneFromCart={cart.removeOneFromCart}
-    />
-  ))
-}
 

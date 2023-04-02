@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Container, Button, Row, Col, Image, Table } from "react-bootstrap";
 import { CartContext } from "../CartContext";
 import CartTotal from "../components/CartTotal";
+import CartRow from "../components/CartRow";
 import { useParams, Link } from "react-router-dom";
 
 const Cart = (props) => {
@@ -29,62 +30,27 @@ console.log("cart items mmmmmmmmmmmm= ", cart.items);
               <thead>
                 <tr>
                   <th>Asset</th>
-                  <th>Share Price GBP (USD)</th>
+                  <th>Share Price</th>
                   <th>No. Shares</th>
-                  <th>Tot GBP (USD)</th>
+                  <th>Tot </th>
                   <th>Cart</th>
                 </tr>
               </thead>
               <tbody>
-                {cart.items.length > 0 &&
-                  cart.items.map((value, key) => {
-                    return (
-                      <tr key={key}>
-                        <td>
-                          <Link
-                            to={{
-                              pathname: `/asset/${value.id}`,
-                            }}
-                          >
-                            {value.assetAddress}
-                          </Link>
-                        </td>
-                        <td>
-			                              {formatCurrency(value.pricePerShare )} ( 
-			                              {formatCurrency(value.pricePerShare * value.usdGbpRate )})
-                        </td>
-			    <td>{value.numberSharesToBuy}</td>
-                        <td>
-			                              {formatCurrency(value.pricePerShare * value.numberSharesToBuy)} ( 
-			                              {formatCurrency(value.pricePerShare * value.usdGbpRate * value.numberSharesToBuy)})
-                        </td>
-                        <td>
-                          <Button
-                            sm="6"
-                            onClick={() =>
-                              cart.addOneToCart({
-                                assetId: value.id,
-                              })
-                            }
-                            className="mx-2"
-                          >
-                            +
-                          </Button>
-                          <Button
-                            sm="6"
-                            onClick={() =>
-                              cart.removeOneFromCart({
-                                assetId: value.id,
-                              })
-                            }
-                            className="mx-2"
-                          >
-                            -
-                          </Button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+
+{cart.items.length > 0 &&
+  cart.items.map((item, key) => (
+    <CartRow
+      key={key}
+      item={item}
+      formatCurrency={formatCurrency}
+      onAddOneToCart={cart.addOneToCart}
+      onRemoveOneFromCart={cart.removeOneFromCart}
+    />
+  ))
+}
+
+
               </tbody>
               <tr>
                 <td>Total USD</td>
