@@ -16,9 +16,9 @@ const showAssetButton = !addAsset && assetId> 0 && assetValue > 0 && assetNumber
 
 return ( 
       <>
-	    <div>{showAssetButton ? <AddAsset /> : {<div><Button  variant="primary" disabled=true >Add Asset {assetId} </Button>
-             </div>})}
- }</div>
+	    {showAssetButton ? <AddAsset /> : <div><Button  variant="primary" disabled >Add Asset {assetId} </Button>
+            </div> }
+ 
 
         </>
     )
