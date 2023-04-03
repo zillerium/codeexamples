@@ -16,24 +16,27 @@ function AssetOwner() {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
             <input type="text" placeholder="Asset Owner Name" value={assetOwnerName} 
-              onChange={(e) => setAssetOwnerName(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
+              onChange={(e) => setAssetOwnerName(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
+              title={assetOwnerName} />
           </div>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginLeft: "5px" }}>
             <input type="text" placeholder="Asset Address" value={assetAddress} 
-              onChange={(e) => setAssetAddress(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
+              onChange={(e) => setAssetAddress(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
+              title={assetAddress} />
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
             <input type="text" placeholder="Asset Preferred Notary" value={assetPreferredNotary}
-              onChange={(e) => setAssetPreferredNotary(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
+              onChange={(e) => setAssetPreferredNotary(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }}
+              title={assetPreferredNotary} />
           </div>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginLeft: "5px" }}>
             <input type="text" placeholder="Seller Address" value={sellerAddress}
-              onChange={(e) => setSellerAddress(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} />
+              onChange={(e) => setSellerAddress(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }}
+              title={sellerAddress} />
           </div>
         </div>
-
       </div>
     </div>
   );
