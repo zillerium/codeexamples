@@ -75,6 +75,36 @@ function generatePDF() {
         imgWidth * scaleFactor,
         imgHeight * scaleFactor
       );
+      
+      const img = new Image();
+      img.src = URL.createObjectURL(photo);
+      // Add text fields
+      img.onload = function () {
+        const imgWidth = this.width;
+        const imgHeight = this.height;
+        const scaleFactor = Math.min(width / imgWidth, height / imgHeight);
+        const x = 20;
+        let y = 90;
+        let m = 10;
+        const marginTop = 20;
+        pdf.setFontSize(12);
+        pdf.setFont('normal');
+        pdf.text('FlowSwap', width / 2, marginTop, {
+          align: 'center',
+        });
+        pdf.addImage(
+          img,
+          'JPEG',
+          x,
+          marginTop + m,
+          imgWidth * scaleFactor,
+          imgHeight * scaleFactor
+        );
+
+        // Add text fields
+        y += imgHeight * scaleFactor + 2 * m;
+          m = (height - y - 20) / 18;
+      
 
       // Add text fields
       pdf.setFontSize(12);
