@@ -40,13 +40,10 @@ function AddPdf() {
   };
 
   
-   function generatePDF() {
+function generatePDF() {
   const pdf = new jsPDF('p', 'pt', 'a4');
   const width = pdf.internal.pageSize.getWidth();
   const height = pdf.internal.pageSize.getHeight();
-
-  pdf.setFontSize(24);
-  pdf.text('Flowswap', 20, 40);
 
   // Add image
   if (photo) {
@@ -58,22 +55,31 @@ function AddPdf() {
       const imgHeight = this.height;
       const scaleFactor = Math.min(width / imgWidth, height / imgHeight);
       const x = 20;
-      let y = imgHeight * scaleFactor + 70;
+      let y = 90;
       const m = 20;
 
-      pdf.setFontSize(12);
-      pdf.setFont('normal');
+      // Add heading
+      pdf.setFontSize(24);
+      pdf.setFont('times', 'bold');
+      const heading = 'FlowSwap';
+      const textWidth = pdf.getTextDimensions(heading).w;
+      const headingX = (width - textWidth) / 2;
+      pdf.text(heading, headingX, 40);
+
+      // Add image
       pdf.addImage(
         img,
         'JPEG',
-        0,
-        60,
+        x,
+        y + m,
         imgWidth * scaleFactor,
         imgHeight * scaleFactor
       );
 
       // Add text fields
-      pdf.text(`Asset ID: ${assetId}`, x, y);
+      pdf.setFontSize(12);
+      pdf.setFont('normal');
+      pdf.text(`Asset ID: ${assetId}`, x, y += 2 * m);
       pdf.text(`Owner Name: ${assetOwnerName}`, x, y += m);
       pdf.text(`Address: ${assetAddress}`, x, y += m);
       pdf.text(`Preferred Notary: ${assetPreferredNotary}`, x, y += m);
@@ -98,8 +104,8 @@ function AddPdf() {
       pdf.save('imagepdf.pdf');
     };
   }
-
 }
+
 
   const generatePDF2 = () => {
     const pdf = new jsPDF('p', 'pt', 'a4');
