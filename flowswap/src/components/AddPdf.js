@@ -137,6 +137,8 @@ function generatePDF() {
       <div ref={screenshotRef}>
         <img src={assetImageUrl} alt="My Image" />
       </div>
+	            <div>Load Image </div>
+
       <div>
         <input
           type="file"

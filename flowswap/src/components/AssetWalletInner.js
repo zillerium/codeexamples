@@ -49,6 +49,7 @@ const [assetPreferredNotary, setAssetPreferredNotary] = useState('0x846799Ed4610
   const [assetNumberSharesSold, setAssetNumberSharesSold] = useState(0);
   const [sellerAddress, setSellerAddress] = useState('0x846799Ed461091F982d52FB2f7812913c8E90B01');
   const [addAsset, setAddAsset] = useState(false);
+  const [ipfsHash, setIpfsHash] = useState('0x');
 
 	const isConnectedWallet = props.isConnected;
         const payer = props.address;
@@ -99,6 +100,7 @@ return (
     assetRiskRating, setAssetRiskRating,
     assetPreferredNotary, setAssetPreferredNotary,
     sellerAddress, setSellerAddress,
+    ipfsHash, setIpfsHash,
 }}>
 
 

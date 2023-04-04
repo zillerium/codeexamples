@@ -14,6 +14,7 @@ import AssetRates from './AssetRates';
 import AssetRisk from './AssetRisk';
 import AddAssetCall from './AddAssetCall';
 import AddPdf from './AddPdf';
+import LoadIpfs from './LoadIpfs';
 
 import {Button} from 'react-bootstrap';
 
@@ -130,6 +131,9 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
       </div>
 	    <div>
 	    {<AddPdf />}
+	    </div>
+	    <div>
+	    {<LoadIpfs />}
 	    </div>
     </header>
 
