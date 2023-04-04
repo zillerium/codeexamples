@@ -8,50 +8,33 @@ function AddPdf() {
   const { assetImageUrl } = useContext(ContractContext);
   const screenshotRef = useRef(null);
   const [photo, setPhoto] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false); // add state to track image load status
 
   const onChangephoto = (e) => {
     setPhoto(e.target.files[0]);
   };
 
   const generatePDF = () => {
-    html2canvas(screenshotRef.current, { scale: 0.5 }).then((canvas) => { // scale image to fit within page
+    html2canvas(screenshotRef.current).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('l', 'pt', [canvas.width * 0.5, canvas.height * 0.5]); // create pdf with custom size
+      const pdf = new jsPDF();
       const imgProps = pdf.getImageProperties(imgData);
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(
-        imgData,
-        'PNG',
-        0,
-        0,
-        pdfWidth,
-        pdfHeight,
-        undefined,
-        undefined,
-        { preserveAspectRatio: true }
-      );
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
       if (photo) {
         const reader = new FileReader();
         reader.readAsDataURL(photo);
         reader.onload = () => {
           const imgData = reader.result;
-          const pdfWidth = pdf.internal.pageSize.getWidth();
-          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-          pdf.addPage();
-          pdf.addImage(
-            imgData,
-            'JPEG',
-            0,
-            0,
-            pdfWidth,
-            pdfHeight,
-            undefined,
-            undefined,
-            { preserveAspectRatio: true }
-          );
-          pdf.save('my-image.pdf');
+          const image = new Image();
+          image.src = imgData;
+          image.onload = function () {
+            const imgWidth = pdfWidth * 0.8;
+            const imgHeight = (image.height * imgWidth) / image.width;
+            pdf.addPage();
+            pdf.addImage(imgData, 'JPEG', (pdfWidth - imgWidth) / 2, (pdfHeight - imgHeight) / 2, imgWidth, imgHeight);
+            pdf.save('my-image.pdf');
+          };
         };
       } else {
         pdf.save('my-image.pdf');
@@ -61,25 +44,20 @@ function AddPdf() {
 
   return (
     <div>
-      {isLoaded && ( // render image and html2canvas only after image is loaded
-        <div ref={screenshotRef}>
-          <img onLoad={() => setIsLoaded(true)} src={assetImageUrl} alt="My Image" />
-        </div>
-      )}
-      {!isLoaded && <p>Loading image...</p>}
-      {isLoaded && (
-        <div>
-          <input
-            type="file"
-            name="photo"
-            onChange={onChangephoto}
-            accept="image/png, image/png, image/jpeg, image/jpg"
-          />
-          <Button variant="primary" onClick={generatePDF}>
-            Save as PDF
-          </Button>
-        </div>
-      )}
+      <div ref={screenshotRef}>
+        <img src={assetImageUrl} alt="My Image" />
+      </div>
+      <div>
+        <input
+          type="file"
+          name="photo"
+          onChange={onChangephoto}
+          accept="image/png, image/png, image/jpeg, image/jpg"
+        />
+        <Button variant="primary" onClick={generatePDF}>
+          Save as PDF
+        </Button>
+      </div>
     </div>
   );
 }
