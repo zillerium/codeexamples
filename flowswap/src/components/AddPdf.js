@@ -15,7 +15,7 @@ function AddPdf() {
 
   const generatePDF1 = () => {
     html2canvas(screenshotRef.current).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
+      const imgData = canvas.toDataURL('image/jpg');
       const pdf = new jsPDF();
       const imgProps = pdf.getImageProperties(imgData);
       const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -38,7 +38,7 @@ function AddPdf() {
   
   const generatePDF2 = () => {
   html2canvas(screenshotRef.current).then((canvas) => {
-    const imgData = canvas.toDataURL('image/png');
+    const imgData = canvas.toDataURL('image/jpg');
     const pdf = new jsPDF();
     const imgProps = pdf.getImageProperties(imgData);
     const pdfWidth = pdf.internal.pageSize.getWidth();
