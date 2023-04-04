@@ -1,34 +1,41 @@
-import React, { useState, useRef } from "react";
-import { Button } from "react-bootstrap";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import { ContractContext } from "./ContractContext";
+import React, { useState, useContext } from 'react';
+import { Button } from 'react-bootstrap';
+import jsPDF from 'jspdf';
 
 function AddPdf() {
   const { assetImageUrl } = useContext(ContractContext);
-  const [imageDataUrl, setImageDataUrl] = useState("");
-  const imageRef = useRef(null);
+  const [pdfData, setPdfData] = useState('');
 
-  const handleGeneratePDF = () => {
-    html2canvas(imageRef.current).then((canvas) => {
-      const imgData = canvas.toDataURL("image/jpeg");
-      setImageDataUrl(imgData);
-      generatePDF(imgData);
-    });
+  const generatePDF = () => {
+    const pdf = new jsPDF();
+    pdf.addImage(pdfData, 'JPEG', 0, 0);
+    pdf.save('asset_data.pdf');
   };
 
-  const generatePDF = (imgData) => {
-    var doc = new jsPDF();
-    doc.addImage(imgData, "JPEG", 0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height);
-    doc.save("asset_data.pdf");
+  const generatePDFFromImage = () => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = assetImageUrl;
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      setPdfData(canvas.toDataURL('image/jpeg'));
+      generatePDF();
+    };
   };
 
   return (
     <>
-      <img ref={imageRef} src={assetImageUrl} alt="asset" />
-      <Button variant="primary" onClick={handleGeneratePDF}>
+      <Button variant="primary" onClick={generatePDFFromImage}>
         Generate PDF
       </Button>
+      {pdfData && (
+        <img src={pdfData} alt="asset" />
+      )}
+      <img src={assetImageUrl} alt="asset" crossorigin="anonymous" />
     </>
   );
 }
