@@ -40,41 +40,38 @@ function AddPdf() {
     doc.setFontStyle('normal');
 
     // Add the asset data to the document
-    doc.text(`Asset ID: ${assetId}`, 20, 20);
+ doc.text(`Asset ID: ${assetId}`, 20, 20);
     doc.text(`Owner Name: ${assetOwnerName}`, 20, 30);
     doc.text(`Address: ${assetAddress}`, 20, 40);
-	  doc.text(`assetPreferredNotary: ${assetPreferredNotary}`, 20, 40);
-	    doc.text(`sellerAddress: ${sellerAddress}`, 20, 150);
-	    doc.text(`hasDoubleGlazing: ${hasDoubleGlazing}`, 20, 150);
-	      doc.text(`Has Tenant: ${hasTenant}`, 20, 70);
-    doc.text(`Has Garden: ${hasGarden}`, 20, 80);
-    doc.text(`Has Parking: ${hasParking}`, 20, 90);
-     doc.text(`assetNumberBathrooms: ${assetNumberBathrooms}`, 20, 130);
-	      doc.text(`assetNumberBedrooms: ${assetNumberBedrooms}`, 20, 140);
-	      doc.text(`assetHouseType: ${assetHouseType}`, 20, 150);	  
-	  doc.text(`imageUrl: ${imageUrl}`, 20, 100);
-	    doc.text(`assetUrl: ${assetUrl}`, 20, 100);
-	  	     doc.text(`usdGbpRate: ${usdGbpRate}`, 20, 150);
-	       doc.text(`assetNumberSharesSold: ${assetNumberSharesSold}`, 20, 150);
-	  	    
-	      doc.text(`assetIncome: ${assetIncome}`, 20, 110);
-	      doc.text(`assetYield: ${assetYield}`, 20, 120);
-	    doc.text(`assetRiskRating: ${assetRiskRating}`, 20, 150);
-	 
-	  
-    doc.text(`Value: ${assetValue}`, 20, 50);
-	   doc.text(`currency: ${currency}`, 20, 150);
-    doc.text(`Number of Shares: ${assetNumberShares}`, 20, 60);
-
-  
-    
+    doc.text(`Preferred Notary: ${assetPreferredNotary}`, 20, 50);
+    doc.text(`Seller Address: ${sellerAddress}`, 20, 60);
+    doc.text(`Has Double Glazing: ${hasDoubleGlazing}`, 20, 70);
+    doc.text(`Has Tenant: ${hasTenant}`, 20, 80);
+    doc.text(`Has Garden: ${hasGarden}`, 20, 90);
+    doc.text(`Has Parking: ${hasParking}`, 20, 100);
+    doc.text(`Number of Bathrooms: ${assetNumberBathrooms}`, 20, 110);
+    doc.text(`Number of Bedrooms: ${assetNumberBedrooms}`, 20, 120);
+    doc.text(`House Type: ${assetHouseType}`, 20, 130);
+    doc.text(`Image URL: ${assetImageUrl}`, 20, 140);
+    doc.text(`Asset URL: ${assetUrl}`, 20, 150);
+    doc.text(`Value (${currency}): ${assetValue}`, 20, 160);
+    doc.text(`Number of Shares: ${assetNumberShares}`, 20, 170);
+    doc.text(`Income (${currency}): ${assetIncome}`, 20, 180);
+    doc.text(`Yield: ${assetYield}`, 20, 190);
+    doc.text(`Risk Rating: ${assetRiskRating}`, 20, 200);
+    doc.text(`USD/GBP Rate: ${usdGbpRate}`, 20, 210);
+    doc.text(`Number of Shares Sold: ${assetNumberSharesSold}`, 20, 220); 
     // Add other asset details as needed...
 
     // Add the image to the document
     html2canvas(document.querySelector(`img[src='${assetImageUrl}']`)).then(
       canvas => {
         const imgData = canvas.toDataURL('image/jpeg');
-        doc.addImage(imgData, 'JPEG', 20, 100, 100, 75);
+
+	doc.addImage(imgData, 'JPEG', 20, 230, 150, 100);
+
+
+
 
         // Save the document as a PDF file
         doc.save('asset_data.pdf');
