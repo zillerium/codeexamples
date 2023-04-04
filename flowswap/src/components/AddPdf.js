@@ -32,8 +32,7 @@ function AddPdf() {
 
 
  
-  const { assetImageUrl } = useContext(ContractContext);
-  const screenshotRef = useRef(null);
+   const screenshotRef = useRef(null);
   const [photo, setPhoto] = useState(null);
 
   const onChangephoto = (e) => {
