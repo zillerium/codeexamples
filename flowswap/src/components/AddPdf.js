@@ -36,7 +36,7 @@ function AddPdf() {
     });
   };
   
-  const generatePDF = () => {
+  const generatePDF2 = () => {
   html2canvas(screenshotRef.current).then((canvas) => {
     const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF();
@@ -59,6 +59,50 @@ function AddPdf() {
     }
   });
 };
+  
+  const generatePDF = () => {
+  html2canvas(screenshotRef.current).then((canvas) => {
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF();
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    pdf.addImage(
+      imgData,
+      'PNG',
+      0,
+      0,
+      pdfWidth,
+      pdfHeight,
+      undefined,
+      undefined,
+      { preserveAspectRatio: true } // add preserveAspectRatio option
+    );
+    if (photo) {
+      const reader = new FileReader();
+      reader.readAsDataURL(photo);
+      reader.onload = () => {
+        const imgData = reader.result;
+        pdf.addPage();
+        pdf.addImage(
+          imgData,
+          'JPEG',
+          0,
+          0,
+          pdfWidth,
+          pdfHeight,
+          undefined,
+          undefined,
+          { preserveAspectRatio: true } // add preserveAspectRatio option
+        );
+        pdf.save('my-image.pdf');
+      };
+    } else {
+      pdf.save('my-image.pdf');
+    }
+  });
+};
+
 
 
   return (
