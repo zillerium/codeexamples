@@ -25,36 +25,36 @@ function AssetRisk() {
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
             <input type="number" placeholder="Asset Income" value={assetIncome} 
               onChange={(e) => setAssetIncome(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
-              title={assetIncome} />
+              title={'asset Income'} />
           </div>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1" }}>
             <input type="number" placeholder="Asset Yield" value={assetYield} 
               onChange={(e) => setAssetYield(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
-              title={assetYield} />
+              title={'asset Yield' } />
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
             <input type="number" placeholder="Asset Risk Rating" value={assetRiskRating} 
               onChange={(e) => setAssetRiskRating(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
-              title={assetRiskRating} />
+              title={' asset Risk Rating'} />
           </div>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1" }}>
             <input type="number" placeholder="Asset Value" value={assetValue} 
               onChange={(e) => setAssetValue(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
-              title={assetValue} />
+              title={'Asset Value'} />
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
             <input type="currency" placeholder="Currency" value={currency} 
               onChange={(e) => setCurrency(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
-              title={currency} />
+              title={'currency'} />
           </div>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1" }}>
             <input type="number" placeholder="Asset Number of Shares" value={assetNumberShares}
 onChange={(e) => setAssetNumberShares(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }}
-title={assetNumberShares} />
+title={'Number of Total Shares'} />
 </div>
 </div>
 </div>

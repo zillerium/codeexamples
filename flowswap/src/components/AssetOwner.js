@@ -17,24 +17,24 @@ function AssetOwner() {
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
             <input type="text" placeholder="Asset Owner Name" value={assetOwnerName} 
               onChange={(e) => setAssetOwnerName(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
-              title={assetOwnerName} />
+              title={'Asset Owner Name'} />
           </div>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginLeft: "5px" }}>
             <input type="text" placeholder="Asset Address" value={assetAddress} 
               onChange={(e) => setAssetAddress(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }} 
-              title={assetAddress} />
+              title={'Asset Street Address'} />
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginRight: "5px" }}>
             <input type="text" placeholder="Asset Preferred Notary" value={assetPreferredNotary}
               onChange={(e) => setAssetPreferredNotary(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }}
-              title={assetPreferredNotary} />
+              title={'Notary Address'} />
           </div>
           <div style={{ borderRadius: "10px", border: "1px solid lightgrey", flex: "1", marginLeft: "5px" }}>
             <input type="text" placeholder="Seller Address" value={sellerAddress}
               onChange={(e) => setSellerAddress(e.target.value)} style={{ border: "none", width: "100%", padding: "5px" }}
-              title={sellerAddress} />
+              title={'Seller Blockchain Address'} />
           </div>
         </div>
       </div>
