@@ -1,33 +1,27 @@
-import React, { useRef, useContext } from 'react';
-import { Button } from 'react-bootstrap';
-import jsPDF from 'jspdf';
+import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
-import { ContractContext } from './ContractContext';
+import jsPDF from 'jspdf';
 
-function AddPdf() {
-  const { assetImageUrl } = useContext(ContractContext);
-  const screenshotRef = useRef(null);
+function App() {
+  const [assetImageUrl, setAssetImageUrl] = useState('https://i.pinimg.com/originals/c7/69/91/c7699158f7213d6b38a7c55b81c1af07.jpg');
+  const imageRef = useRef(null);
 
-  const generatePDF = () => {
-    html2canvas(screenshotRef.current).then((canvas) => {
+  const handleSaveAsPDF = () => {
+    const input = imageRef.current;
+    html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF();
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save('my-image.pdf');
+      pdf.addImage(imgData, 'PNG', 0, 0);
+      pdf.save('download.pdf');
     });
   };
 
   return (
-    <div ref={screenshotRef}>
-      <img src={assetImageUrl} alt="My Image" />
-      <Button variant="primary" onClick={generatePDF}>
-        Save as PDF
-      </Button>
+    <div>
+      <img ref={imageRef} src={assetImageUrl} alt="asset" />
+      <button onClick={handleSaveAsPDF}>Save to PDF</button>
     </div>
   );
 }
 
-export default AddPdf;
+export default App;
