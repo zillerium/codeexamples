@@ -1,7 +1,6 @@
 import React, { useRef, useContext, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import { ContractContext } from './ContractContext';
 
 function AddPdf() {
@@ -14,12 +13,25 @@ function AddPdf() {
   };
 
   const generatePDF = () => {
-      const pdf = new jsPDF('p','pt','a4');
-	  const w = pdf.internal.pageSize.getWidth();
-	  const h = pdf.internal.pageSize.getHeight();
-	  let img = URL.createObjectURL(photo);
-	  pdf.addImage(img, null, 0, 0, w, h, null, 'FAST');
-	  pdf.save('imagepdf.pdf');
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    const w = pdf.internal.pageSize.getWidth();
+    const h = pdf.internal.pageSize.getHeight();
+    const img = new Image();
+    img.src = URL.createObjectURL(photo);
+    img.onload = function () {
+      const imgWidth = this.width;
+      const imgHeight = this.height;
+      const scaleFactor = Math.min(w / imgWidth, h / imgHeight);
+      pdf.addImage(
+        img,
+        'JPEG',
+        0,
+        0,
+        imgWidth * scaleFactor,
+        imgHeight * scaleFactor
+      );
+      pdf.save('imagepdf.pdf');
+    };
   };
 
   return (
