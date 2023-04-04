@@ -37,8 +37,8 @@ function AddPdf() {
 
     // Set the font size and style for the document
     doc.setFontSize(12);
-    doc.setFontStyle('normal');
-
+    doc.setFont('normal');
+console.log("assetid === ", assetId);
     // Add the asset data to the document
  doc.text(`Asset ID: ${assetId}`, 20, 20);
     doc.text(`Owner Name: ${assetOwnerName}`, 20, 30);
@@ -62,21 +62,25 @@ function AddPdf() {
     doc.text(`USD/GBP Rate: ${usdGbpRate}`, 20, 210);
     doc.text(`Number of Shares Sold: ${assetNumberSharesSold}`, 20, 220); 
     // Add other asset details as needed...
-
+console.log("assetImageurl - ", assetImageUrl);
     // Add the image to the document
-    html2canvas(document.querySelector(`img[src='${assetImageUrl}']`)).then(
+ /*   html2canvas(document.querySelector(`img[src='${assetImageUrl}']`)).then(
       canvas => {
+console.log("assetImageurl - ");
         const imgData = canvas.toDataURL('image/jpeg');
 
+console.log("assetImageurl - ");
 	doc.addImage(imgData, 'JPEG', 20, 230, 150, 100);
 
 
+console.log("assetImageurl - ");
 
 
         // Save the document as a PDF file
         doc.save('asset_data.pdf');
       }
-    );
+    );*/
+        doc.save('asset_data.pdf');
   };
 
   return (
