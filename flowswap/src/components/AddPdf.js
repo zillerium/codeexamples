@@ -15,9 +15,9 @@ function AddPdf() {
   };
 
   const generatePDF = () => {
-    html2canvas(screenshotRef.current).then((canvas) => {
+    html2canvas(screenshotRef.current, { scale: 0.5 }).then((canvas) => { // scale image to fit within page
       const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
+      const pdf = new jsPDF('l', 'pt', [canvas.width * 0.5, canvas.height * 0.5]); // create pdf with custom size
       const imgProps = pdf.getImageProperties(imgData);
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
@@ -37,6 +37,8 @@ function AddPdf() {
         reader.readAsDataURL(photo);
         reader.onload = () => {
           const imgData = reader.result;
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
           pdf.addPage();
           pdf.addImage(
             imgData,
