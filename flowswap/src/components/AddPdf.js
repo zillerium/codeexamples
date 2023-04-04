@@ -13,7 +13,7 @@ function AddPdf() {
     setPhoto(e.target.files[0]);
   };
 
-  const generatePDF = () => {
+  const generatePDF1 = () => {
     html2canvas(screenshotRef.current).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF();
@@ -35,6 +35,31 @@ function AddPdf() {
       }
     });
   };
+  
+  const generatePDF = () => {
+  html2canvas(screenshotRef.current).then((canvas) => {
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF();
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    pdf.setMargins(0, 0, 0, 0); // set margins to zero
+    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    if (photo) {
+      const reader = new FileReader();
+      reader.readAsDataURL(photo);
+      reader.onload = () => {
+        const imgData = reader.result;
+        pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('my-image.pdf');
+      };
+    } else {
+      pdf.save('my-image.pdf');
+    }
+  });
+};
+
 
   return (
     <div>
