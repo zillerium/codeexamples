@@ -4,6 +4,34 @@ import jsPDF from 'jspdf';
 import { ContractContext } from './ContractContext';
 
 function AddPdf() {
+  const {
+    assetId,
+    dbKey,
+    assetOwnerName,
+    assetAddress,
+    assetValue,
+    assetNumberShares,
+    hasTenant,
+    hasGarden,
+    hasParking,
+    assetImageUrl,
+    assetUrl,
+    assetIncome,
+    assetYield,
+    assetNumberBathrooms,
+    assetNumberBedrooms,
+    assetHouseType,
+    hasDoubleGlazing,
+    assetRiskRating,
+    assetPreferredNotary,
+    currency,
+    usdGbpRate,
+    assetNumberSharesSold,
+    sellerAddress,
+  } = useContext(ContractContext);
+
+
+ 
   const { assetImageUrl } = useContext(ContractContext);
   const screenshotRef = useRef(null);
   const [photo, setPhoto] = useState(null);
