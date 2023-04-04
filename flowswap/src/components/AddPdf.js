@@ -14,32 +14,12 @@ function AddPdf() {
   };
 
   const generatePDF = () => {
-    html2canvas(screenshotRef.current).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      if (photo) {
-        const reader = new FileReader();
-        reader.readAsDataURL(photo);
-        reader.onload = () => {
-          const imgData = reader.result;
-          const image = new Image();
-          image.src = imgData;
-          image.onload = function () {
-            const imgWidth = pdfWidth * 0.8;
-            const imgHeight = (image.height * imgWidth) / image.width;
-            pdf.addPage();
-            pdf.addImage(imgData, 'JPEG', (pdfWidth - imgWidth) / 2, (pdfHeight - imgHeight) / 2, imgWidth, imgHeight);
-            pdf.save('my-image.pdf');
-          };
-        };
-      } else {
-        pdf.save('my-image.pdf');
-      }
-    });
+      const pdf = new jsPDF('p','pt','a4');
+	  const w = pdf.internal.pageSize.getWidth();
+	  const h = pdf.internal.pageSize.getHeight();
+	  let img = URL.createObjectURL(photo);
+	  pdf.addImage(img, null, 0, 0, w, h, null, 'FAST');
+	  pdf.save('imagepdf.pdf');
   };
 
   return (
