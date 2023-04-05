@@ -3,19 +3,24 @@ import { Button } from 'react-bootstrap';
 import jsPDF from 'jspdf';
 import { create } from 'ipfs-http-client';
 import { ContractContext } from './ContractContext';
+import { IpfsContext } from './IpfsContext';
 
 function LoadIpfs() {
-  const {
-    ipfsHash, setIpfsHash,
-  } = useContext(ContractContext);
 
   const [pdf, setPdf] = useState(null);
-  const [ipfs, setIpfs] = useState('0x');
+const {ipfsHash, setIpfsHash } = useContext(IpfsContext);
+	const [ipfsUrl, setIpfsUrl] = useState(null);
 
   const onChangePdf = (e) => {
     setPdf(e.target.files[0]);
   };
 
+	const handleViewIpfs = () =>  {
+
+		if (ipfsHash) {
+                    setIpfsUrl(`https://ipfs.io/ipfs/${ipfsHash}`);
+		}
+	}
 
   const loadIpfsPdf = async () => {
 const ipfs = create({
@@ -31,7 +36,7 @@ console.log("checking now ==");
    const pdfFile = await pdf.arrayBuffer();
     const { cid } = await ipfs.add(pdfFile, {pin: true});
 console.log("cid ==", cid.toString());
-//    setIpfsHash(cid.toString());
+    setIpfsHash(cid.toString());
   };
 
 
@@ -50,7 +55,7 @@ console.log("cid ==", cid.toString());
           Load Pdf to Ipfs
         </Button>
       </div>
-      {ipfsHash && <div>IPFS hash: {ipfsHash}</div>}
+      {ipfsHash && (<div>IPFS hash1:{' '} <a href={ipfsUrl} target="_blank" rel="noopener noreferrer" onClick={handleViewIpfs}>{ipfsHash}</a></div>)}
     </div>
   );
 }

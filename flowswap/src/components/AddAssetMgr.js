@@ -17,6 +17,7 @@ import AddPdf from './AddPdf';
 import LoadIpfs from './LoadIpfs';
 
 import {Button} from 'react-bootstrap';
+import {IpfsContext} from './IpfsContext';
 
 function AddAssetMgr() {
 
@@ -34,6 +35,7 @@ console.log("seller address = llllllllllllllllllllllll", sellerAddress);
 console.log("seller address = llllllllllllllllllllllll", sellerAddress);
 
 
+const [ipfsHash,setIpfsHash] = useState("0x");
 const [search,setSearch] = useState("");
 	const {isLoading, error, data, isFetching, refetch} = useQuery('dogs',
 		() => axios ('https://random.dog/woof.json'),
@@ -71,19 +73,6 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 	if (error) return <h1>{error.message}</h1>
 	if (isLoading) return <h1>Loading</h1>
 		//console.log(data);
-/*
- *
- *
- *
- *      <AssetOwner />
-      <AssetCheckBoxes />
-       <AssetDetails />
-      <AssetLinks />
-<AssetRates />
-<AssetRisk />
-
-	    <div>{<AddAssetCall  />}</div>
- */
     return (
         <>
   <header>
@@ -100,6 +89,13 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
       <AssetLinks />
 <AssetRates />
 <AssetRisk />
+	    <IpfsContext.Provider value={{ipfsHash, setIpfsHash }} >
+	    <div>
+	    {<AddPdf />}
+	    </div>
+	    <div>
+	    {<LoadIpfs />}
+	    </div>
 <div>
         <Button disabled={!correct} onClick={() => mutate({
           assetId: assetId,
@@ -125,16 +121,12 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 		              usdGbpRate: usdGbpRate,
               assetNumberSharesSold: assetNumberSharesSold,
               sellerAddress: sellerAddress,
+              ipfsHash: ipfsHash,
         })}>
           Add DB Asset
         </Button>
       </div>
-	    <div>
-	    {<AddPdf />}
-	    </div>
-	    <div>
-	    {<LoadIpfs />}
-	    </div>
+	    </IpfsContext.Provider>
     </header>
 
         </>
