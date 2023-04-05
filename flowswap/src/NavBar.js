@@ -8,17 +8,32 @@ import {ArrowRight, WalletFill, Wallet2} from 'react-bootstrap-icons';
 const NavBar=() => {
 	const cart = useContext(CartContext);
 
-  return <nav className="nav">
-      <Link to="/" className="site-title"><img src={flowswap} className="img-fluid" /></Link>
-      <ul>
-		<CustomLink to="/admin" >Register</CustomLink>
-		<CustomLink to="/portfolio" >Portfolio</CustomLink>
-		<CustomLink to="/invest" >Invest</CustomLink>
-		<CustomLink to="/investments" >Investment</CustomLink>
-		<CustomLink to="/addasset" >Add Asset</CustomLink>
-		<CustomLink to="/about" >About</CustomLink>
-      </ul>
-  </nav>
+  return return (
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand>
+        <Link to="/" className="site-title">
+          <img src={flowswap} className="img-fluid" />
+        </Link>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <CustomLink to="/admin">Register</CustomLink>
+          <CustomLink to="/portfolio">Portfolio</CustomLink>
+          <CustomLink to="/invest">Invest</CustomLink>
+          <CustomLink to="/investments">Investment</CustomLink>
+          <CustomLink to="/addasset">Add Asset</CustomLink>
+          <CustomLink to="/about">About</CustomLink>
+        </Nav>
+        <Nav>
+          <Button onClick={handleShow}>({productsCount} shares)</Button>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
+};
+
+ 
 
 
 }
