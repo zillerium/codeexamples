@@ -13,7 +13,8 @@ function LoadIpfs() {
     setPdf(e.target.files[0]);
   };
 
-  const handleViewIpfs = () => {
+  const handleViewIpfs = (e) => {
+	  e.preventDefault();
     if (ipfsHash) {
       setIpfsUrl(`https://ipfs.io/ipfs/${ipfsHash}`);
     }
@@ -48,7 +49,7 @@ function LoadIpfs() {
       {ipfsHash && (
         <div>
           IPFS hash:{' '}
-          <a href={ipfsUrl} target="_blank" rel="noopener noreferrer" onClick={handleViewIpfs}>
+          <a href={`https://ipfs.io/ipfs/${ipfsHash}` } target="_blank" rel="noopener noreferrer" >
             {ipfsHash}
           </a>
         </div>

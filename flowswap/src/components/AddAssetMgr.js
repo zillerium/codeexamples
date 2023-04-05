@@ -97,7 +97,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 	    {<LoadIpfs />}
 	    </div>
 <div>
-        <Button disabled={!correct} onClick={() => mutate({
+	     <Button disabled={ipfsHash==='0x'} onClick={() => mutate({
           assetId: assetId,
           dbKey: dbKey,
           assetOwnerName: assetOwnerName,
@@ -124,7 +124,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
               ipfsHash: ipfsHash,
         })}>
           Add DB Asset
-        </Button>
+        </Button> 
       </div>
 	    </IpfsContext.Provider>
     </header>
