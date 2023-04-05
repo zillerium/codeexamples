@@ -38,7 +38,10 @@ const NavBar = () => {
             <LinkContainer to="/about">
               <Nav.Link>About</Nav.Link>
             </LinkContainer>
-          </Nav>
+               <LinkContainer to="/search1">
+                  <Nav.Link>Search</Nav.Link>
+               </LinkContainer>
+	     </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
