@@ -57,7 +57,7 @@ const PostData = async  (part) => {
 }
 
 
-const {mutate,  isError} = useMutation(PostData, {
+const {mutate,isSuccess,  isError} = useMutation(PostData, {
 	onSuccess: (successData) => {
 		console.log("post was done");
 
@@ -97,6 +97,8 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 	    {<LoadIpfs />}
 	    </div>
 <div>
+	    {isSuccess && <p>Database record added </p>}
+	    {isError && <p>Database record error </p>}
 	     <Button disabled={ipfsHash==='0x'} onClick={() => mutate({
           assetId: assetId,
           dbKey: dbKey,
@@ -126,6 +128,9 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
           Add DB Asset
         </Button> 
       </div>
+	    <div>
+	    <AddAssetCall />
+	    </div>
 	    </IpfsContext.Provider>
     </header>
 
