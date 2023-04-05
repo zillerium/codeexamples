@@ -32,12 +32,7 @@ const NavbarComponent=()=>{
 
 return (
 	<>
-        <Navbar expand="sm">
-           <Navbar.Toggle />
-           <Navbar.Collapse className="justify-content-end">
-                <Button onClick={handleShow}>Investment ({productsCount} shares)</Button>
-	    </Navbar.Collapse>
-        </Navbar>
+    
 	<Modal size="lg" show={show} onHide={handleClose} >
           <Modal.Header closeButton>
               <Modal.Title>Investments</Modal.Title>
