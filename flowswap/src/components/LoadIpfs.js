@@ -10,10 +10,12 @@ function LoadIpfs() {
   } = useContext(ContractContext);
 
   const [pdf, setPdf] = useState(null);
+  const [ipfs, setIpfs] = useState('0x');
 
   const onChangePdf = (e) => {
     setPdf(e.target.files[0]);
   };
+
 
   const loadIpfsPdf = async () => {
 const ipfs = create({
@@ -21,16 +23,18 @@ const ipfs = create({
   port: 5001,
   protocol: 'https',
   headers: {
-    authorization: `Basic ${Buffer.from(`${process.env.REACT_APP_INFURA_PROJECT_ID}:${process.env.REACT_APP_INFURA_API_KEY}`).toString('base64')}`,
+    authorization: `Basic ${Buffer.from(`${process.env.REACT_APP_INFURA_PROJECT_ID}:${process.env.REACT_APP_INFURA_API_KEY}`).toString('base64'
+)}`,
   },
 });
-
-
-    const pdfFile = await pdf.arrayBuffer();
-    const { cid } = await ipfs.add(pdfFile);
-
-    setIpfsHash(cid.toString());
+console.log("checking now ==");
+   const pdfFile = await pdf.arrayBuffer();
+    const { cid } = await ipfs.add(pdfFile, {pin: true});
+console.log("cid ==", cid.toString());
+//    setIpfsHash(cid.toString());
   };
+
+
 
   return (
     <div>
