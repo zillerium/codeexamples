@@ -90,17 +90,23 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 <AssetRates />
 <AssetRisk />
 	    <IpfsContext.Provider value={{ipfsHash, setIpfsHash }} >
-	    <div>
-	    {<AddPdf />}
-	    </div>
-	    <div>
-	    {<LoadIpfs />}
-	    </div>
-<div>
-	    {isSuccess && <p>Database record added </p>}
-	    {isError && <p>Database record error </p>}
-	     <Button disabled={ipfsHash==='0x'} onClick={() => mutate({
-          assetId: assetId,
+	  
+	   
+            
+
+<div style={{ border: "2px solid lightgrey", borderRadius: "10px", padding: "10px" }}>
+  <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <div style={{ borderRadius: "10px", border: "1px solid lightgrey", padding: "10px" }}>
+      <AddPdf />
+    </div>
+    <div style={{ borderRadius: "10px", border: "1px solid lightgrey", padding: "10px" }}>
+      <LoadIpfs />
+    </div>
+    <div style={{ borderRadius: "10px", border: "1px solid lightgrey", padding: "10px" }}>
+      {isSuccess && <p>Database record added </p>}
+      {isError && <p>Database record error </p>}
+      <Button disabled={ipfsHash==='0x'} onClick={() => mutate({
+		assetId: assetId,
           dbKey: dbKey,
           assetOwnerName: assetOwnerName,
           assetAddress: assetAddress,
@@ -124,13 +130,18 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
               assetNumberSharesSold: assetNumberSharesSold,
               sellerAddress: sellerAddress,
               ipfsHash: ipfsHash,
-        })}>
-          Add DB Asset
-        </Button> 
-      </div>
-	    <div>
-	    <AddAssetCall />
-	    </div>
+      })}>
+        Add DB Asset
+      </Button> 
+    </div>
+    <div style={{ borderRadius: "10px", border: "1px solid lightgrey", padding: "10px" }}>
+      <AddAssetCall />
+    </div>
+  </div>
+</div>
+
+
+
 	    </IpfsContext.Provider>
     </header>
 
