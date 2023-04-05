@@ -99,16 +99,24 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 		//console.log(data);
 
 
+const [productsCount, setProductsCount] = useState(0);
 
+  useEffect(() => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += item.qty;
+    });
+
+    setProductsCount(count);
+  }, [cart]);
 
   return (
     <div >
 	  <CartProvider>
          <Container>
-		<NavBar />
-	    <NavbarComponent>
-
-	    </NavbarComponent>
+		 
+	  <NavBar productsCount={productsCount} />
+          <NavbarComponent />
                 <Routes>
                      <Route index element={<Search1 />} />                    
                      <Route path="succcess" element={<Success />} />                    
