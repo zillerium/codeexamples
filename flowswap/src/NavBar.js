@@ -27,10 +27,10 @@ const NavBar = () => {
               <Nav.Link>Portfolio</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/invest">
-              <Nav.Link>Invest</Nav.Link>
+              <Nav.Link>Settle</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/investments">
-              <Nav.Link>Investment</Nav.Link>
+              <Nav.Link>Trades</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/addasset">
               <Nav.Link>Add Asset</Nav.Link>

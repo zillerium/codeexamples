@@ -135,6 +135,9 @@ function generatePDF() {
   return (
     <div>
       <div ref={screenshotRef}>
+	  <img src='http://ipfs.io/ipfs/QmSj5Yd6p377rYJWSoGnq29wehFFKkLZGS7PynxKzaLQSB' className="img-fluid" alt="menu"/>
+      </div>
+      <div ref={screenshotRef}>
         <img src={assetImageUrl} alt="Asset Image" className="img-fluid" />
       </div>
 	            <div>Load Image </div>
