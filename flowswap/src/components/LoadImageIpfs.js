@@ -39,11 +39,12 @@ function LoadImageIpfs() {
 
   return (
     <div>
-      <div>Load Image to Ipfs</div>
+      <div><h2>Load Image to Ipfs</h2></div>
       <div>
-        <input type="file" name="imageFile" onChange={onChangeImage} accept="image/png, image/png, image/jpeg, image/jpg" />
+          <label for="image-btn">Choose the asset image: </label>
+        <input type="file" name="imageFile" id="image-btn" onChange={onChangeImage} accept="image/png, image/png, image/jpeg, image/jpg" />
         <Button variant="primary" onClick={loadIpfsImage}>
-          Load Image to Ipfs
+          Create Asset Image to Ipfs
         </Button>
       </div>
       {ipfsImageHash && (

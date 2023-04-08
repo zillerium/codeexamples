@@ -63,7 +63,8 @@ function AddAsset() {
 
     return (
         <>
-        <div><Button  variant="primary" onClick={addAssetFunc}>Add Asset {assetId} </Button></div>
+	    {assetYield}
+        <div><Button  variant="primary" onClick={addAssetFunc}>Create Asset NFT </Button></div>
             {error && (<div> error in formatting {error.message} </div>)}
         </>
     )

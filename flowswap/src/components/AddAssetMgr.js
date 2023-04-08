@@ -83,12 +83,12 @@ return ( data ? <img src='http://ipfs.io/ipfs/QmSj5Yd6p377rYJWSoGnq29wehFFKkLZGS
       <p></p>
 
        <AssetOwner />
-      <AssetCheckBoxes />
+       <AssetCheckBoxes />
        <AssetDetails />
-      <AssetLinks />
-<AssetRates />
-<AssetRisk />
-	    <IpfsContext.Provider value={{ipfsHash, setIpfsHash, ipfsImageHash, setIpfsImageHash }} >
+       <AssetLinks />
+       <AssetRates />
+       <AssetRisk />
+       <IpfsContext.Provider value={{ipfsHash, setIpfsHash, ipfsImageHash, setIpfsImageHash }} >
 	  
 	   
             
@@ -120,7 +120,7 @@ return ( data ? <img src='http://ipfs.io/ipfs/QmSj5Yd6p377rYJWSoGnq29wehFFKkLZGS
           assetImageUrl: assetImageUrl,
           assetUrl: assetUrl,
           assetIncome: assetIncome,
-          assetYield: assetYield,
+          assetYield: assetYield*100,
           assetNumberBathrooms: assetNumberBathrooms,
           assetNumberBedrooms: assetNumberBedrooms,
           assetHouseType: assetHouseType,
