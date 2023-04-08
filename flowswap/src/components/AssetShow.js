@@ -78,7 +78,7 @@ useEffect(()=> {
         </Row>
         <Row >
           <Col xs={12} sm={12} md={5} lg={5} xl={5}>
-            <AssetImages imageUrl={data.data[0].assetImageUrl} alt={data.data[0].assetAddress} />
+            <AssetImages imageUrl={`https://ipfs.io/ipfs/{data.data[0].ipfsImageHash}`} alt={data.data[0].assetAddress} />
           </Col>
           <Col >
              <Row >
