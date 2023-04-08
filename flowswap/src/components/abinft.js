@@ -1,4 +1,3 @@
-0xFF83186457ae552540D53C22709690c0F74f08d5
 const abinft = [
 	{
 		"inputs": [],

@@ -35,6 +35,9 @@ const NavBar = () => {
             <LinkContainer to="/addasset">
               <Nav.Link>Add Asset</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/listassets">
+              <Nav.Link>List Assets</Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/about">
               <Nav.Link>About</Nav.Link>
             </LinkContainer>

@@ -8,8 +8,8 @@ import { BigNumber} from 'bignumber.js';
 
 import {Button} from 'react-bootstrap';
 
-import abi from './abi';
-import nftabi from './abi';
+
+import abinft from './abinft';
 
 function AddAsset() {
 
@@ -17,20 +17,19 @@ function AddAsset() {
                 addAsset, setAddAsset, contractAddress, 
 		assetId, assetValue, assetNumberShares, 
 		 assetIncome, assetYield, assetRiskRating, 
-		 currency, assetNumberSharesSold,
+		 currency, assetNumberSharesSold, 
                 } = useContext(ContractContext)
 
 	const {ipfsHash} = useContext(IpfsContext);
         let nftcontractAddress = process.env.REACT_APP_NFT_CONTRACT_ADDR;
-	const bytes32Hash = "0x" + ipfsHash.substring(2).padStart(64, "0");
+	const ipfsHashBytes32 = "0x" + ipfsHash.substring(2).padStart(64, "0");
 
-
-        let argArr = [assetId, assetValue, assetNumberShares, assetIncome, assetYield*100, assetRiskRating, currency, assetNumberSharesSold];
-  	    console.log("array ---- ", argArr, contractAddress);
+        let argArr = [ipfsHash, ipfsHashBytes32,  assetValue, assetNumberShares, assetIncome, assetYield*100, assetRiskRating, currency, assetNumberSharesSold];
+  	    console.log("array ---- ", argArr, nftcontractAddress);
             const {config, error} = usePrepareContractWrite({
                    address: nftcontractAddress,
-                   abi: nftabi,
-                   functionName: 'addAsset',
+                   abi: abinft,
+                   functionName: 'safeMint',
                   // args:[contractNumber],
                    args: argArr
             })
@@ -74,4 +73,5 @@ function AddAsset() {
 
 
 export default AddAsset;
+
 
