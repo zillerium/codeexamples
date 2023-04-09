@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useContractRead } from 'wagmi';
 import { ContractContext } from './ContractContext';
-import AssetDetails from './AssetDetails';
+import ShowAssetDetails from './ShowAssetDetails';
 import abinft from './abinft';
 import { Button, ListGroup, Table } from 'react-bootstrap';
 
@@ -28,14 +28,23 @@ console.log("jjjjjjjjjjjjjjj", assetList);
 	  timeStyle: 'short',
 	  hour12: true
   }
-
+/*console.log("asset details ==============", assetDetails);
+//console.log("asset details 0 kkk ==============", assetDetails.assetNft.value._hex.toString());
+console.log("asset details 0 ==============", assetDetails.assetNft.toString());
+console.log("asset details 0 ==============", assetDetails.assetIncome.toString());
+console.log("asset details 0 ==============", assetDetails.assetNumberShares.toString());
+console.log("asset details 0 ==============", assetDetails.assetValue.toString());
+console.log("asset details 0 ==============", assetDetails.assetYield.toString());
+console.log("asset details 0 ==============", assetDetails.assetRiskRating.toString());
+console.log("asset details 0 ==============", assetDetails.currency);
+*/
    return (
     <div>
 	   <div className="row">
        <div className="col-6">
       <h3>List of Assets:</h3>
       <ListGroup
-	   > {props.assets}
+	   > 
         {props.assets && props.assets.map((assetNum) => (
           <ListGroup.Item key={assetNum}>
             <Button variant="light" onClick={() => showAssetDetailsFunc(assetNum)}>
@@ -46,13 +55,50 @@ console.log("jjjjjjjjjjjjjjj", assetList);
       </ListGroup>
      </div>
 
-      {selAsset && <AssetDetails address={props.address} assetNum={selAsset} />}
+      {selAsset && <ShowAssetDetails address={props.address} assetNum={selAsset} />}
 
        <div className="col-6">
       {selAsset && assetDetails && JSON.stringify(assetDetails) !== JSON.stringify([{}]) && (
-        <div>
-          <h3>Asset Details: {selAsset} </h3>
-	      {assetDetails[0]}
+        <div> 
+
+          <h3>Asset Details:  </h3>
+	      <Table bordered striped>
+            <tbody>
+              <tr>
+                <td><strong>Bytes32:</strong></td>
+                <td>{selAsset}</td>
+              </tr>
+              <tr>
+                <td><strong>Nft:</strong></td>
+                <td>{assetDetails && assetDetails.assetNft && assetDetails.assetNft.toString()}</td>
+              </tr>
+              <tr>
+                <td><strong>Value:</strong></td>
+                <td>{assetDetails && assetDetails.assetValue.toString()}</td>
+              </tr>
+              <tr>
+                <td><strong>Number Shares:</strong></td>
+                <td>{assetDetails && assetDetails.assetNumberShares.toString()}</td>
+              </tr>
+              <tr>
+                <td><strong>Income:</strong></td>
+                <td>{assetDetails && assetDetails.assetIncome.toString()}</td>
+              </tr>
+              <tr>
+                <td><strong>Yield:</strong></td>
+                <td>{assetDetails && assetDetails.assetYield.toString()}</td>
+              </tr>
+              <tr>
+                <td><strong>Risk:</strong></td>
+                <td>{assetDetails && assetDetails.assetRiskRating.toString()}</td>
+              </tr>
+              <tr>
+                <td><strong>Currency:</strong></td>
+                <td>{assetDetails && assetDetails.currency}</td>
+              </tr>
+            </tbody>
+          </Table>
+
         </div>
       )}
      </div>
