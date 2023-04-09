@@ -38,6 +38,9 @@ console.log("asset details 0 ==============", assetDetails.assetYield.toString()
 console.log("asset details 0 ==============", assetDetails.assetRiskRating.toString());
 console.log("asset details 0 ==============", assetDetails.currency);
 */
+
+
+console.log(ipfsAddress); // Output: ipfs://QmWCEhZsM37JYr3E2AMK8LaqSUMb4u8R
    return (
     <div>
 	   <div className="row">
@@ -70,31 +73,31 @@ console.log("asset details 0 ==============", assetDetails.currency);
               </tr>
               <tr>
                 <td><strong>Nft:</strong></td>
-                <td>{assetDetails && assetDetails.assetNft && assetDetails.assetNft.toString()}</td>
+                <td>{assetDetails?.assetNft?.toString()}</td>
               </tr>
               <tr>
                 <td><strong>Value:</strong></td>
-                <td>{assetDetails && assetDetails.assetValue.toString()}</td>
+                <td>{assetDetails?.assetValue?.toString()}</td>
               </tr>
               <tr>
                 <td><strong>Number Shares:</strong></td>
-                <td>{assetDetails && assetDetails.assetNumberShares.toString()}</td>
+                <td>{assetDetails?.assetNumberShares?.toString()}</td>
               </tr>
               <tr>
                 <td><strong>Income:</strong></td>
-                <td>{assetDetails && assetDetails.assetIncome.toString()}</td>
+                <td>{assetDetails?.assetIncome?.toString()}</td>
               </tr>
               <tr>
                 <td><strong>Yield:</strong></td>
-                <td>{assetDetails && assetDetails.assetYield.toString()}</td>
+                <td>{assetDetails?.assetYield?.toString()}</td>
               </tr>
               <tr>
                 <td><strong>Risk:</strong></td>
-                <td>{assetDetails && assetDetails.assetRiskRating.toString()}</td>
+                <td>{assetDetails?.assetRiskRating?.toString()}</td>
               </tr>
               <tr>
                 <td><strong>Currency:</strong></td>
-                <td>{assetDetails && assetDetails.currency}</td>
+                <td>{assetDetails?.currency}</td>
               </tr>
             </tbody>
           </Table>
