@@ -40,7 +40,6 @@ console.log("asset details 0 ==============", assetDetails.currency);
 */
 
 
-console.log(ipfsAddress); // Output: ipfs://QmWCEhZsM37JYr3E2AMK8LaqSUMb4u8R
    return (
     <div>
 	   <div className="row">

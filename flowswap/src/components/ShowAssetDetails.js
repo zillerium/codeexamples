@@ -21,21 +21,28 @@ function ShowAssetDetails(props) {
 
 const ipfs = create();
 const bytes32 = props.assetNum;
-const bytes = Uint8Array.from(Buffer.from(data.bytes32.slice(2), 'hex'));
+const bytes = Uint8Array.from(Buffer.from(bytes32.slice(2), 'hex'));
   useEffect(() => {
-
-const { cid } = await ipfs.add(bytes);
-
 
 	    console.log("----show adata 7777 state --------------", assetDetails);
 	    console.log("----show adata 7777  asset value--------------", data.assetValue);
 	    console.log("----show adata 7777 --------------", JSON.stringify(data));
 	    console.log("----show adata 7777 type --------------", typeof(JSON.stringify(data)));
-    if ((isSuccess)  && (data) ) {
+       if ((isSuccess)  && (data) ) {
+	       console.log("ipfs v==== ",ipfs)
+	       console.log("ipfs v==== ",ipfs)
+	    ipfs.add(bytes).then((result) => {
+		 const ipfsAddr = `${result.cid.toString()}`;   
+                 setAssetDetails({...data, ipfsAddr});
+
+	    }).catch((error) => {
+                console.log(error);
+	    });
+       //     setAssetDetails(data);
 	    console.log("----show adata 1111--------------", data);
 	    console.log("----show adata 1111--------------", data);
 	    console.log("----show adata 1111--------------", data);
-            setAssetDetails(data);
+         //   setAssetDetails(data);
       };
   }, [setAssetDetails]);
 
