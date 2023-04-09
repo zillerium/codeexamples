@@ -39,7 +39,7 @@ console.log("asset details 0 ==============", assetDetails.assetRiskRating.toStr
 console.log("asset details 0 ==============", assetDetails.currency);
 */
 
-
+console.log("asset details === ", assetDetails);
    return (
     <div>
 	   <div className="row">
@@ -69,6 +69,10 @@ console.log("asset details 0 ==============", assetDetails.currency);
               <tr>
                 <td><strong>Bytes32:</strong></td>
                 <td>{selAsset}</td>
+              </tr>
+              <tr>
+                <td><strong>Addr:</strong></td>
+                <td>{assetDetails?.ipfsAddr}</td>
               </tr>
               <tr>
                 <td><strong>Nft:</strong></td>
