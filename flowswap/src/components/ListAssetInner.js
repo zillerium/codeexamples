@@ -45,7 +45,7 @@ return (
            </div>
 	    <div className="row">
                 <div className="col-12 ">
-                     <h1>Buyer Contracts</h1>
+                     <h1>Asset Details</h1>
                       {assetList.length>0 && <AssetListBytes32 address={props.address} assets={assetList}/> }
                 </div>
 

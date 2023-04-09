@@ -15,10 +15,13 @@ function AssetDetails(props) {
    args: [props.assetNum],
   };
 
+	    console.log("----config show adata --------------", config);
   const { data, isLoading, isSuccess } = useContractRead(config);
 
   useEffect(() => {
     if ((isSuccess)  && (data) ) {
+	    console.log("----show adata --------------", data);
+	    console.log("----show adata --------------", data);
 	    console.log("----show adata --------------", data);
       setAssetDetails({data});
       };
@@ -27,6 +30,12 @@ function AssetDetails(props) {
   if (isLoading) {
     return <div>Loading contract details...</div>;
   }
+	if (isSuccess) {
+	
+	    console.log("----show adata 8888--------------", data);
+	    console.log("----show adata 8888--------------", data);
+
+	}
 
 	 // {contractDetails && <ShowContractDetails /> }
   return (

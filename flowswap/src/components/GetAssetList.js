@@ -13,7 +13,7 @@ function GetAssetList(props) {
     abi: abinft,
     overrides: { from: props.address },
     //functionName: 'getBuyerContractsByAddress',
-    functionName: 'assetsByOwner',
+    functionName: 'getAssetsByOwner',
 	  args:[props.address]
   };
 

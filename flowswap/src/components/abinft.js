@@ -341,6 +341,11 @@ const abinft = [
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"name": "assetsByOwner",
@@ -441,6 +446,25 @@ const abinft = [
 				"internalType": "uint256",
 				"name": "assetNumberSharesSold",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "getAssetsByOwner",
+		"outputs": [
+			{
+				"internalType": "bytes32[]",
+				"name": "",
+				"type": "bytes32[]"
 			}
 		],
 		"stateMutability": "view",
@@ -567,4 +591,5 @@ const abinft = [
 		"type": "function"
 	}
 ]
+
 export default abinft;

@@ -7,7 +7,7 @@ import {IpfsContext} from './IpfsContext'
 import { BigNumber} from 'bignumber.js';
 
 import {Button} from 'react-bootstrap';
-
+import {TextEncoder} from 'text-encoding';
 
 import abinft from './abinft';
 
@@ -22,7 +22,12 @@ function AddAsset() {
 
 	const {ipfsHash} = useContext(IpfsContext);
         let nftcontractAddress = process.env.REACT_APP_NFT_CONTRACT_ADDR;
-	const ipfsHashBytes32 = "0x" + ipfsHash.substring(2).padStart(64, "0");
+//	const ipfsHashBytes32 = "0x" + ipfsHash.substring(2).padStart(64, "0");
+
+const bytes = new TextEncoder().encode(ipfsHash);
+	const ipfsHashBytes32 = "0x" + Array.prototype.map.call(
+             new Uint8Array(32), (_, i) => bytes[i] || 0
+	).map(x=>x.toString(16).padStart(2, "0")).join('');
 
         let argArr = [ipfsHash, ipfsHashBytes32,  assetValue, assetNumberShares, assetIncome, assetYield*100, assetRiskRating, currency, assetNumberSharesSold];
   	    console.log("array ---- ", argArr, nftcontractAddress);
