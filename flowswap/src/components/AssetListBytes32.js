@@ -87,18 +87,16 @@ console.log("asset details 0 ==============", assetDetails.currency);
             {props.assets && props.assets.map((assetNum) => (
               <ListGroup.Item key={assetNum}>
                 <Button variant="light" onClick={() => showAssetDetailsFunc(assetNum)}>
-                  {assetNum}
+                  {assetNum.slice(0, 10)}
                 </Button>
               </ListGroup.Item>
             ))}
           </ListGroup>
         </div>
 
-        {selAsset && <ShowAssetDetails address={props.address} assetNum={selAsset} />}
-      </div>
 
       {selAsset && assetDetails?.assetIncome && JSON.stringify(assetDetails) !== JSON.stringify([{}]) && (
-        <div> 
+        <div className="col-6"> 
           <h3>Asset Details:  </h3>
           <AssetDetailsTable
             selAsset={selAsset}
@@ -109,6 +107,8 @@ console.log("asset details 0 ==============", assetDetails.currency);
           />
         </div>
       )}
+    </div>
+        {selAsset && <ShowAssetDetails address={props.address} assetNum={selAsset} />}
     </div>
   );
 }
