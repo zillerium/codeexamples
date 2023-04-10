@@ -1,3 +1,11 @@
+import { useEffect, useState, useContext } from 'react';
+ 
+import { ContractContext } from './ContractContext';
+ 
+ 
+import {  Button, ListGroup, Table } from 'react-bootstrap';
+import {Link, Routes, Route, useNavigate } from 'react-router-dom';
+
 function AssetDetailsTable(props) {
   const { selAsset, assetDetails, assetValueLocale, assetNumberShares, assetIncomeLocale } = props;
 
