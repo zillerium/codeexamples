@@ -58,7 +58,7 @@ const Search1 =  () => {
                                  <td>    {value.assetAddress}  </td>
                                  <td>    {value.assetValue.toLocaleString()} {value.currency} </td>
 					                     <td>            <Link to={{
-                                             pathname:`/asset/${value.assetId}`,
+                                             pathname:`/asset/${value.ipfsHash}`,
                                                            state:{productId: value.dbKey, productPrice: value.partSalePrice}
                                                            }}>{value.assetAddress}</Link>
                                                            </td>

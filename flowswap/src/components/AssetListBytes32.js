@@ -3,7 +3,10 @@ import { useContractRead } from 'wagmi';
 import { ContractContext } from './ContractContext';
 import ShowAssetDetails from './ShowAssetDetails';
 import abinft from './abinft';
-import { Button, ListGroup, Table } from 'react-bootstrap';
+import {BigNumber} from 'bignumber.js';
+import {  Button, ListGroup, Table } from 'react-bootstrap';
+import {Link, Routes, Route, useNavigate } from 'react-router-dom';
+
 
 function AssetListBytes32(props) {
   const { contractNftAddress, assetList, assetDetails, setAssetDetails } = useContext(ContractContext);
@@ -39,7 +42,37 @@ console.log("asset details 0 ==============", assetDetails.assetRiskRating.toStr
 console.log("asset details 0 ==============", assetDetails.currency);
 */
 
-console.log("asset details === ", assetDetails);
+        const assetValueLocale2 =new Number(assetDetails?.assetValue?.toString()).toLocaleString('en-US', 
+	undefined,
+        {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+	let currency= assetDetails?.currency;
+	if (!currency){ currency='USD'};
+
+	console.log("currency ================= ", currency);
+	console.log("currency ================= ", currency);
+	console.log("currency ================= ", currency);
+
+        const num1 = assetDetails?.assetValue?.toString();
+	console.log("num1 asset =============== ", assetDetails);
+	console.log("num1 asset len =============== ", assetDetails?.length);
+	console.log("num1 =============== ", num1);
+	console.log("num1 =============== ", num1);
+	console.log("num1 =============== ", num1);
+
+        const assetValueLocale = new Number(assetDetails?.assetValue?.toString()).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: currency
+        });
+
+        const assetIncomeLocale = new Number(assetDetails?.assetIncome?.toString()).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: currency
+        });
+
+        const assetNumberShares = new Number(assetDetails?.assetNumberShares?.toString()).toLocaleString(2);
+
+
    return (
     <div>
 	   <div className="row">
@@ -60,7 +93,7 @@ console.log("asset details === ", assetDetails);
       {selAsset && <ShowAssetDetails address={props.address} assetNum={selAsset} />}
 
        <div className="col-6">
-      {selAsset && assetDetails && JSON.stringify(assetDetails) !== JSON.stringify([{}]) && (
+      {selAsset && assetDetails?.assetIncome && JSON.stringify(assetDetails) !== JSON.stringify([{}]) && (
         <div> 
 
           <h3>Asset Details:  </h3>
@@ -68,11 +101,18 @@ console.log("asset details === ", assetDetails);
             <tbody>
               <tr>
                 <td><strong>Bytes32:</strong></td>
-                <td>{selAsset}</td>
+                <td>{selAsset?.slice(0,4)}</td>
               </tr>
               <tr>
                 <td><strong>Addr:</strong></td>
-                <td>{assetDetails?.ipfsAddr}</td>
+                <td><a target="_blank" href={`https://ipfs.io/ipfs/${assetDetails?.ipfsAddr}`}>{assetDetails?.ipfsAddr}</a></td>
+              </tr>
+              <tr>
+                <td><strong>Link:</strong></td>
+                <td><Link to={{
+			pathname:`/asset/${assetDetails?.ipfsAddr}`, state:{productId: null}
+		}}>Offer Page</Link>
+</td>
               </tr>
               <tr>
                 <td><strong>Nft:</strong></td>
@@ -80,19 +120,19 @@ console.log("asset details === ", assetDetails);
               </tr>
               <tr>
                 <td><strong>Value:</strong></td>
-                <td>{assetDetails?.assetValue?.toString()}</td>
+                <td>{assetValueLocale}</td>
               </tr>
               <tr>
                 <td><strong>Number Shares:</strong></td>
-                <td>{assetDetails?.assetNumberShares?.toString()}</td>
+                <td>{assetNumberShares}</td>
               </tr>
               <tr>
                 <td><strong>Income:</strong></td>
-                <td>{assetDetails?.assetIncome?.toString()}</td>
+                <td>{assetIncomeLocale}</td>
               </tr>
               <tr>
                 <td><strong>Yield:</strong></td>
-                <td>{assetDetails?.assetYield?.toString()}</td>
+	        <td>{ (assetDetails?.assetYield / 100)?.toFixed(2)}%</td>
               </tr>
               <tr>
                 <td><strong>Risk:</strong></td>

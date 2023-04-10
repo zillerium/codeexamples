@@ -3,6 +3,8 @@ import { useContractRead } from 'wagmi';
 import abinft from './abinft';
 import { ContractContext } from './ContractContext';
 import bs58 from 'bs58';
+import multihash from 'multihashes';
+import {create} from 'ipfs-http-client';
 
 function ShowAssetDetails(props) {
   const { contractNftAddress, assetDetails, setAssetDetails } = useContext(ContractContext);
@@ -16,23 +18,26 @@ function ShowAssetDetails(props) {
    args: [props.assetNum],
   };
 
+	const ipfs = create();
 	    console.log("----config show adata --------------", config);
   const { data, isLoading, isSuccess } = useContractRead(config);
 
-const bytes32 = props.assetNum;
-const bytes = Uint8Array.from(Buffer.from(bytes32.slice(2), 'hex'));
+const bytes32Hash = props.assetNum;
+//const bytes = Uint8Array.from(Buffer.from(bytes32.slice(2), 'hex'));
+//const bytes = Buffer.from(bytes32.slice(2), 'hex');
   useEffect(() => {
-	    console.log("----show adata 7777 state --------------", assetDetails);
-	    console.log("----show adata 7777  asset value--------------", data.assetValue);
-	    console.log("----show adata 7777 --------------", JSON.stringify(data));
-	    console.log("----show adata 7777 type --------------", typeof(JSON.stringify(data)));
-	   const hashHex = "1220" + bytes32.slice(2);
-           const hashBytes = Buffer.from(hashHex, 'hex');
-           const ipfsAddr = bs58.encode(hashBytes);
+	    //console.log("----show adata 7777 type --------------", typeof(JSON.stringify(data)));
+          // const hashBytes = bytes.slice(1);
+          // const ipfsAddr = bs58.encode(hashBytes);
+         if ((isSuccess)  && (data) ) {
 
-       if ((isSuccess)  && (data) ) {
-                 setAssetDetails({...data, ipfsAddr});
-       };
+const decodedHex = Buffer.from(bytes32Hash.slice(2), 'hex');
+const encodedIPFS = bs58.encode(Buffer.concat([Buffer.from([0x12, 0x20]), decodedHex]));
+
+console.log("ipfs =========",encodedIPFS); // This will output the original IPFS address
+	    console.log("----show adata 7777 state --------------", data);
+          setAssetDetails({...data, ipfsAddr:encodedIPFS});
+         };
   }, [setAssetDetails]);
 
   if (isLoading) {
