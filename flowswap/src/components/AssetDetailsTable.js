@@ -58,3 +58,6 @@ function AssetDetailsTable(props) {
     </Table>
   );
 }
+
+export default AssetDetailsTable;
+
