@@ -38,8 +38,11 @@ console.log("ooooooooooooooooooo contract details ------------", contractDetails
 	  timeStyle: 'short',
 	  hour12: true
   }
+
    return (
     <div>
+	   <div className="row">
+       <div className="col-6">
       <h3>List of Contracts:</h3>
       <ListGroup>
         {props.contracts.map((contractNum) => (
@@ -50,10 +53,12 @@ console.log("ooooooooooooooooooo contract details ------------", contractDetails
           </ListGroup.Item>
         ))}
       </ListGroup>
+     </div>
 
       {selContract && <ContractDetails address={props.address} contractNum={selContract} />}
 
-      {contractDetails && JSON.stringify(contractDetails) !== JSON.stringify([{}]) && (
+       <div className="col-6">
+      {selContract && contractDetails && JSON.stringify(contractDetails) !== JSON.stringify([{}]) && (
         <div>
           <h3>Contract Details: {selContract} ({props.contractType})</h3>
           <Table bordered striped>
@@ -80,7 +85,13 @@ console.log("ooooooooooooooooooo contract details ------------", contractDetails
               </tr>
               <tr>
                 <td><strong>Release Time:</strong></td>
-                <td>{new Date(parseInt(contractDetails.data.releaseTime._hex,16)*1000).toLocaleString('en-GB', dateFormat)}</td>
+	      <td>
+  {new Date(parseInt(contractDetails.data.releaseTime._hex,16)*1000).toLocaleString('en-GB', dateFormat)}
+  {new Date() > new Date(parseInt(contractDetails.data.releaseTime._hex,16)*1000) &&
+    <span className="text-success font-weight-bold"> <strong>settlement possible</strong></span>
+  }
+               </td>
+
               </tr>
               <tr>
                 <td><strong>Dispute Release:</strong></td>
@@ -102,7 +113,10 @@ console.log("ooooooooooooooooooo contract details ------------", contractDetails
 	        </td>}
 	      </tr>
 	      <tr>
-	      {props.contractType==="seller" && <td colSpan="2">
+	      {props.contractType==="seller" &&
+		      new Date() > new Date(parseInt(contractDetails.data.releaseTime._hex,16)*1000) 
+		      && 
+		<td colSpan="2">
 	      {parseInt(contractDetails.data.balance._hex, 16)>0 && 
 		      <ClaimSeller contractNum={selContract}
 		      contractAmount={(parseInt(contractDetails.data.balance._hex, 16)/10**6).toFixed(2)}/>}
@@ -112,6 +126,8 @@ console.log("ooooooooooooooooooo contract details ------------", contractDetails
           </Table>
         </div>
       )}
+     </div>
+    </div>
     </div>
   );
 }
