@@ -1,16 +1,16 @@
-.slick-slider .slick-slide .carousel-caption {
+.carousel-item {
+  position: relative;
+}
+
+.carousel-caption {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   text-align: center;
-  background: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
   padding: 10px;
-  color: #fff;
+  font-size: 24px;
 }
 
-.slick-slider .slick-slide img {
-  display: block;
-  margin: 0 auto;
-  height: 100%;
-}
