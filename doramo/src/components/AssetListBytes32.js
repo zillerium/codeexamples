@@ -12,6 +12,7 @@ function AssetListBytes32(props) {
 
   const { contractNftAddress, assetList, assetDetails, setAssetDetails } = useContext(ContractContext);
 	const [selAsset, setSelAsset]=useState();
+	const [selectedItem, setSelectedItem]=useState();
 console.log("jjjjjjjjjjjjjjj", assetList);
 //           <ContractDetails contractNum={contractNum} />
           //{contractDetails && <ShowContractDetails /> }
@@ -20,6 +21,14 @@ console.log("jjjjjjjjjjjjjjj", assetList);
 	  setSelAsset(c);
 	  console.log("ccontarct=====", selAsset);
   }
+
+const handleClick = (item) => {
+	console.log("item == ", item);
+	console.log("item == ", item);
+  setSelectedItem(item);
+	showAssetDetailsFunc(item);
+
+}
 
  /* {selContract && (
            <ContractDetails contractNum={selContract} />
@@ -77,7 +86,8 @@ console.log("asset details 0 ==============", assetDetails.currency);
 
 
 console.log("sel asset ",selAsset);
-console.log("sel asset income ", assetDetails);
+console.log("sel asset income ", props.assets);
+console.log("sel asset  ", assetDetails);
   return (
     <div>
       <div className="row">
@@ -86,9 +96,9 @@ console.log("sel asset income ", assetDetails);
           <ListGroup> 
             {props.assets && props.assets.map((assetNum) => (
               <ListGroup.Item key={assetNum}>
-                <Button variant="light" onClick={() => showAssetDetailsFunc(assetNum)}>
-                  {assetNum.slice(0, 10)}
-                </Button>
+                <Button variant="light" onClick={() =>handleClick(assetNum.toLocaleString())}>
+		    {assetNum.toLocaleString()}
+		    </Button>
               </ListGroup.Item>
             ))}
           </ListGroup>

@@ -18,7 +18,7 @@ const AssetShow = () => {
   const cart = useContext(CartContext);
   //const baseUrl = `https://peacioapi.com:3000/getHouse/${productId}`;
   const baseUrl = `${process.env.REACT_APP_SERVER_URL}/getHouse/${productId}`;
-
+console.log("base url === ", baseUrl);
   const { data, isLoading, isError, refetch } = useQuery(
     ["cat"],
     () => axios.get(baseUrl).then((res) => res.data),
@@ -82,41 +82,18 @@ useEffect(()=> {
             <AssetImages imageUrl={`https://ipfs.io/ipfs/${data.data[0]?.ipfsImageHash}`} alt={data.data[0]?.assetAddress} />
           </Col>
           <Col >
-             <Row >
 
-             <Col>
-
-                  <ManageInvestQty
-              quantity={quantity}
-              onQuantityChange={onQuantityChange}
-              onAddToCart={onAddToCart}
-              maxQuantity={maxQuantity}
-            />
-
-
-              </Col>
-	  </Row>
-	  <Row className="my-4"><Col><h4>For {quantity} Shares USD Rate {usdGbpRate} Fixed </h4></Col></Row>
       <Row className="my-4" >
         <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
-            title="Income"
+            title="Income Per Share"
             data={`${assetIncomeForQuantity.toFixed(2)} GBP`}
-            datausd={`${(assetIncomeForQuantity*usdGbpRate).toFixed(2)} USD`}
-          />
-	  </Col>
-        <Col xs={12} sm={12} md={6} lg={4} xl={4}>
-          <DataBox
-            title="Cost"
-            data={`${assetCostForQuantity.toFixed(2)} GBP`}
-            datausd={`${(assetCostForQuantity*usdGbpRate).toFixed(2)} USD`}
           />
 	  </Col>
         <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <DataBox
             title="Cost Per Share"
             data={`${assetCostPerShare.toFixed(2)} GBP`}
-            datausd={`${(assetCostPerShare*usdGbpRate).toFixed(2)} USD`}
           />
         </Col>
       </Row>
@@ -157,8 +134,6 @@ useEffect(()=> {
             <p>Asset Owner Name: {data.data[0]?.assetOwnerName}</p>
 	  <p><a href={`http://ipfs.io/ipfs/${data.data[0]?.ipfsHash}`} target="_blank">Asset Prospectus</a></p>
             <p>Seller: {sellerAddress}</p>
-            <p>USD GBP Rate: {usdGbpRate}</p>
-            <p>** All investments are made in USD and at a fixed exchange rate for 12 months ** </p>
            </Col>
         </Row>
 

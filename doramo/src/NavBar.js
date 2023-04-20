@@ -21,7 +21,7 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <LinkContainer to="/admin">
-              <Nav.Link>Register</Nav.Link>
+              <Nav.Link>Connect</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/listassets">
               <Nav.Link>List Assets</Nav.Link>

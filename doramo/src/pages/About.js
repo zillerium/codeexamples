@@ -9,21 +9,29 @@ const About = () => {
   return (
     <div >
 
-      <header >
+<Container className="mt-5">
+      <div >
 	  <h1>About Us</h1>
-        <p>Doramo is an asset ledger.
-        </p>
-<Container>
-	  <Row><Col></Col>
+	  <Row>
 	  <Col>
-                 <p>This site lists assets in the blockchain as a reference point. This is also issued as an NFT.
+                 <p>Doramo is an asset ledger. This site lists assets in the blockchain as a reference point. This is also issued as an NFT.
 </p>
           </Col>
-	  <Col></Col>
 	  </Row>
-	  </Container>
+	  <Row>
+	  <Col></Col>
+	  <Col className="d-flex justify-content-center">
+	  <ReactPlayer url="https://www.youtube.com/watch?v=X30RLvIDbfU" />
 
-      </header>
+	  </Col>
+
+	  <Col></Col>
+
+
+	  </Row>
+
+      </div>
+	  </Container>
     </div>
   );
 }

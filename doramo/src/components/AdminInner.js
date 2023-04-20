@@ -31,17 +31,14 @@ return (
         <div>
 	   <div className="row">
   	       <div className="col-12 text-center">
-	           <h2>Register Wallet</h2>
                </div>
    	   </div>
       <div className="row">
              <div className="col-6 ">
-                 <CheckAllowance  address={props.address} />
              </div>
       </div>
 
 	   <div className="row">
-	{allowanceAmount==0 ? <ApproveContract /> : <div>already approved</div>}
 	</div>
 	</div>
         </ContractContext.Provider>

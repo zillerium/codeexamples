@@ -78,6 +78,16 @@ return ( data ? <img src='http://ipfs.io/ipfs/QmSj5Yd6p377rYJWSoGnq29wehFFKkLZGS
 	if (error) return <h1>{error.message}</h1>
 	if (isLoading) return <h1>Loading</h1>
 		//console.log(data);
+	//
+console.log("process env ", process.env.REACT_APP_NFT_CONTRACT_ADDR);
+console.log("process env ", process.env.REACT_APP_NFT_CONTRACT_ADDR);
+console.log("process env ", process.env.REACT_APP_NFT_CONTRACT_ADDR);
+console.log("process env ", process.env.REACT_APP_NFT_CONTRACT_ADDR);
+console.log("process env ", process.env.REACT_APP_NFT_CONTRACT_ADDR);
+console.log("process env ", process.env.REACT_APP_NFT_CONTRACT_ADDR);
+console.log("process env ", process.env.REACT_APP_NFT_CONTRACT_ADDR);
+console.log("process env ", process.env.REACT_APP_NFT_CONTRACT_ADDR);
+
     return (
         <>
   <header>
@@ -135,6 +145,7 @@ return ( data ? <img src='http://ipfs.io/ipfs/QmSj5Yd6p377rYJWSoGnq29wehFFKkLZGS
               sellerAddress: sellerAddress,
               ipfsHash: ipfsHash,
               ipfsImageHash: ipfsImageHash,
+              assetContractAddr: process.env.REACT_APP_NFT_CONTRACT_ADDR 
       })}>
         Add DB Asset
       </Button> 

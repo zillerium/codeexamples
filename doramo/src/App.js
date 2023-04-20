@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
 import Search1 from './Search1.js';
+import Welcome from './Welcome.js';
 import {useQuery, useMutation} from 'react-query';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -111,7 +112,7 @@ return ( data ? <img src={data.data.url}/> : <p></p>);
 		<NavBar />
 
                 <Routes>
-                     <Route index element={<Search1 />} />                    
+                     <Route index element={<Welcome />} />                    
                      <Route path="succcess" element={<Success />} />                    
                      <Route path="cancel" element={<Cancel />} />     
                      <Route path="/asset/:productId" element={<AssetShowPage />} />

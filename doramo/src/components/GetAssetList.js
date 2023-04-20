@@ -13,7 +13,8 @@ function GetAssetList(props) {
     abi: abinft,
     overrides: { from: props.address },
     //functionName: 'getBuyerContractsByAddress',
-    functionName: 'getAssetsByOwner',
+    //functionName: 'getAssetsByOwner',
+    functionName: 'getAssetsByWallet',
 	  args:[props.address]
   };
 
@@ -29,7 +30,7 @@ function GetAssetList(props) {
 	      console.log("len=",data[1]);
 	      console.log("data =",data);
 	      console.log("data =",data);
-	      console.log("data =",data);
+	      console.log("data 2222 =",data);
 	      setAssetList(data);
 	     // const myArray = Array.from(data.map((contract) => contract));
       }
