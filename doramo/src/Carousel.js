@@ -1,5 +1,10 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+
 import CarouselSlide from './CarouselSlide';
 
 const Carousel = ({ slides }) => {
@@ -14,11 +19,11 @@ const Carousel = ({ slides }) => {
     autoplaySpeed: 3000,
     cssEase: 'linear'
   };
-
+console.log("slides, ", slides);
   return (
     <Slider {...settings}>
-      {slides.map((slide, index) => (
-        <CarouselSlide key={index} image={slide.image} alt={slide.alt} caption={slide.caption} />
+      {slides && slides.map((slide, index) => (
+        <CarouselSlide key={index} imageSrc={slide.image} imageAlt={slide.alt} caption={slide.caption} />
       ))}
     </Slider>
   );
