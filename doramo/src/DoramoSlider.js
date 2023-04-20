@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const Welcome = () => {
+const DoramoSlider = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -34,13 +34,6 @@ const Welcome = () => {
   };
 
   return (
-    <Container className="mt-5">
-      <Row>
-        <Col>
-          <h1 className="text-center">Welcome to Doramo</h1>
-          <p className="lead text-center">
-            Tokenization of Assets
-          </p>
           <Slider {...settings}>
             <div className="carousel-item">
               <img
@@ -56,36 +49,34 @@ const Welcome = () => {
               <img
                 className="d-block w-100"
                 src="/fineart.jpg"
-                alt="Artwork"
+                alt="Fine Art"
               />
               <div className="carousel-caption">
-                <div style={captionStyle}>Artwork</div>
+                <div style={captionStyle}>Fine Art</div>
               </div>
             </div>
             <div className="carousel-item">
               <img
                 className="d-block w-100"
                 src="/cars.jpg"
-                alt="Vehicles"
+                alt="Classic Cars"
               />
               <div className="carousel-caption">
-                <div style={captionStyle}>Vehicles</div>
+                <div style={captionStyle}>Classic Cars</div>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <img
+                className="d-block w-100"
+                src="/exotic.jpg"
+                alt="Exotic Cars"
+              />
+              <div className="carousel-caption">
+                <div style={captionStyle}>Exotic Cars</div>
               </div>
             </div>
           </Slider>
-          <div className="d-flex justify-content-center mt-5">
-            <ul className="list-group">
-              <li className="list-group-item">Add Asset</li>
-              <li className="list-group-item">List Asset</li>
-              <li className="list-group-item">
-                Click on the link to see the page
-              </li>
-            </ul>
-          </div>
-        </Col>
-      </Row>
-    </Container>
   );
 };
 
-export default Welcome;
+export default DoramoSlider;

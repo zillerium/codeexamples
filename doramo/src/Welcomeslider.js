@@ -3,8 +3,37 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import DoramoSlider from './DoramoSlider.js';
+
+
+
+
+import Carousel from './Carousel';
+
 const Welcome = () => {
+
+
+  const slides = [
+    {
+      image: '/houses.jpg',
+      alt: 'Real Estate',
+      caption: 'Real Estate'
+    },
+    {
+      image: '/fineart.jpg',
+      alt: 'Fine Art',
+      caption: 'Fine Art'
+    },
+    {
+      image: '/cars.jpg',
+      alt: 'Classic Cars',
+      caption: 'Classic Cars'
+    },
+    {
+      image: '/exotic.jpg',
+      alt: 'Exotic Cars',
+      caption: 'Exotic Cars'
+    }
+  ];
 
   return (
     <Container className="mt-5">
@@ -14,7 +43,7 @@ const Welcome = () => {
           <p className="lead text-center">
             Tokenization of Assets
           </p>
-	  <DoramoSlider />
+          <Carousel slides={slides} />
           <div className="d-flex justify-content-center mt-5">
             <ul className="list-group">
               <li className="list-group-item">Add Asset</li>
