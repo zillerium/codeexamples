@@ -34,31 +34,49 @@ const Carousel = () => {
     backgroundColor: 'rgba(0, 0, 0, 0)',
   };
 
-  const PrevArrow = (props) => {
-    const { className, onClick } = props;
-    return (
-      <div
-        className={className}
-        onClick={onClick}
-        style={{ position: 'absolute', top: '45%', left: '-20px', zIndex: '1', cursor: 'pointer' }}
-      >
-        <ArrowLeft size={30} color="white" />
-      </div>
-    );
-  };
+   
+ const PrevArrow = (props) => {
+  const { className, onClick } = props;
+  return (
+    <div
+      className={className}
+      onClick={onClick}
+      style={{
+        position: 'absolute',
+        top: '45%',
+        left: '-20px',
+        zIndex: '1',
+        cursor: 'pointer',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        padding: '10px',
+      }}
+    >
+      <ArrowLeft size={30} color="white" />
+    </div>
+  );
+};
 
-  const NextArrow = (props) => {
-    const { className, onClick } = props;
-    return (
-      <div
-        className={className}
-        onClick={onClick}
-        style={{ position: 'absolute', top: '45%', right: '-20px', zIndex: '1', cursor: 'pointer' }}
-      >
-        <ArrowRight size={30} color="white" />
-      </div>
-    );
-  };
+const NextArrow = (props) => {
+  const { className, onClick } = props;
+  return (
+    <div
+      className={className}
+      onClick={onClick}
+      style={{
+        position: 'absolute',
+        top: '45%',
+        right: '-20px',
+        zIndex: '1',
+        cursor: 'pointer',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        padding: '10px',
+      }}
+    >
+      <ArrowRight size={30} color="white" />
+    </div>
+  );
+};
+
 
   return (
     <Slider {...settings} prevArrow={<PrevArrow />} nextArrow={<NextArrow />}>
