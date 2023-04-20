@@ -17,6 +17,22 @@ const Welcome = () => {
     cssEase: 'linear'
   };
 
+  const captionStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    background: 'rgba(0, 0, 0, 0.5)',
+    color: 'white',
+    fontSize: '24px',
+    fontWeight: 'bold',
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+  };
+
   return (
     <Container className="mt-5">
       <Row>
@@ -26,35 +42,35 @@ const Welcome = () => {
             Tokenization of Assets
           </p>
           <Slider {...settings}>
-            <div>
+            <div className="carousel-item">
               <img
                 className="d-block w-100"
                 src="/houses.jpg"
-                alt="Houses"
+                alt="Real Estate"
               />
-	      <div className="carousel-caption">
-                 <p>Houses</p>
-	      </div>
+              <div className="carousel-caption">
+                <div style={captionStyle}>Real Estate</div>
+              </div>
             </div>
-            <div>
+            <div className="carousel-item">
               <img
                 className="d-block w-100"
                 src="/fineart.jpg"
-                alt="Fine Art"
+                alt="Artwork"
               />
-	      <div className="carousel-caption">
-                 <p>Fine Art</p>
-	      </div>
+              <div className="carousel-caption">
+                <div style={captionStyle}>Artwork</div>
+              </div>
             </div>
-            <div>
+            <div className="carousel-item">
               <img
                 className="d-block w-100"
                 src="/cars.jpg"
-                alt="Cars"
+                alt="Vehicles"
               />
-	      <div className="carousel-caption">
-                 <p>Cars</p>
-	      </div>
+              <div className="carousel-caption">
+                <div style={captionStyle}>Vehicles</div>
+              </div>
             </div>
           </Slider>
           <div className="d-flex justify-content-center mt-5">
