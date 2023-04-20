@@ -23,14 +23,19 @@ const CarouselSlide = ({ imageSrc, imageAlt, caption }) => {
     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
     backgroundColor: 'rgba(0, 0, 0, 0)',
   };
-console.log("image src", imageSrc);
+console.log("image src", imageSrc, imageAlt, caption);
   return (
+	  <div>
+	  <h1>test</h1>
+	  <img src={imageSrc} />
     <div className="carousel-item">
       <img className="d-block w-100" src={imageSrc} alt={imageAlt} />
       <div className="carousel-caption">
         <div style={captionStyle}>{caption}</div>
       </div>
     </div>
+
+	  </div>
   );
 };
 
