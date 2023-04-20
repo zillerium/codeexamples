@@ -31,7 +31,7 @@ const Welcome = () => {
     fontSize: '24px',
     fontWeight: 'bold',
     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-    backgroundColor: 'rgba(0, 0, 0, 0)',	  
+    backgroundColor: 'rgba(0, 0, 0, 0)',
   };
 
   return (
@@ -72,6 +72,7 @@ const Welcome = () => {
               <div className="carousel-caption">
                 <div style={captionStyle}>Classic Cars</div>
               </div>
+            </div>
             <div className="carousel-item">
               <img
                 className="d-block w-100"
@@ -81,7 +82,6 @@ const Welcome = () => {
               <div className="carousel-caption">
                 <div style={captionStyle}>Exotic Cars</div>
               </div>
-            </div>
             </div>
           </Slider>
           <div className="d-flex justify-content-center mt-5">
