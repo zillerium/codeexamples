@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { ArrowLeft, ArrowRight } from 'react-bootstrap-icons';
 
 const Welcome = () => {
   const settings = {
@@ -34,69 +35,96 @@ const Welcome = () => {
     backgroundColor: 'rgba(0, 0, 0, 0)',
   };
 
-  return (
-    <Container className="mt-5">
-      <Row>
-        <Col>
-          <h1 className="text-center">Welcome to Doramo</h1>
-          <p className="lead text-center">
-            Tokenization of Assets
-          </p>
-          <Slider {...settings}>
-            <div className="carousel-item">
-              <img
-                className="d-block w-100"
-                src="/houses.jpg"
-                alt="Real Estate"
-              />
-              <div className="carousel-caption">
-                <div style={captionStyle}>Real Estate</div>
-              </div>
+  const PrevArrow = (props) => {
+    const { className, onClick } = props;
+    return (
+      <div
+        className={className}
+        onClick={onClick}
+        style={{ position: 'absolute', top: '45%', left: '-20px', zIndex: '1', cursor: 'pointer' }}
+      >
+        <ArrowLeft size={30} color="white" />
+      </div>
+    );
+  };
+
+  const NextArrow = (props) => {
+    const { className, onClick } = props;
+    return (
+      <div
+        className={className}
+        onClick={onClick}
+        style={{ position: 'absolute', top: '45%', right: '-20px', zIndex: '1', cursor: 'pointer' }}
+      >
+        <ArrowRight size={30} color="white" />
+      </div>
+    );
+  };
+
+  
+ return (
+  <Container className="mt-5">
+    <Row>
+      <Col>
+        <h1 className="text-center">Welcome to Doramo</h1>
+        <p className="lead text-center">
+          Tokenization of Assets
+        </p>
+        <Slider {...settings} prevArrow={<PrevArrow />} nextArrow={<NextArrow />}>
+          <div className="carousel-item">
+            <img
+              className="d-block w-100"
+              src="/houses.jpg"
+              alt="Real Estate"
+            />
+            <div className="carousel-caption">
+              <div style={captionStyle}>Real Estate</div>
             </div>
-            <div className="carousel-item">
-              <img
-                className="d-block w-100"
-                src="/fineart.jpg"
-                alt="Fine Art"
-              />
-              <div className="carousel-caption">
-                <div style={captionStyle}>Fine Art</div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img
-                className="d-block w-100"
-                src="/cars.jpg"
-                alt="Classic Cars"
-              />
-              <div className="carousel-caption">
-                <div style={captionStyle}>Classic Cars</div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img
-                className="d-block w-100"
-                src="/exotic.jpg"
-                alt="Exotic Cars"
-              />
-              <div className="carousel-caption">
-                <div style={captionStyle}>Exotic Cars</div>
-              </div>
-            </div>
-          </Slider>
-          <div className="d-flex justify-content-center mt-5">
-            <ul className="list-group">
-              <li className="list-group-item">Add Asset</li>
-              <li className="list-group-item">List Asset</li>
-              <li className="list-group-item">
-                Click on the link to see the page
-              </li>
-            </ul>
           </div>
-        </Col>
-      </Row>
-    </Container>
-  );
-};
+          <div className="carousel-item">
+            <img
+              className="d-block w-100"
+              src="/fineart.jpg"
+              alt="Fine Art"
+            />
+            <div className="carousel-caption">
+              <div style={captionStyle}>Fine Art</div>
+            </div>
+          </div>
+          <div className="carousel-item">
+            <img
+              className="d-block w-100"
+              src="/cars.jpg"
+              alt="Classic Cars"
+            />
+            <div className="carousel-caption">
+              <div style={captionStyle}>Classic Cars</div>
+            </div>
+          </div>
+          <div className="carousel-item">
+            <img
+              className="d-block w-100"
+              src="/exotic.jpg"
+              alt="Exotic Cars"
+            />
+            <div className="carousel-caption">
+              <div style={captionStyle}>Exotic Cars</div>
+            </div>
+          </div>
+        </Slider>
+        <div className="d-flex justify-content-center mt-5">
+          <ul className="list-group">
+            <li className="list-group-item">Add Asset</li>
+            <li className="list-group-item">List Asset</li>
+            <li className="list-group-item">
+              Click on the link to see the page
+            </li>
+          </ul>
+        </div>
+      </Col>
+    </Row>
+  </Container>
+);
+
 
 export default Welcome;
