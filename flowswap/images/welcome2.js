@@ -57,8 +57,8 @@ const Welcome = () => {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Col xs={12} sm={12} md={6} lg={6} className="d-flex justify-content-center mb-4">
-          <span>Visit <a href="https://chainera.network" target="_blank" rel="noopener noreferrer">chainera.network</a> for more information</span>
+        <Col xs={12} sm={12} md={6} lg={6} className="mb-4">
+          <p className="text-center text-md-left">Visit <a href="https://chainera.network" target="_blank" rel="noopener noreferrer">chainera.network</a> for more information on our blockchain consultancy services.</p>
         </Col>
       </Row>
     </div>
