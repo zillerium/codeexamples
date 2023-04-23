@@ -47,18 +47,18 @@ const Welcome = () => {
             />
           </a>
         </Col>
-        <Col xs={12} sm={12} md={6} lg={6} className="d-flex justify-content-start mb-4 align-items-center">
+      </Row>
+      <Row className="justify-content-center">
+        <Col xs={12} md={6} className="mb-4">
           <img
             src="chainerascreen.png"
             alt="Blockchain Consultancy"
             className="img-fluid"
           />
-          <span className="ml-2">Blockchain Consultancy</span>
         </Col>
-      </Row>
-      <Row className="justify-content-center">
-        <Col xs={12} sm={12} md={6} lg={6} className="mb-4">
-          <p className="text-center text-md-left">Visit <a href="https://chainera.network" target="_blank" rel="noopener noreferrer">chainera.network</a> for more information on our blockchain consultancy services.</p>
+        <Col xs={12} md={6} className="mb-4">
+          <p>Blockchain Consultancy</p>
+          <p>Visit <a href="https://chainera.network" target="_blank" rel="noopener noreferrer">chainera.network</a> for more information on our blockchain consultancy services.</p>
         </Col>
       </Row>
     </div>
